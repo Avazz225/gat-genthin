@@ -39,6 +39,12 @@
     justify-content: center;
 }
 
+@media (max-width: 42em) {
+    .foot-parallel{
+        flex-direction: column;
+    }
+}
+
 .verticalrow{
     background-color: var(--textcol);
     width: 1px;

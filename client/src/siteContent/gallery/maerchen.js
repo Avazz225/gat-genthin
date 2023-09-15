@@ -1,8 +1,7 @@
 import '../css/Gallery.css';
 import React from "react";
 import ImagePopUp from '../../components/ImagePopUp';
-import handlePopUp from '../../components/popUpHandler';
-var target;
+import FillImages from '../../components/GalleryItem'
 
 
 function replaceAfterList(toReplace){
@@ -47,45 +46,49 @@ function replaceAfterList(toReplace){
 return toReplace;
 }
 
-function Maerchen(){
-    const [rerender, setRerender] = React.useState(false);
-    React.useEffect(() => {
-        const loader = async () => {
-            var data = await fetch("https://gcwiw43c74.execute-api.eu-central-1.amazonaws.com/maerchen").then((res) => res.json())
-            var htString = fillImages(JSON.parse(data.body))
-            setTarget(htString)
-            setRerender(!rerender);
-        };
-        loader();    
-    }, []);
-
-    return(
-        <div className="content">
-            <h1>Galerie - Märchen</h1>
-                <ImagePopUp/>
-                <div dangerouslySetInnerHTML={{__html: target}} />     
-        </div>
-    );
-}
-
-function fillImages(data){
-    //console.log(data.length)
-    var htString = "";
-    
-    for (let j = (data.length-1); j>=0; j--){
-        htString+="<div class='content-pane texttype'> <details><summary>"+replaceAfterList(data[j][0])+"</summary><div class='galleryContainer'>"
-    
-        for (let i = 1; i<data[j].length; i++){
-            htString += "<div class='genericGalleryItem'><img src= " + data[j][i] + '? images/regie-ecki-placeholder.jpg :'+ data[j][i]+"} onClick=\"document.getElementById('fullScreen').setAttribute('src',this.src);document.getElementById('fullScreenPos').style.visibility='visible';\" class='subGalleryImage'></img></div>"
+class Maerchen extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            data: [],
         }
-
-        htString+="</details></div></div><div class='spacerGall'></div>";
     }
-    return htString;
+
+    async componentDidMount(){
+        await fetch("https://gcwiw43c74.execute-api.eu-central-1.amazonaws.com/maerchen")
+        .then((res) => res.json())
+        .then(res =>{
+            this.setState({
+                data:JSON.parse(res.body).reverse()
+            })
+        })
+    }
+
+    render(){
+        return(
+            <div className="content">
+                <h1>Galerie - Märchen</h1>
+                    <ImagePopUp/>
+                    <FillGallery data={this.state.data}/>
+            </div>
+        )
+    }
 }
 
-function setTarget(htString){
-    target = htString;
-}
+const FillGallery = ({data}) => ( 
+    <>
+    {data.map(data => (
+        <><div className='content-pane texttype'>
+            <details>
+                <summary>{replaceAfterList(data[0])}</summary>
+                <div className='galleryContainer'>
+                    <FillImages data={data.slice(1)}/>
+                </div>
+            </details>
+        </div><br/>
+        </>
+    ))}
+    </>
+)
 
 export default Maerchen;
