@@ -12,7 +12,7 @@ function replaceAfterList(toReplace){
             case "keinenZweifel":
                 return "Da kann es keinen Zweifel geben! - Ein Heinz-Erhardt-Abend"
             case "Missverstaendnisse":
-                return "Missverst&auml;ndnisse zwischen Mann und Frau"
+                return "Missverständnisse zwischen Mann und Frau"
             case "Spuk":
                 return "Spuken, Angst machen, Erschrecken.."
             case "Valentinstag":

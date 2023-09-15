@@ -10,7 +10,7 @@ function replaceAfterList(toReplace){
 // Hier werden die Anzeigenamen nach den Ordernamen festgelegt.
 // Ein neuer Eintrag wird erstellt indem nach "case" der Ordnername Eingetragen wird und nach "return" der Anzeigename.
         case "0weitere":
-            return "Weitere M&auml;rchen"
+            return "Weitere Märchen"
         case "2007":
             return "Die goldene Gans (2007)"
         case "2008":
@@ -18,13 +18,13 @@ function replaceAfterList(toReplace){
         case "2009":
             return "Die vier Jahreszeiten (2009)"
         case "2010":
-        return "Die Schneek&ouml;nigin (2010)"
+            return "Die Schneekönigin (2010)"
         case "2011":
             return "Kalif Storch (2011)"
         case "2012":
             return "Tischlein deck dich (2012)"
         case "2013":
-            return "Rumpelk&ouml;nig und Goldstilzchen (2013)"
+            return "Rumpelkönig und Goldstilzchen (2013)"
         case "2014":
             return "Das Katzenhaus (2014) "
         case "2015":
@@ -36,9 +36,9 @@ function replaceAfterList(toReplace){
         case "2018":
             return "Sechse kommen durch die ganze Welt (2018)"
         case "2019":
-            return "K&ouml;nig Drosselbart (2019)"
+            return "König Drosselbart (2019)"
         case "2022":
-            return "Die kleine Hexe, die nicht b&ouml;se sein konnte (2022)"
+            return "Die kleine Hexe, die nicht böse sein konnte (2022)"
         case "2023":
             return "Die drei Federn (2023)"
     }
