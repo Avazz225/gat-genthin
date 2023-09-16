@@ -11,19 +11,17 @@ jobs:
       - name: AWS S3 Sync Github Action
         # You may pin to the exact commit or the version.
         # uses: sai-sharan/aws-s3-sync-action@ec2d744406309d3f2c3f9c03c558a5c6917db194
-        uses: sai-sharan/aws-s3-sync-action@master
+        uses: jakejarvis/s3-sync-action@master
         with:
+          args: --follow-symlinks --delete
+        env:
           # Access key of a user with necessary S3 permissions
-          access_key: ${{ secrets.ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
           # Secret access key of a user with necessary S3 permissions
-          secret_access_key: ${{ secrets.SECRET_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
           # Region in which the bucket was created
-          region: 'eu-central-1'
+          AWS_REGION: 'eu-central-1'
           # Source directory/prefix that you want to sync
-          source: './images'
+          SOURCE_DIR: 'images'
           # Destination S3 bucket where you want to sync the source
-          destination_bucket: ${{ secrets.DESTINATION_BUCKET }} #gat-genthin-image-storage
-          # (boolean) Files that exist in the destination but not in the source are deleted during sync.
-          delete: true
-          # (boolean) Does not display the operations performed from the specified command.
-          quiet: false
+          AWS_S3_BUCKET: ${{ secrets.DESTINATION_BUCKET }} #gat-genthin-image-storage
