@@ -20,7 +20,7 @@ jobs:
           # Region in which the bucket was created
           region: 'eu-central-1'
           # Source directory/prefix that you want to sync
-          source: 'images'
+          source: 'images/'
           # Destination S3 bucket where you want to sync the source
           destination_bucket: ${{ secrets.DESTINATION_BUCKET }} #gat-genthin-image-storage
           # (boolean) Files that exist in the destination but not in the source are deleted during sync.
