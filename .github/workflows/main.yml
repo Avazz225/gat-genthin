@@ -8,6 +8,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
       - name: AWS S3 Sync Github Action
         # You may pin to the exact commit or the version.
         # uses: sai-sharan/aws-s3-sync-action@ec2d744406309d3f2c3f9c03c558a5c6917db194
