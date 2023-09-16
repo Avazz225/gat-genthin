@@ -22,6 +22,6 @@ jobs:
           # Region in which the bucket was created
           AWS_REGION: 'eu-central-1'
           # Source directory/prefix that you want to sync
-          SOURCE_DIR: 'images'
+          SOURCE_DIR: './images'
           # Destination S3 bucket where you want to sync the source
           AWS_S3_BUCKET: ${{ secrets.DESTINATION_BUCKET }} #gat-genthin-image-storage
