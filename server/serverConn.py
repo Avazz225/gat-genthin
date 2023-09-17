@@ -6,7 +6,17 @@ dotenv.load_dotenv()
 
 s3 = boto3.client('s3', aws_access_key_id=os.getenv('AWS_ACCESS_KEY'), aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'))
 bucket_name = os.getenv('TARGET_BUCKET')
+
+
+def save_to_s3(file_name:str, file_content:str):
+    s3.put_object(Body=file_content.encode('UTF-8'), Bucket=bucket_name, CacheControl='private', Key=file_name+'.dat')
+
+
+def get_from_s3(file_name:str):
+    response = s3.get_object(Bucket=bucket_name, Key=file_name+'.dat')
+    return response['Body'].read().decode('utf-8')
     
+
 def list_s3_objects(bucket_name=bucket_name, prefix='', length = 1):
     try:
         response = s3.list_objects_v2(Bucket=bucket_name, Prefix=prefix)

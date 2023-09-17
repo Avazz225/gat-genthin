@@ -1,6 +1,6 @@
 import random
-import os
 from getAllFiles import getFS_overv, list_paths
+from serverConn import get_from_s3, save_to_s3
 
 def flatten(l):
     try:
@@ -9,12 +9,17 @@ def flatten(l):
         return []
 
 def getPreviews(root):
-    dirs = list_paths(root, 1)
-    base = getFS_overv(root, 1)
+    try:
+        base = eval(get_from_s3('overview'))
+    except:
+        base = getFS_overv(root, 1)
+        save_to_s3('overview', str(base))
+
     previews = list()
 
     for b in base:
         previews.append(getThree(b))
+
     return previews
 
 def getThree(tar):
