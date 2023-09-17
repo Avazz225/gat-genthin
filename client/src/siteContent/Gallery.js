@@ -13,7 +13,7 @@ function Gallery(){
     const [data, setData] = React.useState(null);
 
     React.useEffect(() => {
-        fetch("https://gcwiw43c74.execute-api.eu-central-1.amazonaws.com/overview")
+        fetch(process.env.REACT_APP_API_URL+"/overview")
         .then((res) => res.json())
         .then((data) => setData(JSON.parse(data.body)))
     }, []);  
@@ -69,13 +69,13 @@ function readySnippets(target){
     return(
         <div className="galleryContainer">
             <div className="galleryItem1">
-                <img src={!target ? "images/regie-ecki-placeholder.jpg" : target[3]} className="galleryImage"></img>
+                <img src={!target ? process.env.REACT_APP_CDN_URL+"regie-ecki-placeholder.jpg" : process.env.REACT_APP_CDN_URL+target[3]} className="galleryImage"></img>
             </div>
             <div className="galleryItem2">
-                <img src={!target ? "images/regie-ecki-placeholder.jpg" : target[2]} className="galleryImage"></img>
+                <img src={!target ? process.env.REACT_APP_CDN_URL+"regie-ecki-placeholder.jpg" : process.env.REACT_APP_CDN_URL+target[2]} className="galleryImage"></img>
             </div>
             <div className="galleryItem3">
-                <img src={!target ? "images/regie-ecki-placeholder.jpg" : target[1]} className="galleryImage"></img>
+                <img src={!target ? process.env.REACT_APP_CDN_URL+"regie-ecki-placeholder.jpg" : process.env.REACT_APP_CDN_URL+target[1]} className="galleryImage"></img>
                 <a href={!target ? "#/" : "#/"+target[0]} className="galleryLink">
                     <div className="viewXMore">
                             weitere {!target ? "0" : target[4]} Bilder ansehen

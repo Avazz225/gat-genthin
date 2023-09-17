@@ -8,8 +8,6 @@ function Welcome(){
                 <p>Herzlich Willkommen auf der Seite des gat - genthiner amateurtheater e.V.! 
                     Wir laden Sie ein, sich bei uns etwas umzuschauen: Erfahren Sie etwas über uns und unsere Geschichte oder werfen Sie einen Blick in unsere Galerie.</p> 
             </div>
-            
-            
         </div>
     );
 }

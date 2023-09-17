@@ -11,7 +11,7 @@ function Navigation(){
                     <span className="line line3"></span>
                 </div>
                 <div className="logoBox">
-                    <img src="images/gat-blue3.png" alt="GAT Logo" className="logo"></img>
+                    <img src={process.env.REACT_APP_CDN_URL+"gat-blue3.png"} alt="GAT Logo" className="logo"></img>
                 </div>
                 <div className="spacer"></div>
                 <div className="navContainer">
