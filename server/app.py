@@ -5,7 +5,7 @@ from overview import getPreviews
 from galleryHandler import getImages, getImgs2
 
 
-application = app = Flask(__name__)
+app = Flask(__name__)
 CORS(app)
 
 @app.route("/")
@@ -64,4 +64,3 @@ def kulissen():
         'body': json.dumps(getImgs2("hinter-den-kulissen/", 2))
     }
 
-application.run()
