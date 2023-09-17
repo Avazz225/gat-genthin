@@ -24,7 +24,7 @@ function News(){
                     <div className="content-pane texttype">
                         <h3>Gefördert durch:</h3>
                         <a href="https://engagiert-fuer-kultur.de" target="blank">
-                        <img src="./images/02_Mikrokulturfonds_Projekt_gross.jpg" className="imageAuto"/>
+                        <img src={process.env.REACT_APP_CDN_URL+"02_Mikrokulturfonds_Projekt_gross.jpg"} className="imageAuto"/>
                         </a><br/><br/>
                     </div>
                 </div>

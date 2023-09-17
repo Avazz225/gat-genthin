@@ -13,7 +13,7 @@ class Hinterkulissen extends React.Component{
     }
 
     async componentDidMount(){
-        await fetch("https://gcwiw43c74.execute-api.eu-central-1.amazonaws.com/kulissen")
+        await fetch(process.env.REACT_APP_API_URL+"/kulissen")
         .then((res) => res.json())
         .then(res =>{
             this.setState({

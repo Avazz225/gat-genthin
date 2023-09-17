@@ -24,7 +24,7 @@ function About(){
             <hr className="blue"></hr>
             <h1>Spielorte</h1>
             <div className='content-pane center-elements'>
-                <img src="images/spielorte.png" alt="Sparkasse Magdeburg" className='map'></img>
+                <img src={process.env.REACT_APP_CDN_URL+"spielorte.png"} alt="Sparkasse Magdeburg" className='map'></img>
             </div>
         </div>
     );

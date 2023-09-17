@@ -55,7 +55,7 @@ class Maerchen extends React.Component {
     }
 
     async componentDidMount(){
-        await fetch("https://gcwiw43c74.execute-api.eu-central-1.amazonaws.com/maerchen")
+        await fetch(process.env.REACT_APP_API_URL+"/maerchen")
         .then((res) => res.json())
         .then(res =>{
             this.setState({

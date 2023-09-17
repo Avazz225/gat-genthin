@@ -12,7 +12,7 @@ class Kindergat extends React.Component{
     }
 
     async componentDidMount(){
-        await fetch("https://gcwiw43c74.execute-api.eu-central-1.amazonaws.com/kindergat")
+        await fetch(process.env.REACT_APP_API_URL+"/kindergat")
         .then((res) => res.json())
         .then(res =>{
             this.setState({

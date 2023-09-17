@@ -5,7 +5,7 @@ const FillImages = ({data}) => (
     <>
     {data.map(data => (
         <div class='genericGalleryItem'>
-            <img src= {data} onClick={() => handlePopUp(data)} className='subGalleryImage'/>
+            <img src= {process.env.REACT_APP_CDN_URL+data} onClick={() => handlePopUp(data)} className='subGalleryImage'/>
         </div>
     ))}
     </>
