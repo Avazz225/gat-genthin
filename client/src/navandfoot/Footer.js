@@ -38,7 +38,9 @@ function Footer(){
                             </Link>
                             </HashRouter>
                         </div>
-                        <div className="verticalrow"/>
+                        <div className="verticalrow">
+                            <div className="rowfill"/>
+                        </div>
                         <div className="footer-column text">
                             gat bei Social Media <br/><br/>
                             <a href='https://www.instagram.com/genthiner.amateurtheater/' target='_blnak' className='silentLink'><Icon icon={instagramIcon} width="24" inline={true}/> @ genthiner.amateurtheater</a>
