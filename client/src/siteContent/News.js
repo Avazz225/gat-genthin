@@ -20,7 +20,19 @@ function News(){
                 <div>
                     <ImagePopUp/>
                     <h1>Aktuelles</h1>
-                    
+                    <div className="content-pane texttype">
+                        <h3>Vorstellungen - Die drei Federn</h3>
+                        <ul>
+                            <li><b>26.11.2023 14:30</b><br/>Gasthof "Pflaumbaum" Kade</li>
+                            <li><b>03.12.2023 15:00</b><br/>Tucheim</li>
+                            <li><b>10.12.2023 14:30</b><br/>Lindenhof Genthin</li>
+                            <li><b>16.12.2023 16:00</b><br/>Stadthalle Möckern</li>
+                            <li><b>17.12.2023 15:00</b><br/>MGH "Die Stube" Kirchmöser</li>
+                            <li><b>24.12.2023 14:30</b><br/>Grundschule L. Uhland Genthin</li>
+                            <li><b>06.01.2024 14:30</b><br/>Grundschule L. Uhland Genthin</li>
+                        </ul>
+                    </div>
+                    <br/>
                     <div className="content-pane texttype">
                         <h3>Gefördert durch:</h3>
                         <a href="https://engagiert-fuer-kultur.de" target="blank">
