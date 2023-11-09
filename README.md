@@ -3,7 +3,7 @@
 In diesem git-repository wird der Quellcode der Webiste des gat Genthin verwaltet.
 Es ist an CI/CD Pipelines angeschlossen, die die Seite stets aktuell halten.
 
-
+## Aufteilung des Monorepo
 Das Frontend wird durch den Ordner "client" bereitgestellt, welcher automatisch auf AWS Amplify deployt wird. Für Strato fällt zusätzlcher administrativer Aufwand an.
 
 Das Backend wird durch den Ordner "server" bereitgestellt, dessen Inhalt sich auf einem AWS Lambda Server wiederfindet.
