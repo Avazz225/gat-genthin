@@ -15,6 +15,6 @@ Technologie: Javascript React
 Technologie: Python Flask
 
 Die Funktionen des Backends stellen die Logik für die Auslieferung der CDN URLs der Bilder dar.
-Jeder Endpunkt legt eine Indexdatei, in der die Egebnisse der Indexierung persistiert sind, an, falls diese nicht vorhanden ist. Diese werden für eine schnellere Ausführung bei erneutem Aufruf der Funktion verwendet. Die Indexdateien werden bei jedem Update der Bilddateien entfernt, sodass ein erneutes Anlegen erzwungen wird.
+Jeder Endpunkt legt eine Indexdatei, in der die Ergebnisse der Indexierung persistiert sind, an, falls diese nicht vorhanden ist. Diese werden für eine schnellere Ausführung bei erneutem Aufruf der Funktion verwendet. Die Indexdateien werden bei jedem Update der Bilddateien entfernt, sodass ein erneutes Anlegen erzwungen wird.
 
 Für alle Endpunkte außer "overview" ist der Inhalt der Dateien gleich den zurückgeliferten Daten. Im Fall von "overview" erfolgt noch eine Randomisierung und Reduktion der URLs bevor die Daten zurückgeliefert werden. Dies liegt darin begründet, dass pro Galerie-Kategorie nur drei zufällig ausgewählte Bilder angezeigt werden sollen.
