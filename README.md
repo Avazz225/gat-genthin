@@ -5,7 +5,9 @@ Es ist an CI/CD Pipelines angeschlossen, die die Seite stets aktuell halten.
 
 
 Das Frontend wird durch den Ordner "client" bereitgestellt, welcher automatisch auf AWS Amplify deployt wird. Für Strato fällt zusätzlcher administrativer Aufwand an.
+
 Das Backend wird durch den Ordner "server" bereitgestellt, dessen Inhalt sich auf einem AWS Lambda Server wiederfindet.
+
 Sämtliche Bilder im Ordner "images" werden automatisch durch einen GitHub Job auf AWS S3 kopiert. Die Bilder werden durch ein Content Delivery Network, AWS CloundFront, ausgeliefert.
 
 ## Frontend
