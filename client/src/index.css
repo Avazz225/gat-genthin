@@ -42,6 +42,11 @@ code {
     monospace;
 }
 
+.centered{
+  display: flex;
+  justify-content: center;
+}
+
 .ContentArea{
   display: flex;
   margin: 1em;
@@ -110,6 +115,18 @@ code {
   max-width: 30em;
 }
 
+.imageInText{
+  max-width: 25vw;
+}
+
+.imageInText.right{
+  padding-left: .5em;
+}
+
+.imageInText.left{
+  padding-right: .5em;
+}
+
 @media (max-width: 42em){
   .ContentArea{
     display: block;
@@ -117,6 +134,11 @@ code {
 
   .image30em{
     max-width: 100%;
+  }
+
+  .imageInText{
+    max-width: 100%;
+    padding-bottom: .5em;
   }
 }
 

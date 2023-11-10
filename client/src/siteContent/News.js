@@ -31,8 +31,8 @@ function News(){
                             <li><b>24.12.2023 14:30 *</b><br/>Grundschule L. Uhland Genthin</li>
                             <li><b>06.01.2024 14:30 *</b><br/>Grundschule L. Uhland Genthin</li>
                         </ul>
+                        * Kartenvorverkauf ab <b>15.11.2023</b><br/> Touristinformation Genthin
                         <br/><br/>
-                        <b>* Kartenvorverkauf ab 15.11.2023</b><br/> Touristinformation Genthin
                     </div>
                     <br/>
                     <div className="content-pane texttype">
