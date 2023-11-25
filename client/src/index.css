@@ -127,6 +127,13 @@ code {
   padding-right: .5em;
 }
 
+audio{
+  border-radius: 1em;
+  width: 100%;
+  max-width: 40em;
+  margin: .5em 0;
+}
+
 @media (max-width: 42em){
   .ContentArea{
     display: block;
