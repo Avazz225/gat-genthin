@@ -1,0 +1,30 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - media/**
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: AWS S3 Sync Github Action
+        # You may pin to the exact commit or the version.
+        # uses: sai-sharan/aws-s3-sync-action@ec2d744406309d3f2c3f9c03c558a5c6917db194
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          # Access key of a user with necessary S3 permissions
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
+          # Secret access key of a user with necessary S3 permissions
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+          # Region in which the bucket was created
+          AWS_REGION: 'eu-central-1'
+          # Source directory/prefix that you want to sync
+          SOURCE_DIR: './media'
+          # Destination S3 bucket where you want to sync the source
+          AWS_S3_BUCKET: ${{ secrets.MEDIA_DESTINATION_BUCKET }}/media
