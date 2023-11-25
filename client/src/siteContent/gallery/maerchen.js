@@ -23,7 +23,7 @@ class Maerchen extends React.Component {
             })
         })
 
-        jsonReader("/data/maerchen.json")
+        jsonReader("maerchen.json")
         .then(result => this.setState({
             replacementValues: result
           })

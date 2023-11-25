@@ -1,0 +1,6 @@
+{
+    "1":{
+        "timespan": {"from":[1,11,2023], "to":[24,12,2023]},
+        "content": "calenderContent/tag1.json"
+    }
+}

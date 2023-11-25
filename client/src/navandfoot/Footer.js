@@ -36,7 +36,7 @@ function Footer(){
                                     Kontakt
                                 </div>
                             </Link>
-                            </HashRouter>
+                        </HashRouter>
                         </div>
                         <div className="verticalrow">
                             <div className="rowfill"/>

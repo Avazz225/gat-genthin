@@ -16,13 +16,14 @@ import Hanssachs from './siteContent/gallery/hanssachs';
 import Veranstaltungen from './siteContent/gallery/veranstaltungen';
 import Kindergat from './siteContent/gallery/kinder-gat';
 import Hinterkulissen from './siteContent/gallery/hinter-den-kulissen';
+import Calendar from './siteContent/Calendar';
 
 const root = ReactDOM.createRoot(document.getElementById('content'));
 
 root.render(
   <React.StrictMode>
     <Navigation />
-    <div class="ContentArea">
+    <div className="ContentArea">
       <News />
       <HashRouter>
         <Routes>
@@ -36,6 +37,7 @@ root.render(
           <Route path="/veranstaltungen" element={<Veranstaltungen />}exact  />
           <Route path="/kinder-gat" element={<Kindergat />}exact  />
           <Route path="/hinter-den-kulissen" element={<Hinterkulissen />}exact  />
+          <Route path="/calendar" element={<Calendar />}exact  />
         </Routes>
       </HashRouter>
     </div>
