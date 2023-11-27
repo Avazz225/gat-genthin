@@ -38,6 +38,7 @@ function composeDate(arr, mode){
     return new Date(arr[2], arr[1]-1, arr [0]).setHours(0,0,0,0)
 }
 
+
 function wait(seconds){
     
 }
