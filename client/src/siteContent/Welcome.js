@@ -1,6 +1,13 @@
+import React from 'react';
+import { getTimespan } from '../helpers/tools';
 import './css/Welcome.css';
+import './css/gatvent.css'
+import GatCalendar from './CalenderDoors';
 
 function Welcome(){
+    let startDisplay = [27,11,2023]
+    let endDisplay = [1,1,2024]
+
     return(
         <div className="content">
             <h1>Herzlich Willkommen</h1>
@@ -8,6 +15,27 @@ function Welcome(){
                 <p>Herzlich Willkommen auf der Seite des gat - genthiner amateurtheater e.V.! 
                     Wir laden Sie ein, sich bei uns etwas umzuschauen: Erfahren Sie etwas über uns und unsere Geschichte oder werfen Sie einen Blick in unsere Galerie.</p> 
             </div>
+
+            {(getTimespan(startDisplay, endDisplay))?<>
+                <h1>gatventskalender 2023</h1>
+            <div className='content-pane texttype'>
+                <p>
+                    Herzlich willkommen zum digitalen Adventskalender vom genthiner amateurtheater! 
+                    Dieses Jahr nehmen wir Sie mit auf eine zauberhafte Reise durch die Märchen der Vergangenheit, 
+                    die unser Theaterverein im Laufe der Jahre zum Leben erweckt hat. 
+                    Öffnen Sie jeden Tag ein Türchen und lassen Sie sich von den Bildern vergangener Aufführungen verzaubern.
+                </p>
+                <h2>Jeden Sonntag: Märchenstunde</h2>
+                <p>
+                    Gönnen Sie sich an jedem Sonntag eine Auszeit mit unseren Märchenstunden. gat liest ein herzerwärmendes Märchen vor, 
+                    um Ihnen eine gemütliche und märchenhafte Adventszeit zu bescheren.<br/>
+                    Wir hoffen, dass Sie diese Reise durch die vergangenen Märchen ebenso genießen werden wie wir. <br/><br/>
+                    gat wünscht eine märchenhafte Adventszeit!
+                </p>
+            </div>
+            <GatCalendar/>
+            </>:<></>}
+
             <h1>Weihnachtsmärchen 2023</h1>
             <div className='content-pane texttype'>
                 
@@ -46,6 +74,8 @@ function Welcome(){
         </div>
     );
 }
+
+
 
 /*
 <hr className='blue'/>

@@ -13,16 +13,18 @@ class CalendarItem extends React.Component{
         await jsonReader(this.props.content)
         .then(result => this.setState({
             content: result
-          })
+        })
         )
     }
 
     render(){
-        console.log(this.state.content)
         return(
+            <>
+            <h1>{this.props.id}. Türchen</h1>
             <div className="content-pane texttype">
                 <Item content={this.state.content} />
             </div>
+            </>
         )
     }
 }
@@ -37,7 +39,7 @@ function Item(props){
                 {(props.content[key]['type'] === "unterueberschrift")? <h2>{props.content[key]['src']}</h2>:<></>}
                 {(props.content[key]['type'] === "img")? 
                     <center>
-                        <img src= {process.env.REACT_APP_CDN_URL+'media/'+props.content[key]['src']} style={{width:props.content[key]['width']+ "em", maxWidth: "100%"}}/>
+                        <img src= {process.env.REACT_APP_CDN_URL+'media/'+props.content[key]['src']} style={{width:props.content[key]['width']+ "em", maxWidth: "100%", paddingTop: "0.5em", paddingBottom: "0.5em"}}/>
                     </center>:<></>
                 }
                 {(props.content[key]['type'] === "audio")? <AudioPlayer media={props.content[key]} />:<></>}

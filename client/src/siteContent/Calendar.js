@@ -25,7 +25,7 @@ class Cal extends React.Component{
         await jsonReader("dates.json")
         .then(result => this.setState({
             dateData: result[this.props.param]
-          })
+        })
         )
     }
 
@@ -33,7 +33,7 @@ class Cal extends React.Component{
         if (this.state.dateData.timespan){
             if (getTimespan(this.state.dateData.timespan.from,this.state.dateData.timespan.to)){
                 return(
-                    <CalendarItem content={this.state.dateData.content} />
+                    <CalendarItem content={this.state.dateData.content} id={this.props.param} />
                 )
             } else {
                 return(
