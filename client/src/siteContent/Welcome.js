@@ -5,7 +5,7 @@ import './css/gatvent.css'
 import GatCalendar from './CalenderDoors';
 
 function Welcome(){
-    let startDisplay = [28,11,2023]
+    let startDisplay = [27,11,2023]
     let endDisplay = [1,1,2024]
 
     return(
