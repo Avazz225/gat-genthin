@@ -1,6 +1,98 @@
 {
     "1":{
-        "timespan": {"from":[1,11,2023], "to":[24,12,2023]},
+        "timespan": {"from":[1,12,2023], "to":[]},
         "content": "calenderContent/tag1.json"
+    },
+    "2":{
+        "timespan": {"from":[2,12,2023], "to":[]},
+        "content": "calenderContent/tag2.json"
+    },
+    "3":{
+        "timespan": {"from":[3,12,2023], "to":[]},
+        "content": "calenderContent/tag3.json"
+    },
+    "4":{
+        "timespan": {"from":[4,12,2023], "to":[]},
+        "content": "calenderContent/tag4.json"
+    },
+    "5":{
+        "timespan": {"from":[5,12,2023], "to":[]},
+        "content": "calenderContent/tag5.json"
+    },
+    "6":{
+        "timespan": {"from":[6,12,2023], "to":[]},
+        "content": "calenderContent/tag6.json"
+    },
+    "7":{
+        "timespan": {"from":[7,12,2023], "to":[]},
+        "content": "calenderContent/tag7.json"
+    },
+    "8":{
+        "timespan": {"from":[8,12,2023], "to":[]},
+        "content": "calenderContent/tag8.json"
+    },
+    "9":{
+        "timespan": {"from":[9,12,2023], "to":[]},
+        "content": "calenderContent/tag9.json"
+    },
+    "10":{
+        "timespan": {"from":[10,12,2023], "to":[]},
+        "content": "calenderContent/tag10.json"
+    },
+    "11":{
+        "timespan": {"from":[11,12,2023], "to":[]},
+        "content": "calenderContent/tag11.json"
+    },
+    "12":{
+        "timespan": {"from":[12,12,2023], "to":[]},
+        "content": "calenderContent/tag12.json"
+    },
+    "13":{
+        "timespan": {"from":[13,12,2023], "to":[]},
+        "content": "calenderContent/tag13.json"
+    },
+    "14":{
+        "timespan": {"from":[14,12,2023], "to":[]},
+        "content": "calenderContent/tag14.json"
+    },
+    "15":{
+        "timespan": {"from":[15,12,2023], "to":[]},
+        "content": "calenderContent/tag15.json"
+    },
+    "16":{
+        "timespan": {"from":[16,12,2023], "to":[]},
+        "content": "calenderContent/tag16.json"
+    },
+    "17":{
+        "timespan": {"from":[17,12,2023], "to":[]},
+        "content": "calenderContent/tag17.json"
+    },
+    "18":{
+        "timespan": {"from":[18,12,2023], "to":[]},
+        "content": "calenderContent/tag18.json"
+    },
+    "19":{
+        "timespan": {"from":[19,12,2023], "to":[]},
+        "content": "calenderContent/tag19.json"
+    },
+    "20":{
+        "timespan": {"from":[20,12,2023], "to":[]},
+        "content": "calenderContent/tag20.json"
+    },
+    "21":{
+        "timespan": {"from":[21,12,2023], "to":[]},
+        "content": "calenderContent/tag21.json"
+    },
+    "22":{
+        "timespan": {"from":[22,12,2023], "to":[]},
+        "content": "calenderContent/tag22.json"
+    },
+    "23":{
+        "timespan": {"from":[23,12,2023], "to":[]},
+        "content": "calenderContent/tag23.json"
+    },
+    "24":{
+        "timespan": {"from":[24,12,2023], "to":[]},
+        "content": "calenderContent/tag24.json"
     }
 }
