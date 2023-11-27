@@ -26,7 +26,7 @@ const CalendarDoor = ({data}) => (
     <>
     {data.map(data => (
         <div className='calendar-door-wrapper'>
-            <CalendarDoorContent data={data} enabled={getTimespan([data,12,2023], [1,1,2024])} />
+            <CalendarDoorContent data={data} enabled={getTimespan([data,11,2023], [1,1,2024])} />
         </div>
     ))}
     </>
