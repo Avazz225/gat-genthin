@@ -57,6 +57,7 @@ code {
 	border-radius: 20px 20px 20px 20px;
 	align-items: center;
 	box-shadow: var(--shadowcol) 0px 4px 32px;
+  min-heigt: min-content;
 }
 
 .texttype{
