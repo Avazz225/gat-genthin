@@ -52,7 +52,7 @@ function Item(props){
 function AudioPlayer(props){
     return(
         <div className="centered">
-            <audio controls>
+            <audio controls controlsList="nodownload" onContextMenu={(e)=> e.preventDefault()}>
                 <source src={process.env.REACT_APP_CDN_URL+'media/'+props.media.src} type={switchAudioType(props.media.src)} />
                 Dein Browser unterstützt die Audiodatei nicht, bitte versuche einen anderen zu nutzen.
             </audio> 
