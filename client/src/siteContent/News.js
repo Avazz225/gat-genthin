@@ -1,7 +1,11 @@
 import ImagePopUp from '../components/ImagePopUp';
+import { getTimespan } from '../helpers/tools';
 import './css/News.css';
 
 function News(){
+    let startDisplay = []
+    let endDisplay = [6,1,2024]
+
     return(
         <div className='news-main'>
             <input type="checkbox" className="info-toggle"></input>
@@ -16,24 +20,25 @@ function News(){
                 </div>
             </div>
             <div className="NewsContainer">
-                
                 <div>
                     <ImagePopUp/>
                     <h1>Aktuelles</h1>
-                    <div className="content-pane texttype">
-                        <h3>Vorstellungen - Die drei Federn</h3>
-                        <ul>
-                            <li><b>26.11.2023 14:30 *</b><br/>Gasthof "Pflaumbaum" Kade</li>
-                            <li><b>03.12.2023 15:00</b><br/>Tucheim</li>
-                            <li><b>10.12.2023 14:30 *</b><br/>Lindenhof Genthin</li>
-                            <li><b>16.12.2023 16:00</b><br/>Stadthalle Möckern</li>
-                            <li><b>17.12.2023 15:00</b><br/>MGH "Die Stube" Kirchmöser</li>
-                            <li><b>24.12.2023 14:30 *</b><br/>Grundschule L. Uhland Genthin</li>
-                            <li><b>06.01.2024 14:30 *</b><br/>Grundschule L. Uhland Genthin</li>
-                        </ul>
-                        * Kartenvorverkauf ab <b>15.11.2023</b><br/> Touristinformation Genthin
-                        <br/><br/>
-                    </div>
+                    {(getTimespan(startDisplay, endDisplay))?
+                        <div className="content-pane texttype">
+                            <h3>Vorstellungen - Die drei Federn</h3>
+                            <ul>
+                                <li><b>26.11.2023 14:30 *</b><br/>Gasthof "Pflaumbaum" Kade</li>
+                                <li><b>03.12.2023 15:00</b><br/>Tucheim</li>
+                                <li><b>10.12.2023 14:30 *</b><br/>Lindenhof Genthin</li>
+                                <li><b>16.12.2023 16:00</b><br/>Stadthalle Möckern</li>
+                                <li><b>17.12.2023 15:00</b><br/>MGH "Die Stube" Kirchmöser</li>
+                                <li><b>24.12.2023 14:30 *</b><br/>Grundschule L. Uhland Genthin</li>
+                                <li><b>06.01.2024 14:30 *</b><br/>Grundschule L. Uhland Genthin</li>
+                            </ul>
+                            * Kartenvorverkauf ab <b>15.11.2023</b><br/> Touristinformation Genthin
+                            <br/><br/>
+                        </div>
+                        : <></>}
                     <br/>
                     <div className="content-pane texttype">
                         <h3>Gefördert durch:</h3>
