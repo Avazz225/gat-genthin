@@ -5,7 +5,7 @@ on:
     branches:
     - main
     paths:
-    - images/**
+    - media/**
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -25,6 +25,6 @@ jobs:
           # Region in which the bucket was created
           AWS_REGION: 'eu-central-1'
           # Source directory/prefix that you want to sync
-          SOURCE_DIR: './images'
+          SOURCE_DIR: './media'
           # Destination S3 bucket where you want to sync the source
-          AWS_S3_BUCKET: ${{ secrets.DESTINATION_BUCKET }}
+          AWS_S3_BUCKET: ${{ secrets.MEDIA_DESTINATION_BUCKET }}/media
