@@ -1,43 +1,53 @@
+import { Centered, HorizontalRow, Normal } from '../atoms/Arrangement';
+import { BaseContainer, ParallelContainer, TextContainer } from '../atoms/ContentContainers';
+import { Heading, Link, NewLine, Text } from '../atoms/TextContainers';
 import './css/Contact.css';
 
 function Contact(){
     return(
-        <div className="content">
-            <h1>Kontakt</h1>
-            <div className='content-pane texttype'>
-            <p>Wenn wir Ihr Interesse geweckt haben oder Sie einfach weitere Informationen benötigen, wenden Sie sich vertrauensvoll an die untenstehenden Kontaktpersonen.</p>
-            </div>
-
-            <hr className="blue"></hr>
-            <div className='nextto'>
-                <div className='element-wrapper'> 
-                    <h3>Künstlerischer Leiter</h3>
-                    <div className='content-pane texttype'>
-                        <p>
-                        Eckhard Neumann<br></br>
-                        Baumschulenweg 12<br></br>
-                        39307 Genthin<br></br><br></br>
-
-                        Tel. 03933/2065<br></br>
-                        </p>
-                    </div>
-                </div>
-                <div className='element-wrapper'>
-                    <h3>Organisation</h3>
-                    <div className='content-pane texttype'>
-                        <p>
-                        Jürgen Wagner<br></br>
-                        Schillerstr. 7a<br></br>
-                        39307 Genthin<br></br><br></br>
-
-                        Tel. 03933/806922<br></br>
-                        E-Mail: <a href="mailto:info@gat-genthin.de">info@gat-genthin.de</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        <BaseContainer>
+            <Heading text="Kontakt"/>
+            <TextContainer>
+                <Text text="Wenn wir Ihr Interesse geweckt haben oder Sie einfach weitere Informationen benötigen, wenden Sie sich vertrauensvoll an die untenstehenden Kontaktpersonen."/>
+            </TextContainer>
+            <HorizontalRow blue={true}/>
+            <NewLine/>
+            <ParallelContainer>
+                <TextContainer>
+                    <Centered>
+                        <Normal>
+                            <Heading type={3} text="Künstlerischer Leiter" topSpace={-0.25} />
+                            <Text text="Eckhard Neumann"/>
+                            <NewLine/>
+                            <Text text="Baumschulenweg 12"/>
+                            <NewLine/>
+                            <Text text="39307 Genthin"/>
+                            <NewLine/>
+                            <NewLine/>
+                            <Text text="Tel. 03933/2065"/>
+                        </Normal>
+                    </Centered>
+                </TextContainer>
+                <TextContainer>
+                    <Centered>
+                        <Normal>
+                            <Heading type={3} text="Organisation" topSpace={-0.25}/>
+                            <Text text="Jürgen Wagner"/>
+                            <NewLine/>
+                            <Text text="Schillerstr. 7a"/>
+                            <NewLine/>
+                            <Text text="39307 Genthin"/>
+                            <NewLine/>
+                            <NewLine/>
+                            <Text text="Tel. 03933/806922"/>
+                            <NewLine/>
+                            <Text text="E-Mail: "/>
+                            <Link text="info@gat-genthin.de" destination="mailto:info@gat-genthin.de"/>
+                        </Normal>
+                    </Centered>
+                </TextContainer>
+            </ParallelContainer>
+        </BaseContainer>
     );
 }
 

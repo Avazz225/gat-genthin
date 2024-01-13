@@ -57,7 +57,7 @@ code {
 	border-radius: 20px 20px 20px 20px;
 	align-items: center;
 	box-shadow: var(--shadowcol) 0px 4px 32px;
-  min-heigt: min-content;
+  min-height: min-content;
 }
 
 .texttype{
@@ -80,15 +80,12 @@ code {
   flex-wrap: wrap;
 }
 
-.nextto .element-wrapper{
+.nextto .content-pane{
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
   width: 32%;
   min-width: 15em;
-}
-
-.nextto .element-wrapper .content-pane{
   min-height: 10em;
 }
 
