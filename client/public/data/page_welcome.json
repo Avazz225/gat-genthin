@@ -1,0 +1,80 @@
+[{"type":"baseContainer", "content":[
+    {"type":"heading", "text":"Herzlich Willkommen"},
+    {"type":"textContainer", "content":[
+        {"type": "text", "text":"Herzlich Willkommen auf der Seite des gat - genthiner amateurtheater e.V.! Wir laden Sie ein, sich bei uns etwas umzuschauen: Erfahren Sie etwas über uns und unsere Geschichte oder werfen Sie einen Blick in unsere Galerie."}
+    ]},
+    {"type": "timedContainer", "startDisplay":[28,11,2023], "endDisplay": [6,1,2024], "content":[
+        {"type": "heading", "text":"gatventskalender 2023"},
+        {"type": "textContainer", "content":[
+            {"type": "text", "text": "Herzlich willkommen zum digitalen Adventskalender vom genthiner amateurtheater! Dieses Jahr nehmen wir Sie mit auf eine zauberhafte Reise durch die Märchen der Vergangenheit, die unser Theaterverein im Laufe der Jahre zum Leben erweckt hat. Öffnen Sie jeden Tag ein Türchen und lassen Sie sich von den Bildern vergangener Aufführungen verzaubern."},
+            {"type": "heading", "text": "Jeden Sonntag: Märchenstunde", "level":2},
+            {"type": "text", "text":"Gönnen Sie sich an jedem Sonntag eine Auszeit mit unseren Märchenstunden. gat liest ein herzerwärmendes Märchen vor, um Ihnen eine gemütliche und märchenhafte Adventszeit zu bescheren."},
+            {"type": "newLine"},
+            {"type": "text", "text": "Wir hoffen, dass Sie diese Reise durch die vergangenen Märchen ebenso genießen werden wie wir."},
+            {"type": "newLine"},
+            {"type": "newLine"},
+            {"type": "text", "text": "gat wünscht eine märchenhafte Adventszeit!"}
+        ]},
+        {"type": "calendar"}
+    ]},
+    {"type": "timedContainer", "startDisplay":[28,11,2023], "endDisplay": [10,1,2024], "content":[
+        {"type": "heading", "text": "Weihnachtsmärchen 2023"},
+        {"type": "textContainer", "content": [
+            {"type": "imageInText", "src": "PlakatFedern.jpg", "align": "right"},
+            {"type": "heading", "text": "Die drei Federn", "level": 2},
+            {"type": "text", "text": "Walburga Raeder, nach einem Märchen der Brüder Grimm"},
+            {"type": "newLine"},
+            {"type": "newLine"},
+            {"type": "text", "text": "Wer kennt sie nicht die Vorlauten, die Vorwitzigen, die immer denken, dass sie mit Schummeln und ohne großes Zutun ganz vorn sein werden. Immer gab und immer gibt es sie. So auch in unserem Märchen \"Die drei Federn\". Der Dummling aber wird siegen und seine beiden großmäuligen Brüder werden ihrer gerechten Strafe zugeführt, die allerdings in dieser Fassung etwas glimpflicher ausfällt, den beiden Vorwitzigen nach der Läuterung sogar noch eine Chance verspricht. Wir jagen sie also nicht davon, sondern erkennen die Grauzonen, die es im zwischenmenschlichen Bereich öfter gibt als schwarz-weiß."},
+            {"type": "newLine"},
+            {"type": "newLine"},
+            {"type": "centered", "content":[
+                {"type": "normal", "content":[
+                    {"type": "text", "text": "Termine Märchen:"},
+                    {"type": "unorderedList", "content":[
+                        {"type": "listElement", "content":[
+                            {"type": "text", "text": "26.11.2023\t14:30 Uhr"},
+                            {"type": "newLine"},
+                            {"type": "text", "text": "Premiere Gasthof „Pflaumbaum“, Kade"}
+                        ]},
+                        {"type": "listElement", "content":[
+                            {"type": "text", "text": "03.12.2023\t15:00 Uhr"},
+                            {"type": "newLine"},
+                            {"type": "text", "text": "Tucheim, Gaststätte „Zum Fiener“"}
+                        ]},
+                        {"type": "listElement", "content":[
+                            {"type": "text", "text": "10.12.2023\t14:30 Uhr"},
+                            {"type": "newLine"},
+                            {"type": "text", "text": "Lindenhof Genthin"}
+                        ]},
+                        {"type": "listElement", "content":[
+                            {"type": "text", "text": "16.12.2023\t16:00 Uhr"},
+                            {"type": "newLine"},
+                            {"type": "text", "text": "Stadthalle Möckern"}
+                        ]},
+                        {"type": "listElement", "content":[
+                            {"type": "text", "text": "17.12.2023\t15:00 Uhr"},
+                            {"type": "newLine"},
+                            {"type": "text", "text": "MGH „Die Stube“ Kirchmöser"}
+                        ]},
+                        {"type": "listElement", "content":[
+                            {"type": "text", "text": "24.12.2023\t14:30 Uhr"},
+                            {"type": "newLine"},
+                            {"type": "text", "text": "Grundschule L. Uhland, Genthin"}
+                        ]},
+                        {"type": "listElement", "content":[
+                            {"type": "text", "text": "06.01.2024\t14:30 Uhr"},
+                            {"type": "newLine"},
+                            {"type": "text", "text": "Grundschule L. Uhland, Genthin"}
+                        ]}
+                    ]}
+                ]}
+            ]},
+            {"type": "text", "text": "Für die Vorstellungen in Kade und Genthin (26.11.; 10.12.; 24.12. und 06.01.24) beginnt der Kartenvorverkauf am "},
+            {"type": "text", "text": "15.11.2023 ", "bold": true},
+            {"type": "text", "text": "bei der "},
+            {"type": "link", "text": "Touristinformation Genthin", "destination": "http://www.touristinfo-genthin.de/", "bold": true},
+            {"type": "text", "text": "."}
+        ]}
+    ]}
+]}]

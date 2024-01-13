@@ -1,0 +1,6 @@
+[{"type":"baseContainer", "content":[
+    {"type":"heading", "text":"Aktuelles"},
+    {"type": "timedContainer", "startDisplay":[1,1,1], "endDisplay":[10,1,2024], "content":[
+        {"type": "text", "text": "Platzhalter"}
+    ]}
+]}]

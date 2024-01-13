@@ -1,0 +1,43 @@
+[{"type":"baseContainer", "content":[
+    {"type":"heading", "text":"Kontakt"},
+    {"type": "textContainer", "content": [
+        {"type": "text", "text": "Wenn wir Ihr Interesse geweckt haben oder Sie einfach weitere Informationen benötigen, wenden Sie sich vertrauensvoll an die untenstehenden Kontaktpersonen."}
+    ]},
+    {"type": "horizontalRow", "blue": true},
+    {"type": "newLine"},
+    {"type": "parallelContainer", "content":[
+        {"type": "textContainer", "content":[
+            {"type": "centered", "content": [
+                {"type": "normal", "content": [
+                    {"type": "heading", "text": "Künstlerischer Leiter", "level": 3, "topSpace": -0.25},
+                    {"type": "text", "text": "Eckhard Neumann"},
+                    {"type": "newLine"},
+                    {"type": "text", "text": "Baumschulenweg 12"},
+                    {"type": "newLine"},
+                    {"type": "text", "text": "39307 Genthin"},
+                    {"type": "newLine"},
+                    {"type": "newLine"},
+                    {"type": "text", "text": "Tel. 03933/2065"}
+                ]}
+            ]}
+        ]},
+        {"type": "textContainer", "content":[
+            {"type": "centered", "content": [
+                {"type": "normal", "content": [
+                    {"type": "heading", "text": "Organisation", "level": 3, "topSpace": -0.25},
+                    {"type": "text", "text": "Jürgen Wagner"},
+                    {"type": "newLine"},
+                    {"type": "text", "text": "Schillerstr. 7a"},
+                    {"type": "newLine"},
+                    {"type": "text", "text": "39307 Genthin"},
+                    {"type": "newLine"},
+                    {"type": "newLine"},
+                    {"type": "text", "text": "Tel. 03933/806922"},
+                    {"type": "newLine"},
+                    {"type": "text", "text": "E-Mail: "},
+                    {"type": "link", "text": "info@gat-genthin.de", "destination": "mailto:info@gat-genthin.de"}
+                ]}
+            ]}
+        ]}
+    ]}
+]}]

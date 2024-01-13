@@ -1,55 +1,57 @@
 import ImagePopUp from '../components/ImagePopUp';
-import { getTimespan } from '../helpers/tools';
 import './css/News.css';
+import React from 'react';
+import PageMapper from '../helpers/pageMapper';
+import { jsonReader } from '../helpers/tools';
+import { TextContainer } from '../atoms/ContentContainers';
+import { Heading } from '../atoms/TextContainers';
+import { Image } from '../atoms/Image';
 
-function News(){
-    let startDisplay = []
-    let endDisplay = [6,1,2024]
+class News extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            data: []
+        }
+    }
 
-    return(
-        <div className='news-main'>
-            <input type="checkbox" className="info-toggle"></input>
-            <div className='information-icon-border'>
-                <div className='i-container'>
-                    <div>
-                        <div className='i-dot'></div>
-                        <div className='i-stroke'></div>
-                        <div className='x-stroke1'></div>
-                        <div className='x-stroke2'></div>
-                    </div>
-                </div>
-            </div>
-            <div className="NewsContainer">
-                <div>
-                    <ImagePopUp/>
-                    <h1>Aktuelles</h1>
-                    {(getTimespan(startDisplay, endDisplay))?
-                        <div className="content-pane texttype">
-                            <h3>Vorstellungen - Die drei Federn</h3>
-                            <ul>
-                                <li><b>26.11.2023 14:30 *</b><br/>Gasthof "Pflaumbaum" Kade</li>
-                                <li><b>03.12.2023 15:00</b><br/>Tucheim</li>
-                                <li><b>10.12.2023 14:30 *</b><br/>Lindenhof Genthin</li>
-                                <li><b>16.12.2023 16:00</b><br/>Stadthalle Möckern</li>
-                                <li><b>17.12.2023 15:00</b><br/>MGH "Die Stube" Kirchmöser</li>
-                                <li><b>24.12.2023 14:30 *</b><br/>Grundschule L. Uhland Genthin</li>
-                                <li><b>06.01.2024 14:30 *</b><br/>Grundschule L. Uhland Genthin</li>
-                            </ul>
-                            * Kartenvorverkauf ab <b>15.11.2023</b><br/> Touristinformation Genthin
-                            <br/><br/>
+    async componentDidMount(){
+        jsonReader("page_news.json")
+        .then(result => this.setState({
+            data: result
+        })
+        )
+    }
+
+    render(){
+        return(
+            <div className='news-main'>
+                <input type="checkbox" className="info-toggle"></input>
+                <div className='information-icon-border'>
+                    <div className='i-container'>
+                        <div>
+                            <div className='i-dot'></div>
+                            <div className='i-stroke'></div>
+                            <div className='x-stroke1'></div>
+                            <div className='x-stroke2'></div>
                         </div>
-                        : <></>}
-                    <br/>
-                    <div className="content-pane texttype">
-                        <h3>Gefördert durch:</h3>
-                        <a href="https://engagiert-fuer-kultur.de" target="blank">
-                        <img src={process.env.REACT_APP_CDN_URL+"02_Mikrokulturfonds_Projekt_gross.jpg"} className="imageAuto"/>
-                        </a><br/><br/>
+                    </div>
+                </div>
+                <div className="NewsContainer">
+                    <div>
+                        <ImagePopUp/>
+                        <PageMapper data={this.state.data}/>
+                        <TextContainer>
+                            <Heading type={3} text="Gefördert durch:" />
+                            <a href="https://engagiert-fuer-kultur.de" target="blank">
+                                <Image src={process.env.REACT_APP_CDN_URL+"02_Mikrokulturfonds_Projekt_gross.jpg"} width={100}/>
+                            </a>
+                        </TextContainer>
                     </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default News;
