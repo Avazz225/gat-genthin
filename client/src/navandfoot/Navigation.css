@@ -22,20 +22,20 @@
 
 .inactive:after {
 	content: '';
-  	position: absolute;
-  	width: 100%;
-  	transform: scaleX(0);
-  	height: 2px;
-  	bottom: 0;
-  	left: 0;
-  	background-color: var(--contrastCol);
-  	transform-origin: bottom right;
-  	transition: transform 0.25s ease-out;
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--contrastCol);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
 }
 
 .inactive:hover:after{
 	transform: scaleX(1);
-  	transform-origin: bottom left;
+    transform-origin: bottom left;
 }
 
 .ham-container .checkbox{
@@ -47,6 +47,10 @@
     z-index: 5;
     display: block;
     opacity: 0;
+}
+
+.ham-container .checkbox:focus{
+    z-index: -5;
 }
 
 .ham-container .hamburger-lines{
@@ -83,19 +87,19 @@
     transition: transform 0.4s ease-in-out;
 }
 
-.ham-container input[type="checkbox"]:checked ~ .hamburger-lines .line1{
+.ham-container .checkbox:focus ~ .hamburger-lines .line1{
     transform: rotate(45deg);
 }
 
-.ham-container input[type="checkbox"]:checked ~ .hamburger-lines .line2{
+.ham-container .checkbox:focus ~ .hamburger-lines .line2{
     transform:scaleY(0);
 }
 
-.ham-container input[type="checkbox"]:checked ~ .hamburger-lines .line3{
+.ham-container .checkbox:focus ~ .hamburger-lines .line3{
     transform: rotate(-45deg);
 }
 
-.ham-container input[type="checkbox"]:checked ~ .navContainer .navItem{
+.ham-container .checkbox:focus ~ .navContainer .navItem{
     transform: translate(0%);
 }
 
@@ -140,9 +144,22 @@
 	}
 
     .ham-container .navContainer{
-        display: none;
+        position: absolute;
+        display: block;
         flex-direction: column;
         justify-content: space-between;
+        height: 0px;
+        width: 100%;
+        transform: scaleY(0);
+        transform-origin:top;
+        margin-left: 0px;
+        transition: all 0.4s ease-in-out;
+        background-color: var(--bgcol);
+    }
+
+    .ham-container .navContainer .ref{
+        display: flex;
+        justify-content: center;
     }
 
     .ham-container .logoBox{
@@ -159,8 +176,17 @@
         display: block;
     }
 
-    .ham-container input[type="checkbox"]:checked ~ .navContainer{
-        display: flex;
-        margin-left: 0px;
+    .ham-container .checkbox:focus ~ .navContainer{
+        display: block;
+        height: 18.5em;
+        z-index: 100;
+        transform: scaleY(1);
+    }
+
+    .ham-container .checkbox:focus ~ .navContainer::after{
+        display: block;
+        min-height: 2em;
+        background-image: linear-gradient(to bottom, var(--bgcol) 25%, transparent 100%);
+        content: "";
     }
 }

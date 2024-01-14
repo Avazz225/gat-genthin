@@ -4,7 +4,7 @@ import {HashRouter, Link} from "react-router-dom";
 function Navigation(){
     return(
         <div className="ham-container">
-                <input type="checkbox" className="checkbox"></input>
+                <a href='' className="checkbox" onClick={(e) => e.preventDefault()}></a>
                 <div className="hamburger-lines">
                     <span className="line line1"></span>
                     <span className="line line2"></span>
@@ -20,22 +20,22 @@ function Navigation(){
                         <div className="navItem inactive" onClick="window.location.reload();" id="home">
                             Willkommen
                         </div>
-                    </Link>
+                    </Link><br/>
                     <Link to="about" onClick="window.location.reload();" className="ref">
                         <div className="navItem inactive">
                             Über uns
                         </div>
-                    </Link>
+                    </Link><br/>
                     <Link to="repertoire" onClick="window.location.reload();" className="ref">
                         <div className="navItem inactive">
                             Repertoire
                         </div>
-                    </Link>
+                    </Link><br/>
                     <Link to="gallery" onClick="window.location.reload();" className="ref">
                         <div className="navItem inactive">
                             Galerie
                         </div>
-                    </Link>
+                    </Link><br/>
                     <Link to="contact" onClick="window.location.reload();" className="ref">
                         <div className="navItem inactive">
                             Kontakt
