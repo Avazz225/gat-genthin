@@ -1,0 +1,74 @@
+[{"type":"baseContainer", "content":[
+    {"type":"heading", "text":"Großes Bühnenmärchen"},
+    {"type":"textContainer", "content":[
+        {"type":"listElement", "content":[
+            {"type": "text", "text":"Ende November bis 6. Januar"}
+        ]},
+        {"type":"listElement", "content":[
+            {"type": "text", "text":"jeweils Samstag und Sonntag"}
+        ]},
+        {"type":"listElement", "content":[
+            {"type": "text", "text":"ca. 60 - 70 Minuten"}
+        ]}
+    ]},
+    {"type":"horizontalRow", "blue": true},
+    {"type":"heading", "text":"Musikalisch-literarische Programme"},
+    {"type":"parallelContainer", "content":[
+        {"type":"textContainer", "content":[
+            {"type": "heading", "text":"Ri - Ra - Ringelnatz", "level": 4},
+            {"type": "text", "text":"Eine biografische Querbeetlesung über Leben und Werk von Joachim Ringelnatz (1883 - 1934)"},
+            {"type": "newLine"},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"5 Mitwirkende"}
+            ]},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"55 Min."}
+            ]}
+        ]},
+        {"type":"textContainer", "content":[
+            {"type": "heading", "text":"Wer liebt, lacht doch!", "level": 4},
+            {"type": "text", "text":"Heiteres für Liebende und Verliebte"},
+            {"type": "newLine"},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"15 Mitwirkende"}
+            ]},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"90 Min."}
+            ]}
+        ]},
+        {"type":"textContainer", "content":[
+            {"type": "heading", "text":"Da kann es keinen Zweifel geben!", "level": 4},
+            {"type": "text", "text":"Ein Heinz-Erhardt-Abend"},
+            {"type": "newLine"},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"9 Mitwirkende"}
+            ]},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"2 Std. (inkl. Pause)"}
+            ]}
+        ]},
+        {"type":"textContainer", "content":[
+            {"type": "heading", "text":"Für diese Programme gilt...", "level": 4},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"Räume mit max. 120 Plätzen"}
+            ]},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"Gastronomie vor, nach u. in der Pause des Programms ausdrücklich erwünscht (Ringelnatz ohne Pause)"}
+            ]},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"Podest 4x3m (kann auch von gat gestellt werden)"}
+            ]},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"Stromanschluss 2x16A oder auch Kraft"}
+            ]},
+            {"type":"listElement", "content":[
+                {"type": "text", "text":"Nebenraum für die Mitwirkenden"}
+            ]}
+        ]}
+    ]},
+    {"type":"horizontalRow", "blue": true},
+    {"type": "heading", "text":"Straßentheater"},
+    {"type":"textContainer", "content":[
+        {"type": "text", "text":"mit Fastnachtsspielen von Hans Sachs"}
+    ]}
+]}]

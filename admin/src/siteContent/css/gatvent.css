@@ -1,0 +1,104 @@
+.calWrapper{
+    display:block;
+}
+
+.calendarGrid{
+    display: grid;
+    gap: 0.5em;
+    margin: 20px 0;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0.5em;
+    border-radius: 1em;
+}
+
+@media (min-width: 45em) {
+    .calendarGrid{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 25em) {
+    .calendarGrid{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 20em) {
+    .calendarGrid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.calendar-door-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.calendar-door-sub-wrapper{
+    width: 5em;
+    height: 6em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url('https://images.pexels.com/photos/306864/pexels-photo-306864.jpeg');
+}
+
+.door1, .door2, .door21{
+    background-image: url('https://images.pexels.com/photos/1708601/pexels-photo-1708601.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+
+.door3, .door15, .door20 {
+    background-image: url('https://images.pexels.com/photos/3149896/pexels-photo-3149896.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+
+.door4, .door23, .door19{
+    background-image: url('https://images.pexels.com/photos/3557597/pexels-photo-3557597.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+
+.door12, .door14, .door18{
+    background-image: url('https://images.pexels.com/photos/3224164/pexels-photo-3224164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+
+.door6, .door17, .door11{
+    background-image: url('https://images.pexels.com/photos/1628419/pexels-photo-1628419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+
+.door7, .door22, .door5{
+    background-image: url('https://images.pexels.com/photos/713148/pexels-photo-713148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+
+.door8, .door10, .door16{
+    background-image: url('https://images.pexels.com/photos/278508/pexels-photo-278508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+
+.calendar-door{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--textcol);
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px black;
+    border: 1px solid red;
+    background-image: url('https://images.pexels.com/photos/1303085/pexels-photo-1303085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 15%;
+    user-select: none;
+}
+
+.calendar-door.open{
+    animation: openDoor 2s ease-in-out forwards;
+    transform-origin: left center;
+}
+
+@keyframes openDoor {
+    0% {
+        transform:rotateY(0deg);
+    }
+    
+    100% {
+        transform:perspective(500px) rotateY(-115deg);
+    }
+}
