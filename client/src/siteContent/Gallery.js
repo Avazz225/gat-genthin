@@ -1,5 +1,4 @@
 import React from "react";
-import './css/Gallery.css';
 import { BaseContainer, TextContainer } from "../atoms/ContentContainers";
 import { Heading, NewLine, Text } from "../atoms/TextContainers";
 import { HorizontalRow } from "../atoms/Arrangement";

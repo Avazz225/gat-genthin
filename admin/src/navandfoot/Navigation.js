@@ -1,4 +1,3 @@
-import './Navigation.css';
 import {HashRouter, Link} from "react-router-dom";
 
 function Navigation(){

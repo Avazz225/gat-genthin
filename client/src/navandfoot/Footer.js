@@ -1,4 +1,3 @@
-import './Footer.css';
 import {HashRouter, Link} from "react-router-dom";
 import { Icon } from '@iconify/react';
 import instagramIcon from '@iconify/icons-mdi/instagram';

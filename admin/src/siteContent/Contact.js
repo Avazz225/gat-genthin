@@ -1,4 +1,3 @@
-import './css/Contact.css';
 import PageMapper from '../helpers/pageMapper';
 import { jsonReader } from '../helpers/tools';
 import React from 'react';

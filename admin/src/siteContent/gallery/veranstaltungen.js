@@ -1,5 +1,4 @@
 import ImagePopUp from '../../components/ImagePopUp';
-import '../css/Gallery.css';
 import React from "react";
 import FillImages from '../../components/GalleryItem'
 

@@ -1,5 +1,4 @@
 import ImagePopUp from '../components/ImagePopUp';
-import './css/News.css';
 import React from 'react';
 import PageMapper from '../helpers/pageMapper';
 import { jsonReader } from '../helpers/tools';

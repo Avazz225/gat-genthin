@@ -1,6 +1,5 @@
 import React from 'react';
 import { getTimespan } from '../helpers/tools';
-import './css/gatvent.css'
 
 function GatCalendar(){
     let order = [18, 9, 3, 16, 6, 22, 2, 12, 1, 4, 14, 20, 11, 10, 24, 19, 15, 5, 21, 7, 13, 8, 17, 23]

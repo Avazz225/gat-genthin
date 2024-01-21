@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Routes, Route, HashRouter} from "react-router-dom";
-import './index.css';
+import 'style/style.css';
 import News from './siteContent/News';
 import Navigation from './navandfoot/Navigation';
 import Welcome from './siteContent/Welcome';
