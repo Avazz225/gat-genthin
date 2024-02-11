@@ -6,12 +6,13 @@ class About extends React.Component{
     constructor(){
         super();
         this.state = {
+            source: "page_about.json",
             data: []
         }
     }
 
     async componentDidMount(){
-        jsonReader("page_about.json")
+        jsonReader(this.state.source)
         .then(result => this.setState({
             data: result
         })
@@ -20,7 +21,7 @@ class About extends React.Component{
 
     render(){
         return(
-            <PageMapper data={this.state.data}/>
+            <PageMapper data={this.state.data} adminComponentsVisible={this.props.adminComponentsVisible}/>
         );
     }
 }

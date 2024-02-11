@@ -100,6 +100,7 @@ function readySnippets(target){
 }
 
 async function assignVariables(data){
+    if (!data){return}
     for (let i = 0; i< data.length; i++){
         switch(data[i][0]){
             case "hanssachs":

@@ -10,12 +10,13 @@ class News extends React.Component{
     constructor(){
         super();
         this.state = {
+            source: "page_news.json",
             data: []
         }
     }
 
     async componentDidMount(){
-        jsonReader("page_news.json")
+        jsonReader(this.state.source)
         .then(result => this.setState({
             data: result
         })
@@ -39,7 +40,7 @@ class News extends React.Component{
                 <div className="NewsContainer">
                     <div>
                         <ImagePopUp/>
-                        <PageMapper data={this.state.data}/>
+                        <PageMapper data={this.state.data} adminComponentsVisible={this.props.adminComponentsVisible}/>
                         <TextContainer>
                             <Heading type={3} text="Gefördert durch:" />
                             <a href="https://engagiert-fuer-kultur.de" target="blank">

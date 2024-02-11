@@ -6,12 +6,13 @@ class Repertoire extends React.Component{
     constructor(){
         super();
         this.state = {
+            source: "page_repertoire.json",
             data: []
         }
     }
 
     async componentDidMount(){
-        jsonReader("page_repertoire.json")
+        jsonReader(this.state.source)
         .then(result => this.setState({
             data: result
         })
@@ -20,7 +21,7 @@ class Repertoire extends React.Component{
 
     render(){
         return(
-            <PageMapper data={this.state.data}/>
+            <PageMapper data={this.state.data} adminComponentsVisible={this.props.adminComponentsVisible}/>
         );
     }
 }

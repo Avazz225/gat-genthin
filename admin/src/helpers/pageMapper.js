@@ -5,58 +5,180 @@ import { UnorderedList, OrderedList, ListElement } from "../atoms/List"
 import { Image, ImageInText } from "../atoms/Image"
 import GatCalendar from "../siteContent/CalenderDoors"
 import AddComponent from "../atoms/AddComponent"
+import { appendToArray, increaseLastByOne } from "./tools"
+import React from "react"
 
-const PageMapper = ({data}) => (
-    <>
-    {data.map(data => (
-        <>
-        <AtomRenderer data={data}/>
-        {(data.type!=="baseContainer")?<AddComponent/>:<></>}
-        </>
-    ))}
-    </>
-)
 
-function AtomRenderer({data}){
-    switch (data.type){
+function PageMapper(props){
+    const renderElements = (data, previousIndexes = []) => {
+        return data.map((elementdata, index) => {
+            const currentIndexes = Object.assign([], appendToArray(previousIndexes, index))
+        
+            return (
+                <React.Fragment key={index}>
+                    <AtomRenderer
+                        data={elementdata}
+                        addData={props.addData}
+                        previousIndexes={currentIndexes}
+                        adminComponentsVisible={props.adminComponentsVisible}
+                    />
+                    {elementdata.type !== "baseContainer" && (
+                        <AddComponent
+                        index={increaseLastByOne(currentIndexes)}
+                        addData={props.addData}
+                        adminComponentsVisible={props.adminComponentsVisible}
+                        />
+                    )}
+                </React.Fragment>
+            );
+            });
+        };
+    
+    return <>{renderElements(props.data, props.previousIndexes)}</>;
+}
+
+function AtomRenderer(props){
+    const previousIndexes = Object.assign([], props.previousIndexes)
+
+    switch (props.data.type){
         case "text":
-            return <Text text={data.text} bold={data.bold || false} />
+            return <><Text text={props.data.text} bold={props.data.bold || false} /></>
         case "link":
-            return <Link text={data.text} destination={data.destination} newTab={data.newTab || true} bold={data.bold || false} />
+            return <Link text={props.data.text} destination={props.data.destination} newTab={props.data.newTab || true} bold={props.data.bold || false} />
         case "newLine":
             return <NewLine/>
         case "heading":
-            return <Heading text={data.text} topSpace={data.topSpace || 0.7} type={data.level || 1}/>
+            return <Heading text={props.data.text} topSpace={props.data.topSpace || 0.7} type={props.data.level || 1}/>
         case "baseContainer":
-            return <BaseContainer><PageMapper data={data.content}/></BaseContainer>
+            return(
+            <BaseContainer> 
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </BaseContainer>
+            )
         case "textContainer":
-            return <TextContainer><PageMapper data={data.content}/></TextContainer>
+            return( 
+            <TextContainer>
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </TextContainer>
+            )
         case "timedContainer":
-            return <TimedContainer startDisplay={data.startDisplay} endDisplay={data.endDisplay}><PageMapper data={data.content}/></TimedContainer>
+            return( 
+            <TimedContainer startDisplay={props.data.startDisplay} endDisplay={props.data.endDisplay}>
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </TimedContainer>
+            )
         case "blockquote":
-            return <Blockquote><PageMapper data={data.content}/></Blockquote>
+            return( 
+            <Blockquote>
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </Blockquote>
+            )
         case "parallelContainer":
-            return <ParallelContainer><PageMapper data={data.content}/></ParallelContainer>
+            return(
+            <ParallelContainer>
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </ParallelContainer>
+            )
         case "horizontalRow":
-            return <HorizontalRow blue={data.blue || false}/>
+            return <HorizontalRow blue={props.data.blue || false}/>
         case "centered":
-            return <Centered><PageMapper data={data.content}/></Centered>
+            return( 
+            <Centered>
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </Centered>
+            )
         case "normal":
-            return <Normal><PageMapper data={data.content}/></Normal>
+            return( 
+            <Normal>
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </Normal>
+            )
         case "unorderedList":
-            return <UnorderedList><PageMapper data={data.content}/></UnorderedList>
+            return(
+            <UnorderedList>
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </UnorderedList>
+            )
         case "orderedList":
-            return <OrderedList><PageMapper data={data.content}/></OrderedList>
+            return(
+            <OrderedList>
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </OrderedList>
+            )
         case "listElement":
-            return <ListElement><PageMapper data={data.content}/></ListElement>
+            return(
+            <ListElement>
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </ListElement>
+            )
         case "image":
-            return <Image src={process.env.REACT_APP_CDN_URL+data.src} width={data.width || 90} maxWidth={data.maxWidth || 50} alt={data.alt || ""} />
+            return <Image src={process.env.REACT_APP_CDN_URL+props.data.src} width={props.data.width || 90} maxWidth={props.data.maxWidth || 50} alt={props.data.alt || ""} />
         case "imageInText":
-            return <ImageInText src={process.env.REACT_APP_CDN_URL+data.src} align={data.align} alt={data.alt || ""} />
+            return <ImageInText src={process.env.REACT_APP_CDN_URL+props.data.src} align={props.data.align} alt={props.data.alt || ""} />
         case "calendar":
             return <GatCalendar/>
+        case "newsContainer":
+            return(
+            <>
+                <AddComponent
+                index={Object.assign([], appendToArray(previousIndexes, 0))}
+                addData={props.addData}
+                adminComponentsVisible={props.adminComponentsVisible}
+                /> 
+                <PageMapper data={props.data.content} addData={props.addData} previousIndexes={previousIndexes} adminComponentsVisible={props.adminComponentsVisible}/>
+            </>)
         default:
-            return <Text text={'Der Typ "'+data.type+'" existiert nicht.'}/>
+            return <Text text={'Der Typ "'+props.data.type+'" existiert nicht.'}/>
     }
 }
 

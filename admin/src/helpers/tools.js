@@ -38,9 +38,97 @@ function composeDate(arr, mode){
     return new Date(arr[2], arr[1]-1, arr [0]).setHours(0,0,0,0)
 }
 
+function appendToArray(array, element){
+    let newArray = Object.assign([], array)
 
-function wait(seconds){
-    
+    if(newArray == undefined){
+        newArray = []
+        newArray.push(element)
+        return newArray
+    } else {
+        newArray.push(element)
+        return newArray
+    }
 }
 
-export {jsonReader, getValue, getTimespan}
+function insertIntoArray(array, element, index){
+    return [
+        ...array.slice(0, index+1),
+        createTemplateDefinition(element),
+        ...array.slice(index+1)
+    ];
+}
+
+function insertElementAt(obj, indexes, element) {
+    let current = obj;
+
+    if (!Array.isArray(current)) {
+        current = [current];
+    }
+
+    if (indexes.length === 1) {
+        current.splice(indexes[0], 0, createTemplateDefinition(element));
+        return current;
+    }
+
+    let innerArray = current[indexes[0]].content;
+    let updatedInnerArray = insertElementAt(innerArray, indexes.slice(1), element);
+    current[indexes[0]].content = updatedInnerArray;
+    
+    return current;
+}
+
+function createTemplateDefinition(type){
+    switch (type){
+        case "text":
+            return {"type": type, "text": "YIPPIE"}
+        case "link":
+            return {"type": type}
+        case "newLine":
+            return {"type": type}
+        case "heading":
+            return {"type": type}
+        case "baseContainer":
+            return {"type": type, "content": []}
+        case "textContainer":
+            return {"type": type, "content": []}
+        case "timedContainer":
+            return {"type": type, "content": []}
+        case "blockquote":
+            return {"type": type, "content": []}
+        case "parallelContainer":
+            return {"type": type, "content": []}
+        case "horizontalRow":
+            return {"type": type}
+        case "centered":
+            return {"type": type, "content": []}
+        case "normal":
+            return {"type": type, "content": []}
+        case "unorderedList":
+            return {"type": type, "content": []}
+        case "orderedList":
+            return {"type": type, "content": []}
+        case "listElement":
+            return {"type": type, "content": []}
+        case "image":
+            return {"type": type}
+        case "imageInText":
+            return {"type": type}
+        case "calendar":
+            return {"type": type}
+    }
+
+}
+
+function increaseLastByOne(array){
+    let newArray = [...array]; // Kopie des Arrays erstellen, um es nicht zu verändern
+    let lastIndex = newArray.length - 1;
+
+    if (lastIndex >= 0) {
+        newArray[lastIndex] += 1; // Das letzte Element um 1 erhöhen
+    }
+
+    return newArray;
+}
+
+export {jsonReader, getValue, getTimespan, appendToArray, insertIntoArray, increaseLastByOne, insertElementAt}

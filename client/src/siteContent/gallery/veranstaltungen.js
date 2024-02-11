@@ -1,5 +1,4 @@
 import ImagePopUp from '../../components/ImagePopUp';
-import '../css/Gallery.css';
 import React from "react";
 import FillImages from '../../components/GalleryItem'
 
@@ -17,7 +16,6 @@ function replaceAfterList(toReplace){
                 return "Spuken, Angst machen, Erschrecken.."
             case "Valentinstag":
                 return "Valentinstagslesung"
-        
         }
     return "Undefiniert!";
 }
