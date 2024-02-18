@@ -1,24 +1,32 @@
-function UnorderedList({ children }){
+import DeleteComponentBtn from "./DeleteComponent"
+
+function UnorderedList({deleteData, index, deleteMode, children }){
     return(
-        <ul>
-            { children }
-        </ul>
+        <DeleteComponentBtn deleteMode={deleteMode} deleteData={deleteData} index={index}>
+            <ul>
+                { children }
+            </ul>
+        </DeleteComponentBtn>
     )
 }
 
-function OrderedList({ children }){
+function OrderedList({deleteData, index, deleteMode, children }){
     return(
-        <ol>
-            { children }
-        </ol>
+        <DeleteComponentBtn deleteMode={deleteMode} deleteData={deleteData} index={index}>
+            <ol>
+                { children }
+            </ol>
+        </DeleteComponentBtn>
     )
 }
 
-function ListElement({ children }){
+function ListElement({deleteData, index, deleteMode, children }){
     return(
-        <li>
-            { children }
-        </li>
+        <DeleteComponentBtn deleteMode={deleteMode} deleteData={deleteData} index={index}>
+            <li>
+                { children }
+            </li>
+        </DeleteComponentBtn>
     )
 }
 

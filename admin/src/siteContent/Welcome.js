@@ -1,34 +1,14 @@
 import React from 'react';
-import PageMapper from '../helpers/pageMapper';
-import { insertElementAt, jsonReader } from '../helpers/tools';
+import PageRenderer from './PageRenderer';
 
 class Welcome extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            source: "page_welcome.json",
-            data: []
-        }
-        this.addData = this.addData.bind(this)
-    }
-
-    async componentDidMount(){
-        jsonReader(this.state.source)
-        .then(result => this.setState({
-            data: result
-        })
-        )
-    }
-
-    addData(newElement, index){
-        this.setState({
-            data: insertElementAt(this.state.data, index, newElement)
-        })
-    }   
-
     render(){
         return(
-            <PageMapper data={this.state.data} addData={this.addData} previousIndexes={[]} adminComponentsVisible={this.props.adminComponentsVisible} />
+            <PageRenderer 
+                page={this.props.page} 
+                adminComponentsVisible={this.props.adminComponentsVisible} 
+                deleteMode={this.props.deleteMode} 
+            />
         );
     }
 }

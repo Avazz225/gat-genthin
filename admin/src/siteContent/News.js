@@ -1,10 +1,10 @@
 import ImagePopUp from '../components/ImagePopUp';
 import React from 'react';
-import PageMapper from '../helpers/pageMapper';
 import { jsonReader } from '../helpers/tools';
 import { TextContainer } from '../atoms/ContentContainers';
 import { Heading } from '../atoms/TextContainers';
 import { Image } from '../atoms/Image';
+import PageRenderer from './PageRenderer';
 
 class News extends React.Component{
     constructor(){
@@ -40,7 +40,11 @@ class News extends React.Component{
                 <div className="NewsContainer">
                     <div>
                         <ImagePopUp/>
-                        <PageMapper data={this.state.data} adminComponentsVisible={this.props.adminComponentsVisible}/>
+                        <PageRenderer 
+                            page={this.props.page} 
+                            adminComponentsVisible={this.props.adminComponentsVisible} 
+                            deleteMode={this.props.deleteMode} 
+                        />
                         <TextContainer>
                             <Heading type={3} text="Gefördert durch:" />
                             <a href="https://engagiert-fuer-kultur.de" target="blank">

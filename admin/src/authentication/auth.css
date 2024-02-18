@@ -6,6 +6,7 @@
     --primary-color: 54, 141, 191;
     --secondary-color: 131, 131, 190;
     --background-color: 243, 243, 243;
+    --green-color: 170, 170, 170;
     --gradient: linear-gradient(
         135deg,  rgb(var(--secondary-color)), rgb(var(--primary-color)));
 }
@@ -16,6 +17,7 @@
         --primary-color: 47, 123, 167;
         --secondary-color: 108, 108, 178;
         --background-color: 19, 19, 19;
+        --green-color: 15, 131, 0;
     }
 }
 
@@ -77,6 +79,7 @@ h0{
 }
 
 .authOverlay{
+    z-index: 10;
     top: 0;
     left: 0;
     width: 50vw;
@@ -126,6 +129,7 @@ h0{
     font-size: normal;
     padding-left: 2em;
     user-select: none;
+    z-index: 1;
 }
 
 .authCheckbox{

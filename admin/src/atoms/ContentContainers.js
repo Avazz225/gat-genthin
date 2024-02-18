@@ -1,4 +1,5 @@
 import { getTimespan } from "../helpers/tools"
+import DeleteComponentBtn from "./DeleteComponent"
 import { NewLine } from "./TextContainers"
 
 function BaseContainer({ children }){
@@ -9,25 +10,29 @@ function BaseContainer({ children }){
     )
 }
 
-function TextContainer({ children }){
+function TextContainer({deleteData, index, deleteMode, children }){
     return(
         <>
-        <div className='content-pane texttype'>
-            <p>
-                { children }
-            </p>
-        </div>
-        <NewLine/>
+        <DeleteComponentBtn deleteMode={deleteMode} deleteData={deleteData} index={index}>
+            <div className='content-pane texttype'>
+                <p>
+                    { children }
+                </p>
+            </div>
+            <NewLine/>
+        </DeleteComponentBtn>
         </>
     )
 }
 
-function TimedContainer({startDisplay, endDisplay, children }){
+function TimedContainer({deleteData, index, deleteMode, startDisplay, endDisplay, children }){
     return(
         <>
         {(getTimespan(startDisplay, endDisplay))?
         <>
-        { children }
+        <DeleteComponentBtn deleteMode={deleteMode} deleteData={deleteData} index={index}>
+            { children }
+        </DeleteComponentBtn>
         </>
         :
         <></>}
@@ -35,19 +40,23 @@ function TimedContainer({startDisplay, endDisplay, children }){
     )
 }
 
-function Blockquote({ children }){
+function Blockquote({deleteData, index, deleteMode,  children }){
     return(
-        <blockquote>
-            { children }
-        </blockquote>
+        <DeleteComponentBtn deleteMode={deleteMode} deleteData={deleteData} index={index}>
+            <blockquote>
+                { children }
+            </blockquote>
+        </DeleteComponentBtn>
     )
 }
 
-function ParallelContainer({ children }){
+function ParallelContainer({deleteData, index, deleteMode, children }){
     return(
-        <div className="nextto">
-            { children }
-        </div>
+        <DeleteComponentBtn deleteMode={deleteMode} deleteData={deleteData} index={index}>
+            <div className="nextto">
+                { children }
+            </div>
+        </DeleteComponentBtn>
     )
 }
 

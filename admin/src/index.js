@@ -21,34 +21,37 @@ import Auth from './authentication/Auth';
 
 import getLanguageSet from './helpers/language';
 import {IntlProvider} from 'react-intl';
-import { getToken } from './helpers/token';
-import { useState } from 'react';
+import { checkTokenValidity, getToken } from './helpers/token';
 import AdminControls from './siteContent/AdminControls';
+import "./atoms/EditContent.css"
 
 const root = ReactDOM.createRoot(document.getElementById('content'));
 const locale = navigator.language;
 let lang = getLanguageSet(locale);
 const adminComponentsVisibleDefault = false;
+const deleteModeDefault = false;
 
 function App() {
   const [adminComponentsVisible, setAdminComponentVisibility] = React.useState(adminComponentsVisibleDefault);
+  const [deleteMode, setDeleteMode] = React.useState(deleteModeDefault)
+  const validity = checkTokenValidity()
 
   return (
     <React.StrictMode>
       <IntlProvider locale={locale} messages={lang}>
-        {(getToken()) ?
+        {(getToken() && validity) ?
           <>
-            <AdminControls adminComponentsVisible={adminComponentsVisible} setAdminComponentVisibility={setAdminComponentVisibility} />
+            <AdminControls adminComponentsVisible={adminComponentsVisible} setAdminComponentVisibility={setAdminComponentVisibility} deleteMode={deleteMode} setDeleteMode={setDeleteMode} />
             <Navigation />
             <div className="ContentArea">
-              <News adminComponentsVisible={adminComponentsVisible} />
+              <News page={"page_news"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />
               <HashRouter>
                 <Routes>
-                  <Route path="/" element={<Welcome adminComponentsVisible={adminComponentsVisible} />} exact />
-                  <Route path="/about" element={<About adminComponentsVisible={adminComponentsVisible} />} exact />
-                  <Route path="/repertoire" element={<Repertoire adminComponentsVisible={adminComponentsVisible} />} exact />
-                  <Route path="/gallery" element={<Gallery adminComponentsVisible={adminComponentsVisible} />} exact />
-                  <Route path="/contact" element={<Contact adminComponentsVisible={adminComponentsVisible} />} exact />
+                  <Route path="/" element={<Welcome page={"page_welcome"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />} exact />
+                  <Route path="/about" element={<About page={"page_about"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />} exact />
+                  <Route path="/repertoire" element={<Repertoire page={"page_repertoire"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />} exact />
+                  <Route path="/gallery" element={<Gallery adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />} exact />
+                  <Route path="/contact" element={<Contact page={"page_contact"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />} exact />
                   <Route path="/maerchen" element={<Maerchen />} exact />
                   <Route path="/hanssachs" element={<Hanssachs />} exact />
                   <Route path="/veranstaltungen" element={<Veranstaltungen />} exact />

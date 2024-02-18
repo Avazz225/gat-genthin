@@ -16,7 +16,7 @@ function Navigation(){
                 <div className="spacer"></div>
                 <div className="navContainer">
                     <HashRouter>
-                        <NavLink id="home" text="Willkommen" destination={"/"}/>
+                        <NavLink id="home" text="Willkommen" destination={"#/"}/>
                         <br/>
                         <NavLink id="about" text="Über uns" destination={"#/about"}/>
                         <br/>

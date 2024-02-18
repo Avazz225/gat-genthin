@@ -1,12 +1,11 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import './auth.css'
-import { json } from "react-router-dom";
 
 function ErrorMsg(props){
     return(
         <>
-        {(props.id == "")?<></>:
+        {(props.id === "")?<></>:
             <span className="error">
                 <FormattedMessage id={props.id}/>
             </span>
@@ -74,7 +73,7 @@ class Auth extends React.Component{
 
     checkEmail(e){
         let result =  e.target.value.match(
-            /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
 
         if (!result){
@@ -208,7 +207,8 @@ class Auth extends React.Component{
         await fetch(process.env.REACT_APP_AUTH_API+'accounts', {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'source':process.env.REACT_APP_SYSTEM_ID
             },
             body: JSON.stringify({
                 "e_mail": this.state.email,
@@ -224,7 +224,6 @@ class Auth extends React.Component{
             })
             .then((data) => {
                     console.log(data)
-                    this.signIn(e)
                 }
             )
             .catch((error) => {

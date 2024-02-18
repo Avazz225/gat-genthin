@@ -1,33 +1,82 @@
-function Text({text, bold=false}){
+import DeleteComponentBtn from "./DeleteComponent"
+
+function Text({changeProperty, index, deleteData, deleteMode, text, bold=false}){
     if (!bold){
         return(
-                <>
+            <DeleteComponentBtn 
+                deleteMode={deleteMode} 
+                deleteData={deleteData} 
+                index={index}
+            >
+                <span 
+                    contentEditable={true} 
+                    className="textEditable" 
+                    onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
+                >
                     {text}
-                </>
+                </span>
+            </DeleteComponentBtn>
             )
     } else {
         return(
-            <b>
-                {text}
-            </b>
+            <DeleteComponentBtn 
+                deleteMode={deleteMode} 
+                deleteData={deleteData} 
+                index={index} 
+            >
+                <b >
+                    <span 
+                        contentEditable={true} 
+                        className="textEditable" 
+                        onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
+                    >
+                        {text}
+                    </span>
+                </b>
+            </DeleteComponentBtn>
         )
     }
-    
 }
 
-function Link({text, destination, newTab=true, bold=false}){
+function Link({changeProperty, index, deleteData, deleteMode, text, destination, newTab=true, bold=false}){
     return(
         <>
         {(bold)?
-        <b>
-            <a href={destination} target={(newTab)?"_blank":"_self"}>
+        <DeleteComponentBtn 
+            deleteMode={deleteMode} 
+            deleteData={deleteData} 
+            index={index}
+        >
+            <b>
+                <a 
+                    href={destination} 
+                    target={(newTab)?"_blank":"_self"} 
+                    rel={"noreferrer"}
+                    contentEditable={true} 
+                    className="textEditable" 
+                    onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
+                >
+                    {text}
+                </a>
+            </b>
+        </DeleteComponentBtn>
+        :
+        <DeleteComponentBtn 
+            deleteMode={deleteMode} 
+            deleteData={deleteData} 
+            index={index}
+        >
+            <a 
+                href={destination} 
+                target={(newTab)?"_blank":"_self"} 
+                rel={"noreferrer"}
+                contentEditable={true} 
+                className="textEditable" 
+                onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
+            >
                 {text}
             </a>
-        </b>
-        :
-        <a href={destination} target={(newTab)?"_blank":"_self"}>
-            {text}
-        </a>
+        </DeleteComponentBtn>
         }
         </>
     )
@@ -35,37 +84,85 @@ function Link({text, destination, newTab=true, bold=false}){
 
 function NewLine(props){
     return(
-        <>
-        {(props.adminComponentsVisible)?"¤":""}
-        <br/>
-        </>
+        <DeleteComponentBtn 
+            deleteMode={props.deleteMode} 
+            deleteData={props.deleteData} 
+            index={props.index}
+        >
+            {(props.adminComponentsVisible ||props.deleteMode)?"¤":""}
+            <br/>
+        </DeleteComponentBtn>
     )
 }
 
-function Heading({type=1, text, topSpace=0.7}){
+function Heading({changeProperty, index, deleteData, deleteMode, type=1, text, topSpace=0.7, editable=true}){
     if (type === 1){
         return(
-            <h1 style={{marginTop: topSpace+"em"}}>
-                { text }
-            </h1>
+            <DeleteComponentBtn 
+                deleteMode={deleteMode} 
+                deleteData={deleteData} 
+                index={index}
+            >
+                <h1 
+                    style={{marginTop: topSpace+"em"}} 
+                    contentEditable={editable} 
+                    className="textEditable" 
+                    onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
+                >
+                    { text }
+                </h1>
+            </DeleteComponentBtn>
         )
     } else if (type === 2) {
         return(
-            <h2 style={{marginTop: topSpace+"em"}}>
-                { text }
-            </h2>
+            <DeleteComponentBtn 
+                deleteMode={deleteMode} 
+                deleteData={deleteData} 
+                index={index}
+            >
+                <h2 
+                    style={{marginTop: topSpace+"em"}} 
+                    contentEditable={editable} 
+                    className="textEditable" 
+                    onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
+                >
+                    { text }
+                </h2>
+            </DeleteComponentBtn>
         )
     } else if (type === 3) {
         return(
-            <h3 style={{marginTop: topSpace+"em"}}>
-                { text }
-            </h3>
+            <DeleteComponentBtn 
+                deleteMode={deleteMode} 
+                deleteData={deleteData} 
+                index={index}
+            >
+                <h3 
+                    style={{marginTop: topSpace+"em"}} 
+                    contentEditable={editable} 
+                    className="textEditable" 
+                    onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
+                >
+                    { text }
+                </h3>
+            </DeleteComponentBtn>
         )
     } else if (type === 4) {
         return(
-            <h4 style={{marginTop: topSpace+"em"}}>
-                { text }
-            </h4>
+            <DeleteComponentBtn 
+                deleteMode={deleteMode} 
+                deleteData={deleteData} 
+                index={index}
+            >
+                <h4 
+                    style={{marginTop: topSpace+"em"}} 
+                    contentEditable={editable} 
+                    className="textEditable" 
+                    onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
+                >
+                    { text }
+                </h4>
+            </DeleteComponentBtn>
         )
     }
 }

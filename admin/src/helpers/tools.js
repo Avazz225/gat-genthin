@@ -18,12 +18,12 @@ function getValue(key, data){
 
 function getTimespan(from, to){
     let tdy = new Date().setHours(0,0,0,0)
-    if (from.length != 0){
+    if (from.length !== 0){
         from = composeDate(from, "from")
         if (from > tdy) return false
     }
     
-    if (to.length != 0){
+    if (to.length !== 0){
         to = composeDate(to, "to")
         if(to > tdy) return true
         else return false
@@ -33,15 +33,15 @@ function getTimespan(from, to){
 
 function composeDate(arr, mode){
     if (mode === "to"){
-        return new Date(arr[2], arr[1]-1, arr [0]).setHours(0,0,0,0)+86400000
+        return new Date(arr[2], arr[1]-1, arr[0]).setHours(0,0,0,0)+86400000
     }
-    return new Date(arr[2], arr[1]-1, arr [0]).setHours(0,0,0,0)
+    return new Date(arr[2], arr[1]-1, arr[0]).setHours(0,0,0,0)
 }
 
 function appendToArray(array, element){
     let newArray = Object.assign([], array)
 
-    if(newArray == undefined){
+    if(newArray === undefined){
         newArray = []
         newArray.push(element)
         return newArray
@@ -78,24 +78,61 @@ function insertElementAt(obj, indexes, element) {
     return current;
 }
 
+function deleteElementAt(obj, indexes) {
+    let current = obj;
+
+    if (!Array.isArray(current)) {
+        return current;
+    }
+
+    if (indexes.length === 1) {
+        current.splice(indexes[0], 1);
+        return current;
+    }
+
+    let innerArray = current[indexes[0]].content;
+    let updatedInnerArray = deleteElementAt(innerArray, indexes.slice(1));
+    current[indexes[0]].content = updatedInnerArray;
+    
+    return current;
+}
+
+function modifyElementAt(obj, indexes, modifiedContent, keyToModify) {
+    let current = obj;
+
+    if (!Array.isArray(current)) {
+        return current;
+    }
+
+
+    if (indexes.length === 1) {
+        current[indexes[0]][keyToModify]=modifiedContent;
+        return current;
+    }
+
+    let innerArray = current[indexes[0]].content;
+    let updatedInnerArray = modifyElementAt(innerArray, indexes.slice(1), modifiedContent, keyToModify);
+    current[indexes[0]].content = updatedInnerArray;
+    
+    return current;
+}
+
 function createTemplateDefinition(type){
     switch (type){
         case "text":
-            return {"type": type, "text": "YIPPIE"}
+            return {"type": type, "text": "neuer Text"}
         case "link":
-            return {"type": type}
+            return {"type": type, "text": "neuer Link"}
         case "newLine":
             return {"type": type}
         case "heading":
-            return {"type": type}
-        case "baseContainer":
-            return {"type": type, "content": []}
+            return {"type": type, "text": "neue Überschrift"}
         case "textContainer":
             return {"type": type, "content": []}
         case "timedContainer":
             return {"type": type, "content": []}
         case "blockquote":
-            return {"type": type, "content": []}
+            return {"type": type, "content": [{"type": "text", "text": "neues Zitat"}]}
         case "parallelContainer":
             return {"type": type, "content": []}
         case "horizontalRow":
@@ -109,13 +146,15 @@ function createTemplateDefinition(type){
         case "orderedList":
             return {"type": type, "content": []}
         case "listElement":
-            return {"type": type, "content": []}
+            return {"type": type, "content": [{"type": "text", "text": "neuer Listenpunkt"}]}
         case "image":
             return {"type": type}
         case "imageInText":
             return {"type": type}
         case "calendar":
             return {"type": type}
+        default:
+            return
     }
 
 }
@@ -131,4 +170,4 @@ function increaseLastByOne(array){
     return newArray;
 }
 
-export {jsonReader, getValue, getTimespan, appendToArray, insertIntoArray, increaseLastByOne, insertElementAt}
+export {jsonReader, getValue, getTimespan, appendToArray, insertIntoArray, increaseLastByOne, insertElementAt, deleteElementAt, modifyElementAt}
