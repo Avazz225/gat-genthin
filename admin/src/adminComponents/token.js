@@ -43,10 +43,13 @@ function checkTokenValidity(){
             })
             .then((response) => {
                 if (response.ok) {
-                    return true;
+                    return response.json();
                 } else {
                     throw new Error(response.status);
                 }
+            })
+            .then((data) => {
+                localStorage.setItem("internal_role", data.role)
             })
             .catch((error) => {
                 clearToken()

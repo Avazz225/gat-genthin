@@ -1,6 +1,6 @@
 import DeleteComponentBtn from "./DeleteComponent"
 
-function Text({changeProperty, index, deleteData, deleteMode, text, bold=false}){
+function Text({changeProperty, index, deleteData, deleteMode, text, bold=false, editable=true}){
     if (!bold){
         return(
             <DeleteComponentBtn 
@@ -9,8 +9,8 @@ function Text({changeProperty, index, deleteData, deleteMode, text, bold=false})
                 index={index}
             >
                 <span 
-                    contentEditable={true} 
-                    className="textEditable" 
+                    contentEditable={editable} 
+                    className={editable?"textEditable":""}  
                     onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
                 >
                     {text}
@@ -26,8 +26,8 @@ function Text({changeProperty, index, deleteData, deleteMode, text, bold=false})
             >
                 <b >
                     <span 
-                        contentEditable={true} 
-                        className="textEditable" 
+                        contentEditable={editable} 
+                        className={editable?"textEditable":""}  
                         onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
                     >
                         {text}
@@ -38,7 +38,7 @@ function Text({changeProperty, index, deleteData, deleteMode, text, bold=false})
     }
 }
 
-function Link({changeProperty, index, deleteData, deleteMode, text, destination, newTab=true, bold=false}){
+function Link({changeProperty, index, deleteData, deleteMode, text, destination, newTab=true, bold=false, editable=true}){
     return(
         <>
         {(bold)?
@@ -53,7 +53,7 @@ function Link({changeProperty, index, deleteData, deleteMode, text, destination,
                     target={(newTab)?"_blank":"_self"} 
                     rel={"noreferrer"}
                     contentEditable={true} 
-                    className="textEditable" 
+                    className={editable?"textEditable":""}  
                     onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
                 >
                     {text}
@@ -71,7 +71,7 @@ function Link({changeProperty, index, deleteData, deleteMode, text, destination,
                 target={(newTab)?"_blank":"_self"} 
                 rel={"noreferrer"}
                 contentEditable={true} 
-                className="textEditable" 
+                className={editable?"textEditable":""}  
                 onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
             >
                 {text}
@@ -106,7 +106,7 @@ function Heading({changeProperty, index, deleteData, deleteMode, type=1, text, t
                 <h1 
                     style={{marginTop: topSpace+"em"}} 
                     contentEditable={editable} 
-                    className="textEditable" 
+                    className={editable?"textEditable":""} 
                     onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
                 >
                     { text }
@@ -123,7 +123,7 @@ function Heading({changeProperty, index, deleteData, deleteMode, type=1, text, t
                 <h2 
                     style={{marginTop: topSpace+"em"}} 
                     contentEditable={editable} 
-                    className="textEditable" 
+                    className={editable?"textEditable":""}  
                     onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
                 >
                     { text }
@@ -140,7 +140,7 @@ function Heading({changeProperty, index, deleteData, deleteMode, type=1, text, t
                 <h3 
                     style={{marginTop: topSpace+"em"}} 
                     contentEditable={editable} 
-                    className="textEditable" 
+                    className={editable?"textEditable":""}  
                     onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
                 >
                     { text }
@@ -157,7 +157,7 @@ function Heading({changeProperty, index, deleteData, deleteMode, type=1, text, t
                 <h4 
                     style={{marginTop: topSpace+"em"}} 
                     contentEditable={editable} 
-                    className="textEditable" 
+                    className={editable?"textEditable":""}  
                     onBlur={(e) => changeProperty(e.currentTarget.textContent, index, "text")}
                 >
                     { text }

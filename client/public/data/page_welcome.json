@@ -17,7 +17,7 @@
         ]},
         {"type": "calendar"}
     ]},
-    {"type": "timedContainer", "startDisplay":[18,1,2024], "endDisplay": [24,2,2024], "content":[
+    {"type": "timedContainer", "startDisplay":[18,1,2024], "endDisplay": [22,3,2024], "content":[
         {"type": "heading", "text": "Der Valentinstag und das genthiner amateurtheater"},
         {"type": "textContainer", "content": [
             {"type": "imageInText", "src": "media/02_Plakat_14.02.2024.png", "align": "right", "alt":"Plakat für die gat Valentinade"},
@@ -31,33 +31,22 @@
                     {"type": "text", "text": "Neugierig geworden? Vorerst sind folgende Aufführungen geplant:"},
                     {"type": "unorderedList", "content":[
                         {"type": "listElement", "content":[
-                            {"type": "text", "text": "Mittwoch, 14.02.2024, 19 Uhr", "bold":true},
+                            {"type": "text", "text": "Freitag, 22.03.2024, 19:30 Uhr", "bold":true},
                             {"type": "newLine"},
-                            {"type": "text", "text": "Genthin, Lindenhof"}
-                        ]},
-                        {"type": "listElement", "content":[
-                            {"type": "text", "text": "Sonntag, 18.02.2024, 15 Uhr", "bold":true},
-                            {"type": "newLine"},
-                            {"type": "text", "text": "Genthin, Lindenhof"}
-                        ]},
-                        {"type": "listElement", "content":[
-                            {"type": "text", "text": "Samstag, 24.02.2024, 19 Uhr", "bold":true},
-                            {"type": "newLine"},
-                            {"type": "text", "text": "Kade, Gasthof Pflaumbaum"}
+                            {"type": "text", "text": "Tucheim, Zum Fiener"}
                         ]}
                     ]}
                 ]}
             ]},
-            {"type": "text", "text": "Einlass ist jeweils eine Stunde vor Beginn. Natürlich gibt es auch gastronomische Betreuung."},
+            {"type": "text", "text": "Einlass ist ab 18:30 Uhr. Natürlich gibt es auch gastronomische Betreuung."},
             {"type": "newLine"},
             {"type": "newLine"},
             {"type": "text", "text": "Die Karten können ab "},
-            {"type": "text", "text": "19.01.2024 ", "bold": true},
-            {"type": "text", "text": "bei der "},
-            {"type": "link", "text": "Touristinformation Genthin", "destination": "http://www.touristinfo-genthin.de/", "bold": true},
+            {"type": "text", "text": "sofort ", "bold": true},
+            {"type": "text", "text": "telefonisch unter "},
+            {"type": "link", "text": "03934 6231", "destination": "tel:039346231", "bold": true},
             {"type": "text", "text": " erworben werden. Der Eintrittspreis beträgt 12,00 € (zuzüglich Vorverkaufsgebühr)."},
-            {"type": "newLine"},
-            {"type": "text", "text": "Für die Veranstaltung am 18.02.2024 haben die Gäste die Möglichkeit, zusammen mit der Eintrittskarte ein Gedeck mit Kaffee und Kuchen zu bestellen."}
+            {"type": "newLine"}
         ]}
     ]}
 ]}]

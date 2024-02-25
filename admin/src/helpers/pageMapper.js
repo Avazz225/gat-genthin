@@ -4,7 +4,7 @@ import { Centered, Normal, HorizontalRow } from "../atoms/Arrangement"
 import { UnorderedList, OrderedList, ListElement } from "../atoms/List"
 import { Image, ImageInText } from "../atoms/Image"
 import GatCalendar from "../siteContent/CalenderDoors"
-import AddComponent from "../atoms/AddComponent"
+import AddComponent from "../adminComponents/AddComponent"
 import { appendToArray, increaseLastByOne } from "./tools"
 import React from "react"
 

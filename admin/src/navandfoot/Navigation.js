@@ -1,5 +1,5 @@
 import {HashRouter} from "react-router-dom";
-import { NavLink, Link } from "../atoms/TextContainers";
+import { NavLink } from "../atoms/TextContainers";
 
 function Navigation(){
     return(

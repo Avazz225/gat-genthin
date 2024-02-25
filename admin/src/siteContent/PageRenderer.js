@@ -2,6 +2,7 @@ import React from 'react';
 import PageMapper from '../helpers/pageMapper';
 import { deleteElementAt, insertElementAt, jsonReader, modifyElementAt } from '../helpers/tools';
 import { Icon } from '@iconify/react';
+import { getToken } from '../adminComponents/token';
 
 class PageRenderer extends React.Component{
     constructor(props){
@@ -46,10 +47,40 @@ class PageRenderer extends React.Component{
         })
     }
 
-    saveChanges(){
-        this.setState({
-            changesMade: false
-        })
+    async saveChanges(){
+        await fetch(process.env.REACT_APP_CM_API+'content', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': getToken(),
+                'source':process.env.REACT_APP_SYSTEM_ID,
+                'TargetFile': this.state.source
+            }, 
+            body: JSON.stringify({
+                'content': this.state.data
+            })
+            })
+            .then((response) => {
+                if (response.ok) {
+                    return;
+                } else {
+                    console.log(response)
+                    throw new Error(response.status);
+                }
+            })
+            .then(() => {
+                this.setState({
+                    changesMade: false
+                })
+            })
+            .catch((error) => {
+                // Internal server error
+                this.setState({
+                    password_error: false,
+                    email_error: false,
+                    generalErrID: "err.authserviceunavailable"
+                })
+            })
     }
 
     render(){

@@ -18,11 +18,12 @@ import Kindergat from './siteContent/gallery/kinder-gat';
 import Hinterkulissen from './siteContent/gallery/hinter-den-kulissen';
 import Calendar from './siteContent/Calendar';
 import Auth from './authentication/Auth';
+import UserMgmt from './adminComponents/UserMgmt';
 
 import getLanguageSet from './helpers/language';
 import {IntlProvider} from 'react-intl';
-import { checkTokenValidity, getToken } from './helpers/token';
-import AdminControls from './siteContent/AdminControls';
+import { checkTokenValidity, getToken } from './adminComponents/token';
+import AdminControls from './adminComponents/AdminControls';
 import "./atoms/EditContent.css"
 
 const root = ReactDOM.createRoot(document.getElementById('content'));
@@ -30,6 +31,15 @@ const locale = navigator.language;
 let lang = getLanguageSet(locale);
 const adminComponentsVisibleDefault = false;
 const deleteModeDefault = false;
+
+const consoleWarn = console.error;
+const SUPPRESSED_WARNINGS = ['A component is ', 'cannot appear', 'You provided a `checked` prop to a form field without an `onChange` handler.'];
+
+console.error = function filterWarnings(msg, ...args) {
+    if (!SUPPRESSED_WARNINGS.some((entry) => msg.includes(entry))) {
+        consoleWarn(msg, ...args);
+    }
+};
 
 function App() {
   const [adminComponentsVisible, setAdminComponentVisibility] = React.useState(adminComponentsVisibleDefault);
@@ -58,6 +68,7 @@ function App() {
                   <Route path="/kinder-gat" element={<Kindergat />} exact />
                   <Route path="/hinter-den-kulissen" element={<Hinterkulissen />} exact />
                   <Route path="/calendar" element={<Calendar />} exact />
+                  <Route path="/users" element={<UserMgmt />} exact />
                 </Routes>
               </HashRouter>
             </div>
