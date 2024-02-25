@@ -67,4 +67,14 @@ function Heading({type=1, text, topSpace=0.7}){
     }
 }
 
-export {Link, Text, NewLine, Heading}
+function NavLink({id, text, destination}){
+    return(
+        <a href={destination} target="_self" className="ref">
+            <div className="navItem inactive" id={id}>
+                {text}
+            </div>
+        </a>
+    )
+}
+
+export {Link, Text, NewLine, Heading, NavLink}

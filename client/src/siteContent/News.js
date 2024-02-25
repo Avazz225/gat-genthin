@@ -1,5 +1,4 @@
 import ImagePopUp from '../components/ImagePopUp';
-import './css/News.css';
 import React from 'react';
 import PageMapper from '../helpers/pageMapper';
 import { jsonReader } from '../helpers/tools';
@@ -43,9 +42,11 @@ class News extends React.Component{
                         <PageMapper data={this.state.data}/>
                         <TextContainer>
                             <Heading type={3} text="Gefördert durch:" />
-                            <a href="https://engagiert-fuer-kultur.de" target="blank">
-                                <Image src={process.env.REACT_APP_CDN_URL+"02_Mikrokulturfonds_Projekt_gross.jpg"} width={100}/>
-                            </a>
+                            <center>
+                                <a href="https://engagiert-fuer-kultur.de" target="blank">
+                                    <Image src={process.env.REACT_APP_CDN_URL+"02_Mikrokulturfonds_Projekt_gross.jpg"} width={50}/>
+                                </a>
+                            </center>
                         </TextContainer>
                     </div>
                 </div>

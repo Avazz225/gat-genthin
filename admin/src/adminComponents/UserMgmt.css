@@ -1,0 +1,178 @@
+.userMgmtBin{
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 0.25em;
+    user-select: none;
+    transition: all .3s;
+    background: url('https://api.iconify.design/mdi/bin-outline.svg?color=%23d10000') no-repeat center center / contain;
+    background-color: rgb(var(--background-color));
+    z-index: 999;
+    margin-top: 0.1em;
+}
+
+.userMgmtBinBox{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.userMgmtTable{
+    min-width: 45vw;
+}
+
+tr td:nth-child(odd){
+    min-width: 15vw;
+}
+
+tr td:nth-child(even){
+    min-width: 14em;
+}
+
+.userMgmtTable tr:nth-of-type(even) .regulartd{
+    background-color: rgb(var(--background-color));
+    min-height: 1.6em;
+}
+
+.userMgmtTable tr td{
+    padding: .25em .5em;
+}
+
+.userMgmtTable tr .regulartd:first-child{
+    border-radius: .5em 0em 0em .5em;
+    padding-left: 1em;
+}
+
+.userMgmtTable tr .regulartd:last-child{
+    border-radius: 0em .5em .5em 0em;
+    padding-right: 1em;
+}
+
+select{
+    color: var(--text-color);
+    background-color: rgba(var(--primary-color), 0.075);
+    border: rgb(var(--primary-color)) 1px solid;
+    border-radius: 0.75em;
+    padding: 0.25em 0.5em;
+    font-size: normal;
+}
+
+option{
+    background-color: rgba(var(--background-color));
+}
+
+th{
+    user-select: none;
+}
+
+.specialRow{
+    border-radius: .5em;
+    text-align: center;
+    background-color: rgba(var(--primary-color), 0.25);
+    user-select: none;
+    height: 1.5em;
+}
+
+.specialRow.left{
+    border-radius: .5em 0 0 .5em;
+}
+
+.specialRow.middle{
+    border-radius: 0;
+}
+
+.specialRow.right{
+    border-radius: 0 .5em .5em 0;
+}
+
+.userMgmtDeleteComponentWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userMgmtBtn{
+    background-color: rgb(var(--primary-color));
+    margin: 0em 0.25em;
+    padding: 0.1em 0.5em;
+    border-radius: 0.5em;
+    min-width: 3em;
+    text-align: center;
+    user-select: none;
+    transition: all 0.2s;
+}
+
+.userMgmtBtn:hover{
+    text-decoration: underline;
+    background-color: rgba(var(--primary-color), 0.5);
+}
+
+.userMgmtBtn.class2{    
+    background-color: rgb(var(--secondary-color));
+}
+
+.userMgmtBtn.class2:hover{
+    background-color: rgba(var(--secondary-color), 0.5);
+}
+
+.searchInput{
+    color: rgb(var(--text-color));
+    background-color: rgba(var(--background-color), 0.75);
+    border: 1px solid rgb(var(--primary-color));
+    border-radius: 0.5em 0 0 0.5em;
+    border-right: none;
+    height: 1.5em;
+}
+
+.searchIcon{
+    height: calc(1.5em - 2px);
+    width: 1.5em;
+    border: 1px solid rgb(var(--primary-color));
+    border-radius: 0 0.5em 0.5em 0;
+    border-left: none;
+    background-color: rgba(var(--background-color));
+    padding: 0 .5em;
+}
+
+.accountDisplay{
+    position: absolute;
+    top: 1.5em;
+    background-color: rgba(var(--background-color), 0.5);
+    backdrop-filter: blur(5px);
+    padding: 0.5em;
+    border-radius: 0.5em;
+    border: solid 1px rgb(var(--primary-color));
+    display: none;
+}
+
+.accountDisplay div{
+    padding: 0.25em;
+    display: flex;
+    border-radius: 0.25em;
+}
+
+.accountDisplay div:hover{
+    background-color: rgba(var(--primary-color), 0.25);
+    text-decoration: underline;
+}
+
+.searchBar:hover .accountDisplay:has(div){
+    display: block;
+    max-height: 10em;
+    overflow-y: scroll;
+    
+}
+
+.accountDisplay::-webkit-scrollbar{
+    background-color: rgba(var(--background-color), 0.75);
+    border-radius: 0 0.5em 0.5em 0;
+}
+
+.accountDisplay::-webkit-scrollbar-thumb{
+    background-color: rgba(var(--primary-color), 0.25);
+    border-radius: 0.5em;
+}
+
+.accountDisplay::-webkit-scrollbar-thumb:hover{
+    background-color: rgba(var(--primary-color), 0.5);
+}

@@ -1,6 +1,4 @@
 import React from 'react';
-import './css/Welcome.css';
-import './css/gatvent.css'
 import PageMapper from '../helpers/pageMapper';
 import { jsonReader } from '../helpers/tools';
 

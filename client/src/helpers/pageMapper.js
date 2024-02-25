@@ -51,6 +51,8 @@ function AtomRenderer({data}){
             return <ImageInText src={process.env.REACT_APP_CDN_URL+data.src} align={data.align} alt={data.alt || ""} />
         case "calendar":
             return <GatCalendar/>
+        case "newsContainer":
+            return <><PageMapper data={data.content}/></>
         default:
             return <Text text={'Der Typ "'+data.type+'" existiert nicht.'}/>
     }

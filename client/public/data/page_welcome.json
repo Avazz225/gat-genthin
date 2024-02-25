@@ -17,64 +17,36 @@
         ]},
         {"type": "calendar"}
     ]},
-    {"type": "timedContainer", "startDisplay":[28,11,2023], "endDisplay": [10,1,2024], "content":[
-        {"type": "heading", "text": "Weihnachtsmärchen 2023"},
+    {"type": "timedContainer", "startDisplay":[18,1,2024], "endDisplay": [22,3,2024], "content":[
+        {"type": "heading", "text": "Der Valentinstag und das genthiner amateurtheater"},
         {"type": "textContainer", "content": [
-            {"type": "imageInText", "src": "PlakatFedern.jpg", "align": "right"},
-            {"type": "heading", "text": "Die drei Federn", "level": 2},
-            {"type": "text", "text": "Walburga Raeder, nach einem Märchen der Brüder Grimm"},
-            {"type": "newLine"},
-            {"type": "newLine"},
-            {"type": "text", "text": "Wer kennt sie nicht die Vorlauten, die Vorwitzigen, die immer denken, dass sie mit Schummeln und ohne großes Zutun ganz vorn sein werden. Immer gab und immer gibt es sie. So auch in unserem Märchen \"Die drei Federn\". Der Dummling aber wird siegen und seine beiden großmäuligen Brüder werden ihrer gerechten Strafe zugeführt, die allerdings in dieser Fassung etwas glimpflicher ausfällt, den beiden Vorwitzigen nach der Läuterung sogar noch eine Chance verspricht. Wir jagen sie also nicht davon, sondern erkennen die Grauzonen, die es im zwischenmenschlichen Bereich öfter gibt als schwarz-weiß."},
+            {"type": "imageInText", "src": "media/02_Plakat_14.02.2024.png", "align": "right", "alt":"Plakat für die gat Valentinade"},
+            {"type": "text", "text": "Seit über 20 Jahren gibt es vom gat ein Programm zum Valentinstag, in dem meist die Beziehungen zwischen den Geschlechtern auf das Korn genommen wird. In Anlehnung an das letzte Programm haben sich die Theaterleute von gat wieder für den Autor Andreas Kroll entschieden mit dem Titel: "},
+            {"type": "heading", "level": 3,"text": "Männer! Und Frauen. ... Eine Lachshow - mit Wiedererkennungswert."},
+            {"type": "text", "text": "10 Szenen aus dem ewigen Geschlechterkampf. Da gibt es die Frau und den Mann in der Midlife-Crisis, denen ein talentierter Verkäufer die Augen öffnet und den Geldbeutel leert. Da ist die Gartenparty, auf der sich die Männer wie Kinder amüsieren, nicht zuletzt dank des enormen Bierkonsums, die Frauen hingegen erst vornehm tun, um kurz darauf um so krasser aus der Rolle zu fallen ... Es gibt aber auch den liebenswerten Sketch um Jürgen und Melanie, die auf einer Parkbank ihre Mittagspause verbringen. Hinter der Parkbank taucht \"Teufelchen\" auf und will den sehr schüchternen jungen Mann mit machohaften Anmachsprüchen zum Draufgänger machen - während gleichzeitig ein \"Engelchen\" erscheint und ganz auf Romantik und Konventionen setzt. Dank der forschen, emanzipierten jungen Frau hätten die beiden sich ihre Mühe aber sparen können. Und sehr hübsch auch der Sketch vom alten Ehepaar, das beim Gespräch über die anstehende Eiserne Hochzeit das eine oder andere \"Detail\" ihrer langen Beziehung nicht mehr richtig erinnert - haben wir Kinder? Und wenn ja, wie viele?"},
             {"type": "newLine"},
             {"type": "newLine"},
             {"type": "centered", "content":[
                 {"type": "normal", "content":[
-                    {"type": "text", "text": "Termine Märchen:"},
+                    {"type": "text", "text": "Neugierig geworden? Vorerst sind folgende Aufführungen geplant:"},
                     {"type": "unorderedList", "content":[
                         {"type": "listElement", "content":[
-                            {"type": "text", "text": "26.11.2023\t14:30 Uhr"},
+                            {"type": "text", "text": "Freitag, 22.03.2024, 19:30 Uhr", "bold":true},
                             {"type": "newLine"},
-                            {"type": "text", "text": "Premiere Gasthof „Pflaumbaum“, Kade"}
-                        ]},
-                        {"type": "listElement", "content":[
-                            {"type": "text", "text": "03.12.2023\t15:00 Uhr"},
-                            {"type": "newLine"},
-                            {"type": "text", "text": "Tucheim, Gaststätte „Zum Fiener“"}
-                        ]},
-                        {"type": "listElement", "content":[
-                            {"type": "text", "text": "10.12.2023\t14:30 Uhr"},
-                            {"type": "newLine"},
-                            {"type": "text", "text": "Lindenhof Genthin"}
-                        ]},
-                        {"type": "listElement", "content":[
-                            {"type": "text", "text": "16.12.2023\t16:00 Uhr"},
-                            {"type": "newLine"},
-                            {"type": "text", "text": "Stadthalle Möckern"}
-                        ]},
-                        {"type": "listElement", "content":[
-                            {"type": "text", "text": "17.12.2023\t15:00 Uhr"},
-                            {"type": "newLine"},
-                            {"type": "text", "text": "MGH „Die Stube“ Kirchmöser"}
-                        ]},
-                        {"type": "listElement", "content":[
-                            {"type": "text", "text": "24.12.2023\t14:30 Uhr"},
-                            {"type": "newLine"},
-                            {"type": "text", "text": "Grundschule L. Uhland, Genthin"}
-                        ]},
-                        {"type": "listElement", "content":[
-                            {"type": "text", "text": "06.01.2024\t14:30 Uhr"},
-                            {"type": "newLine"},
-                            {"type": "text", "text": "Grundschule L. Uhland, Genthin"}
+                            {"type": "text", "text": "Tucheim, Zum Fiener"}
                         ]}
                     ]}
                 ]}
             ]},
-            {"type": "text", "text": "Für die Vorstellungen in Kade und Genthin (26.11.; 10.12.; 24.12. und 06.01.24) beginnt der Kartenvorverkauf am "},
-            {"type": "text", "text": "15.11.2023 ", "bold": true},
-            {"type": "text", "text": "bei der "},
-            {"type": "link", "text": "Touristinformation Genthin", "destination": "http://www.touristinfo-genthin.de/", "bold": true},
-            {"type": "text", "text": "."}
+            {"type": "text", "text": "Einlass ist ab 18:30 Uhr. Natürlich gibt es auch gastronomische Betreuung."},
+            {"type": "newLine"},
+            {"type": "newLine"},
+            {"type": "text", "text": "Die Karten können ab "},
+            {"type": "text", "text": "sofort ", "bold": true},
+            {"type": "text", "text": "telefonisch unter "},
+            {"type": "link", "text": "03934 6231", "destination": "tel:039346231", "bold": true},
+            {"type": "text", "text": " erworben werden. Der Eintrittspreis beträgt 12,00 € (zuzüglich Vorverkaufsgebühr)."},
+            {"type": "newLine"}
         ]}
     ]}
 ]}]
