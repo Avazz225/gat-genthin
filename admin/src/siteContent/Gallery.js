@@ -12,7 +12,7 @@ var veranstaltungen;
 
 function Gallery(){
 
-    const [data, setData] = React.useState(null);
+    const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
         fetch(process.env.REACT_APP_API_URL+"/overview")
