@@ -1,0 +1,71 @@
+.customContextMenu{
+    position: absolute;
+    padding: .5em 0;
+    border-radius: 1em;
+    background-color: rgba(var(--background-color), 0.75);
+    border: 1px solid rgba(var(--secondary-color), 1);
+    display: none;
+    backdrop-filter: blur(5px);
+}
+
+.customContextItem{
+    background-color: transparent;
+    padding: .25em .5em;
+    cursor: pointer;
+    transition: all .2s;
+    text-align: center;
+}
+
+.customContextInput{
+    background-color: transparent;
+    padding: .25em .5em;
+    cursor: pointer;
+    transition: all .2s;
+    text-align: center;
+}
+
+.customContextInput input{
+    background-color: rgba(var(--background-color), 0.75);
+    border: 1px solid rgba(var(--secondary-color), 0.75);
+    padding: .5em 1em;
+    color: rgba(var(--text-color), 1);
+    border-radius: 0.5em;
+    margin-bottom: -0.25em;
+}
+
+.customContextItem:hover{
+    background-color: rgba(var(--primary-color), .75);
+}
+
+a:not([href]):not(.pseudoLink) {
+    color: rgba(var(--error-color), 1);
+    text-decoration: underline wavy;
+    position: relative;
+}
+
+a:not([href]):not(.pseudoLink):hover::after {
+    content: "Dieser Link hat kein Ziel!\a Füge einen mit Rechtsklick hinzu!";
+    white-space: pre;
+    position: absolute;
+    width: 15em;
+    background-color: rgba(var(--background-color), 0.75);
+    backdrop-filter: blur(5px);
+    padding: .5em;
+    border-radius: .5em;
+    border: 1px solid  rgba(var(--error-color), 1);
+    bottom: 1.5em;
+    left: 0;
+}
+
+.customContextMenu.header .customContextItem{
+    overflow-y: hidden;
+}
+
+.customContextMenu.header .customContextItem h1, 
+.customContextMenu.header .customContextItem h2, 
+.customContextMenu.header .customContextItem h3, 
+.customContextMenu.header .customContextItem h4 {
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+

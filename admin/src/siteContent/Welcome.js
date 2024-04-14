@@ -1,16 +1,15 @@
 import React from 'react';
 import PageRenderer from './PageRenderer';
 
-class Welcome extends React.Component{
-    render(){
-        return(
-            <PageRenderer 
-                page={this.props.page} 
-                adminComponentsVisible={this.props.adminComponentsVisible} 
-                deleteMode={this.props.deleteMode} 
-            />
-        );
-    }
+function Welcome(props){
+    return(
+        <PageRenderer 
+            page={props.page} 
+            adminComponentsVisible={props.adminComponentsVisible} 
+            deleteMode={props.deleteMode} 
+            mainType={"welcome"}
+        />
+    );
 }
 
 

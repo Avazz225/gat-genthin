@@ -44,11 +44,14 @@ class News extends React.Component{
                             page={this.props.page} 
                             adminComponentsVisible={this.props.adminComponentsVisible} 
                             deleteMode={this.props.deleteMode} 
+                            mainType={"news"}
                         />
                         <TextContainer>
-                            <Heading type={3} text="Gefördert durch:" />
+                            <Heading type={3} text="Gefördert durch:" editable={false} />
                             <a href="https://engagiert-fuer-kultur.de" target="blank">
-                                <Image src={process.env.REACT_APP_CDN_URL+"02_Mikrokulturfonds_Projekt_gross.jpg"} width={100}/>
+                                <center>
+                                    <Image src={process.env.REACT_APP_CDN_URL+"02_Mikrokulturfonds_Projekt_gross.jpg"} width={50}/>
+                                </center>
                             </a>
                         </TextContainer>
                     </div>

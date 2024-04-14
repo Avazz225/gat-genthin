@@ -8,6 +8,7 @@ class About extends React.Component{
                 page={this.props.page} 
                 adminComponentsVisible={this.props.adminComponentsVisible} 
                 deleteMode={this.props.deleteMode} 
+                mainType={"about"}
             />
         );
     }

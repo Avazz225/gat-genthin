@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageMapper from '../helpers/pageMapper';
-import { deleteElementAt, insertElementAt, jsonReader, modifyElementAt } from '../helpers/tools';
+import { deleteElementAt, increaseLastByOne, insertElementAt, jsonReader, modifyElementAt, simplifyJsonDefinition } from '../helpers/tools';
 import { Icon } from '@iconify/react';
 import { getToken } from '../adminComponents/token';
+import CustomContextMenu from '../adminComponents/CCM';
 
 class PageRenderer extends React.Component{
     constructor(props){
@@ -11,11 +12,26 @@ class PageRenderer extends React.Component{
             source: props.page+".json",
             data: [],
             changesMade: false,
+            textSelection: {},
+            contextMenuCoords: {x: 0, y:0},
+            contextMenuVisibility: "none",
+            contextMenuType: "",
+            linkBold: true,
         }
         this.addData = this.addData.bind(this)
         this.deleteData = this.deleteData.bind(this)
         this.changeProperty = this.changeProperty.bind(this)
         this.saveChanges = this.saveChanges.bind(this)
+        this.setTextSelection = this.setTextSelection.bind(this)
+        this.modifySelectedText = this.modifySelectedText.bind(this)
+        this.handleEnter = this.handleEnter.bind(this)
+        this.modifyState = this.modifyState.bind(this)
+    }
+
+    modifyState(key, value){
+        this.setState({
+            [key]: value
+        })
     }
 
     async componentDidMount(){
@@ -28,7 +44,7 @@ class PageRenderer extends React.Component{
 
     addData(newElement, index){
         this.setState({
-            data: insertElementAt(this.state.data, index, newElement),
+            data: insertElementAt(this.state.data, index, newElement, "default"),
             changesMade: true
         })
     }   
@@ -57,14 +73,17 @@ class PageRenderer extends React.Component{
                 'TargetFile': this.state.source
             }, 
             body: JSON.stringify({
-                'content': this.state.data
+                //You shall not save stupid things :)
+                'content': simplifyJsonDefinition(this.state.data)
             })
             })
             .then((response) => {
                 if (response.ok) {
+                    this.setState({
+                        data: simplifyJsonDefinition(this.state.data)
+                    })
                     return;
                 } else {
-                    console.log(response)
                     throw new Error(response.status);
                 }
             })
@@ -83,6 +102,50 @@ class PageRenderer extends React.Component{
             })
     }
 
+    setTextSelection(index, textArray, type){
+        this.setState({
+            textSelection: {"index": index, "textArray": textArray, "type": type}
+        }) 
+    }
+
+    modifySelectedText(action){
+        let currentData = this.state.data
+        let index = this.state.textSelection.index
+
+        currentData = deleteElementAt(currentData, this.state.textSelection.index)
+        if(this.state.textSelection.textArray.beforeSelection){
+            currentData = insertElementAt(currentData, index, "text", this.state.textSelection.textArray.beforeSelection)
+            index = increaseLastByOne(index)
+        }
+        /*Modifiziertes Element*/ 
+        currentData = insertElementAt(currentData, index, action, this.state.textSelection.textArray.selection)
+        index = increaseLastByOne(index)
+
+        if (this.state.textSelection.textArray.afterSelection){
+            currentData = insertElementAt(currentData, index, "text", this.state.textSelection.textArray.afterSelection)
+        }
+
+        this.setState({
+            data: simplifyJsonDefinition(currentData),
+            changesMade: true,
+        })
+    }
+
+    handleEnter(index, text = "", cursorPosition = -1){
+        let currentData = this.state.data
+        if (text.length === cursorPosition && text !== ""){
+            index = increaseLastByOne(index)
+            currentData = insertElementAt(currentData, index, "newLine", "default")
+            index = increaseLastByOne(index)
+            currentData = insertElementAt(currentData, index, "text", "default")
+
+            this.setState({
+                data: currentData,
+                changesMade: true,
+            })
+        }
+    }
+
     render(){
         return(
             <>
@@ -92,9 +155,22 @@ class PageRenderer extends React.Component{
                 addData={this.addData} 
                 deleteData={this.deleteData}
                 changeProperty={this.changeProperty}
+                setTextSelection={this.setTextSelection}
+                handleEnter={this.handleEnter}
+                modifyState = {this.modifyState}
                 previousIndexes={[]} 
                 adminComponentsVisible={this.props.adminComponentsVisible} 
                 deleteMode={this.props.deleteMode} 
+            />
+            <CustomContextMenu
+                modifySelectedText = {this.modifySelectedText}
+                contextMenuCoords = {this.state.contextMenuCoords}
+                contextMenuVisibility = {this.state.contextMenuVisibility}
+                contextMenuType = {this.state.contextMenuType}
+                changeProperty = {this.changeProperty}
+                modifyState = {this.modifyState}
+                textSelection = {this.state.textSelection}
+                linkBold = {this.state.linkBold}
             />
             </>
         );
@@ -102,14 +178,18 @@ class PageRenderer extends React.Component{
 }
 
 function SaveButton(props){
+    const[clicked, setClicked] = useState(false)
+
     return(
         <div className='saveButtonWrapper'>
             <div className='relPos' >
-                <button className='saveButton' onClick={() => props.saveChanges()}>
+                <button className='saveButton' onClick={() => {setClicked(true); props.saveChanges()}}>
                     <Icon icon="mdi:content-save-outline" className="saveIcon"/>
+                    {(clicked)?<center><div className='loader'/></center>:
                     <div className='saveText'>
                         Änderungen speichern
                     </div>
+                    }
                 </button>
             </div>
         </div>

@@ -16,13 +16,9 @@ function PageMapper(props){
             return (
                 <React.Fragment key={index}>
                     <AtomRenderer
+                        {...props}
                         data={elementdata}
-                        addData={props.addData}
-                        deleteData={props.deleteData}
                         previousIndexes={currentIndexes}
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />
                     {(elementdata.type !== "baseContainer" && elementdata.type !== "unorderedList" && elementdata.type !== "orderedList" && elementdata.type !== "listElement") && (
                         <AddComponent
@@ -58,6 +54,9 @@ function AtomRenderer(props){
                         deleteData={props.deleteData}
                         text={props.data.text} 
                         bold={props.data.bold || false} 
+                        setTextSelection={props.setTextSelection}
+                        handleEnter={props.handleEnter}
+                        modifyState = {props.modifyState}
                     />
         case "link":
             return <Link 
@@ -69,6 +68,9 @@ function AtomRenderer(props){
                         destination={props.data.destination} 
                         newTab={props.data.newTab || true} 
                         bold={props.data.bold || false} 
+                        setTextSelection={props.setTextSelection}
+                        handleEnter={props.handleEnter}
+                        modifyState = {props.modifyState}
                     />
         case "newLine":
             return <NewLine 
@@ -85,6 +87,9 @@ function AtomRenderer(props){
                         text={props.data.text} 
                         topSpace={props.data.topSpace || 0.7} 
                         type={props.data.level || 1}
+                        handleEnter={props.handleEnter}
+                        modifyState = {props.modifyState}
+                        setTextSelection={props.setTextSelection}
                     />
         case "baseContainer":
             return(
@@ -95,13 +100,9 @@ function AtomRenderer(props){
                         adminComponentsVisible={props.adminComponentsVisible}
                     /> 
                     <PageMapper 
+                        {...props}
                         data={props.data.content} 
-                        addData={props.addData} 
-                        deleteData={props.deleteData}
                         previousIndexes={previousIndexes} 
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />
                 </BaseContainer>
             )
@@ -118,13 +119,9 @@ function AtomRenderer(props){
                         adminComponentsVisible={props.adminComponentsVisible}
                     /> 
                     <PageMapper 
+                        {...props}
                         data={props.data.content} 
-                        addData={props.addData} 
-                        deleteData={props.deleteData}
                         previousIndexes={previousIndexes} 
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />
                 </TextContainer>
             )
@@ -143,13 +140,9 @@ function AtomRenderer(props){
                         adminComponentsVisible={props.adminComponentsVisible}
                     /> 
                     <PageMapper 
+                        {...props}
                         data={props.data.content} 
-                        addData={props.addData} 
-                        deleteData={props.deleteData}
                         previousIndexes={previousIndexes} 
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />
                 </TimedContainer>
             )
@@ -166,13 +159,9 @@ function AtomRenderer(props){
                         adminComponentsVisible={props.adminComponentsVisible}
                     /> 
                     <PageMapper 
+                        {...props}
                         data={props.data.content} 
-                        addData={props.addData} 
-                        deleteData={props.deleteData}
                         previousIndexes={previousIndexes} 
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />
                 </Blockquote>
             )
@@ -189,13 +178,9 @@ function AtomRenderer(props){
                         adminComponentsVisible={props.adminComponentsVisible}
                     /> 
                     <PageMapper 
+                        {...props}
                         data={props.data.content} 
-                        addData={props.addData} 
-                        deleteData={props.deleteData}
                         previousIndexes={previousIndexes} 
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />
                 </ParallelContainer>
             )
@@ -219,13 +204,9 @@ function AtomRenderer(props){
                         adminComponentsVisible={props.adminComponentsVisible}
                     /> 
                     <PageMapper 
+                        {...props}
                         data={props.data.content} 
-                        addData={props.addData} 
-                        deleteData={props.deleteData}
                         previousIndexes={previousIndexes} 
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />
                 </Centered>
             )
@@ -242,13 +223,9 @@ function AtomRenderer(props){
                         adminComponentsVisible={props.adminComponentsVisible}
                     /> 
                     <PageMapper 
+                        {...props}
                         data={props.data.content} 
-                        addData={props.addData} 
-                        deleteData={props.deleteData}
                         previousIndexes={previousIndexes} 
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />
                 </Normal>
             )
@@ -265,13 +242,9 @@ function AtomRenderer(props){
                         adminComponentsVisible={props.adminComponentsVisible}
                     /> 
                     <PageMapper 
+                        {...props}
                         data={props.data.content} 
-                        addData={props.addData} 
-                        deleteData={props.deleteData}
                         previousIndexes={previousIndexes} 
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />
                     <AddListElement 
                         index={appendToArray(previousIndexes, props.data.content.length)}
@@ -292,13 +265,9 @@ function AtomRenderer(props){
                         adminComponentsVisible={props.adminComponentsVisible}
                     /> 
                     <PageMapper 
+                        {...props}
                         data={props.data.content} 
-                        addData={props.addData} 
-                        deleteData={props.deleteData}
                         previousIndexes={previousIndexes} 
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />
                     <AddListElement 
                         index={appendToArray(previousIndexes, props.data.content.length)}
@@ -319,13 +288,9 @@ function AtomRenderer(props){
                         adminComponentsVisible={props.adminComponentsVisible}
                     /> 
                     <PageMapper 
+                        {...props}
                         data={props.data.content} 
-                        addData={props.addData} 
-                        deleteData={props.deleteData}
                         previousIndexes={previousIndexes} 
-                        adminComponentsVisible={props.adminComponentsVisible}
-                        deleteMode={props.deleteMode}
-                        changeProperty={props.changeProperty}
                     />                
                 </ListElement>
             )
@@ -359,13 +324,9 @@ function AtomRenderer(props){
                     adminComponentsVisible={props.adminComponentsVisible}
                 /> 
                 <PageMapper 
+                    {...props}
                     data={props.data.content} 
-                    addData={props.addData} 
-                    deleteData={props.deleteData}
                     previousIndexes={previousIndexes} 
-                    adminComponentsVisible={props.adminComponentsVisible}
-                    deleteMode={props.deleteMode}
-                    changeProperty={props.changeProperty}
                 />
             </>)
         default:
