@@ -1,6 +1,8 @@
 async function jsonReader(path) {
     try {
-        const response = await fetch(process.env.REACT_APP_CDN_URL + "page_content/" + path);
+        const cacheBuster = Math.random().toString(36).substring(7);
+        const response = await fetch(process.env.REACT_APP_CDN_URL + "page_content/" + path + "?cache=" + cacheBuster, {cache: 'no-cache'});
+
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -8,7 +10,7 @@ async function jsonReader(path) {
         return data;
     } catch (error) {
         console.error('Error fetching JSON data:', error);
-        return null; // or handle the error in some other way
+        return null;
     }
 }
 
@@ -63,7 +65,10 @@ function insertIntoArray(array, element, index){
     ];
 }
 
-function insertElementAt(obj, indexes, element) {
+function insertElementAt(obj, indexes, element, text="") {
+    if(text===""){
+        return obj
+    }
     let current = obj;
 
     if (!Array.isArray(current)) {
@@ -71,12 +76,12 @@ function insertElementAt(obj, indexes, element) {
     }
 
     if (indexes.length === 1) {
-        current.splice(indexes[0], 0, createTemplateDefinition(element));
+        current.splice(indexes[0], 0, createTemplateDefinition(element, text));
         return current;
     }
 
     let innerArray = current[indexes[0]].content;
-    let updatedInnerArray = insertElementAt(innerArray, indexes.slice(1), element);
+    let updatedInnerArray = insertElementAt(innerArray, indexes.slice(1), element, text);
     current[indexes[0]].content = updatedInnerArray;
     
     return current;
@@ -121,12 +126,14 @@ function modifyElementAt(obj, indexes, modifiedContent, keyToModify) {
     return current;
 }
 
-function createTemplateDefinition(type){
+function createTemplateDefinition(type, text=""){
     switch (type){
         case "text":
-            return {"type": type, "text": "neuer Text"}
+            return {"type": type, "text": text=== "default"?"neuer Text":text}
+        case "bold":
+            return {"type": "text", "bold":true, "text": text=== "default"?"neuer Text":text}
         case "link":
-            return {"type": type, "text": "neuer Link"}
+            return {"type": type, "text": text=== "default"?"neuer Link":text}
         case "newLine":
             return {"type": type}
         case "heading":
@@ -174,4 +181,57 @@ function increaseLastByOne(array){
     return newArray;
 }
 
-export {jsonReader, getValue, getTimespan, appendToArray, insertIntoArray, increaseLastByOne, insertElementAt, deleteElementAt, modifyElementAt}
+function getSelectedText(e, selectedText, text, type, mouseY, mouseX, index, setTextSelection, modifyState){
+    e.preventDefault()
+
+    const startIndex = text.indexOf(selectedText);
+    const beforeSelection = text.substring(0, startIndex);
+    const afterSelection = text.substring(startIndex + selectedText.length);
+    let result = {}
+    if (beforeSelection.length !== 0){
+        result["beforeSelection"] = beforeSelection
+    }
+
+    result["selection"]=selectedText
+
+    if (afterSelection.length !== 0){
+        result["afterSelection"] = afterSelection
+    }
+
+    if (selectedText.length !== 0){
+        setTextSelection(index, result, type)
+        modifyState('contextMenuVisibility' ,'block')
+        modifyState('contextMenuType', type)
+        modifyState('contextMenuCoords', {'x': mouseX, 'y': mouseY})
+    } else {
+        modifyState('contextMenuVisibility' ,'none')
+    }
+}
+
+function simplifyJsonDefinition(jsonArray) {
+    const mergedArray = [];
+
+    for (const element of jsonArray) {
+        const lastMerged = mergedArray[mergedArray.length - 1];
+
+        if (lastMerged && lastMerged.type === element.type && element.type === "text" && lastMerged.bold === element.bold) {
+            lastMerged.text += element.text;
+        } else if (element.content) {
+            mergedArray.push({...element, content: simplifyJsonDefinition(element.content)});
+        } else {
+            mergedArray.push({...element});
+        }
+    }
+
+    return mergedArray;
+}
+
+function selectImage(e, x, y, type, index, modifyState, alt = "", width = 90, maxWidth = 50, align = "left"){
+    e.preventDefault()
+    modifyState('contextMenuCoords', {'x': x, 'y': y})
+    modifyState('contextMenuType', type)
+    modifyState('textSelection', {'index':index, 'alt': alt, 'width': width, 'maxWidth': maxWidth, 'align': align})
+    modifyState('contextMenuVisibility' ,'block')
+}
+
+export {jsonReader, getValue, getTimespan, appendToArray, insertIntoArray, increaseLastByOne, insertElementAt, deleteElementAt, modifyElementAt, getSelectedText, simplifyJsonDefinition, selectImage}

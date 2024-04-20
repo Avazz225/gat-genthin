@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageMapper from '../helpers/pageMapper';
-import { deleteElementAt, insertElementAt, jsonReader, modifyElementAt } from '../helpers/tools';
+import { deleteElementAt, increaseLastByOne, insertElementAt, jsonReader, modifyElementAt, simplifyJsonDefinition } from '../helpers/tools';
 import { Icon } from '@iconify/react';
 import { getToken } from '../adminComponents/token';
+import CustomContextMenu from '../adminComponents/CCM';
+import axios from "axios"
 
 class PageRenderer extends React.Component{
     constructor(props){
@@ -11,11 +13,30 @@ class PageRenderer extends React.Component{
             source: props.page+".json",
             data: [],
             changesMade: false,
+            textSelection: {},
+            contextMenuCoords: {x: 0, y:0},
+            contextMenuVisibility: "none",
+            contextMenuType: "",
+            linkBold: true,
+            uploadInProgress: false
         }
         this.addData = this.addData.bind(this)
         this.deleteData = this.deleteData.bind(this)
         this.changeProperty = this.changeProperty.bind(this)
         this.saveChanges = this.saveChanges.bind(this)
+        this.setTextSelection = this.setTextSelection.bind(this)
+        this.modifySelectedText = this.modifySelectedText.bind(this)
+        this.handleEnter = this.handleEnter.bind(this)
+        this.modifyState = this.modifyState.bind(this)
+        this.upload_image = this.upload_image.bind(this)
+        this.generate_url = this.generate_url.bind(this)
+        this.handleFileUpload = this.handleFileUpload.bind(this)
+    }
+
+    modifyState(key, value){
+        this.setState({
+            [key]: value
+        })
     }
 
     async componentDidMount(){
@@ -28,7 +49,7 @@ class PageRenderer extends React.Component{
 
     addData(newElement, index){
         this.setState({
-            data: insertElementAt(this.state.data, index, newElement),
+            data: insertElementAt(this.state.data, index, newElement, "default"),
             changesMade: true
         })
     }   
@@ -47,6 +68,60 @@ class PageRenderer extends React.Component{
         })
     }
 
+    handleFileUpload(index, file, auto_map = "false", map_target = "none"){
+        this.generate_url(index, file, auto_map, map_target)
+    }
+
+    async generate_url(index, file, auto_map, map_target){
+        this.setState({'uploadInProgress': true})
+        await fetch(process.env.REACT_APP_CM_API+'generate_url', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': getToken(),
+                'source': process.env.REACT_APP_SYSTEM_ID,
+                'automap': auto_map,
+                'maptarget': map_target,
+            },
+            body: JSON.stringify({
+                'automap': auto_map,
+                'maptarget': map_target,
+                'filename': file.name,
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+        return response.json();
+        })
+        .then((data) => {
+            this.upload_image(index, file, data['url'], data['fields'])
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    async upload_image(index, file, url, fields){
+        const  formData = new FormData();   
+        Object.keys(fields).forEach(key => {
+            formData.append(key, fields[key]);
+        });   
+        formData.append('file', file);  
+        axios.post(url, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }         
+        }).then(() => {
+            this.setState({'uploadInProgress': true})
+            this.changeProperty(fields.key, index, "src")
+        })
+        .catch(function (error) {
+            console.log(error);
+        });            
+    }
+
     async saveChanges(){
         await fetch(process.env.REACT_APP_CM_API+'content', {
             method: 'PUT',
@@ -57,30 +132,77 @@ class PageRenderer extends React.Component{
                 'TargetFile': this.state.source
             }, 
             body: JSON.stringify({
-                'content': this.state.data
+                //You shall not save stupid things :)
+                'content': simplifyJsonDefinition(this.state.data)
             })
-            })
-            .then((response) => {
-                if (response.ok) {
-                    return;
-                } else {
-                    console.log(response)
-                    throw new Error(response.status);
-                }
-            })
-            .then(() => {
+        })
+        .then((response) => {
+            if (response.ok) {
                 this.setState({
-                    changesMade: false
+                    data: simplifyJsonDefinition(this.state.data)
                 })
+                return;
+            } else {
+                throw new Error(response.status);
+            }
+        })
+        .then(() => {
+            this.setState({
+                changesMade: false
             })
-            .catch((error) => {
-                // Internal server error
-                this.setState({
-                    password_error: false,
-                    email_error: false,
-                    generalErrID: "err.authserviceunavailable"
-                })
+        })
+        .catch((error) => {
+            // Internal server error
+            this.setState({
+                password_error: false,
+                email_error: false,
+                generalErrID: "err.authserviceunavailable"
             })
+        })
+    }
+
+    setTextSelection(index, textArray, type){
+        this.setState({
+            textSelection: {"index": index, "textArray": textArray, "type": type}
+        }) 
+    }
+
+    modifySelectedText(action){
+        let currentData = this.state.data
+        let index = this.state.textSelection.index
+
+        currentData = deleteElementAt(currentData, this.state.textSelection.index)
+        if(this.state.textSelection.textArray.beforeSelection){
+            currentData = insertElementAt(currentData, index, "text", this.state.textSelection.textArray.beforeSelection)
+            index = increaseLastByOne(index)
+        }
+        /*Modifiziertes Element*/ 
+        currentData = insertElementAt(currentData, index, action, this.state.textSelection.textArray.selection)
+        index = increaseLastByOne(index)
+
+        if (this.state.textSelection.textArray.afterSelection){
+            currentData = insertElementAt(currentData, index, "text", this.state.textSelection.textArray.afterSelection)
+        }
+
+        this.setState({
+            data: simplifyJsonDefinition(currentData),
+            changesMade: true,
+        })
+    }
+
+    handleEnter(index, text = "", cursorPosition = -1){
+        let currentData = this.state.data
+        if (text.length === cursorPosition && text !== ""){
+            index = increaseLastByOne(index)
+            currentData = insertElementAt(currentData, index, "newLine", "default")
+            index = increaseLastByOne(index)
+            currentData = insertElementAt(currentData, index, "text", "default")
+
+            this.setState({
+                data: currentData,
+                changesMade: true,
+            })
+        }
     }
 
     render(){
@@ -92,9 +214,24 @@ class PageRenderer extends React.Component{
                 addData={this.addData} 
                 deleteData={this.deleteData}
                 changeProperty={this.changeProperty}
+                setTextSelection={this.setTextSelection}
+                handleEnter={this.handleEnter}
+                modifyState = {this.modifyState}
+                handleFileUpload = {this.handleFileUpload}
                 previousIndexes={[]} 
                 adminComponentsVisible={this.props.adminComponentsVisible} 
                 deleteMode={this.props.deleteMode} 
+                uploadInProgress={this.state.uploadInProgress}
+            />
+            <CustomContextMenu
+                modifySelectedText = {this.modifySelectedText}
+                contextMenuCoords = {this.state.contextMenuCoords}
+                contextMenuVisibility = {this.state.contextMenuVisibility}
+                contextMenuType = {this.state.contextMenuType}
+                changeProperty = {this.changeProperty}
+                modifyState = {this.modifyState}
+                textSelection = {this.state.textSelection}
+                linkBold = {this.state.linkBold}
             />
             </>
         );
@@ -102,14 +239,18 @@ class PageRenderer extends React.Component{
 }
 
 function SaveButton(props){
+    const[clicked, setClicked] = useState(false)
+
     return(
         <div className='saveButtonWrapper'>
             <div className='relPos' >
-                <button className='saveButton' onClick={() => props.saveChanges()}>
+                <button className='saveButton' onClick={() => {setClicked(true); props.saveChanges()}}>
                     <Icon icon="mdi:content-save-outline" className="saveIcon"/>
+                    {(clicked)?<center><div className='loader'/></center>:
                     <div className='saveText'>
                         Änderungen speichern
                     </div>
+                    }
                 </button>
             </div>
         </div>

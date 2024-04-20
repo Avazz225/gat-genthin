@@ -43,6 +43,7 @@ class Auth extends React.Component{
             pwdErrID: "",
             generalErrID: "",
             permanent_login: false,
+            apiProcess: false
         };
 
         this.toggleMode = this.toggleMode.bind(this)
@@ -62,6 +63,7 @@ class Auth extends React.Component{
             emailErrID: "",
             pwdErrID: "",
             generalErrID: "",
+            apiProcess: false
         })
     }
 
@@ -118,9 +120,12 @@ class Auth extends React.Component{
         }
     }
 
-    signIn(e){
+    async signIn(e){
         e.preventDefault();
-        fetch(process.env.REACT_APP_AUTH_API+'authentication_tokens/'+(this.state.permanent_login?'persistent_token':'timed_token'), {
+        await this.setState({
+            apiProcess: true
+        })
+        await fetch(process.env.REACT_APP_AUTH_API+'authentication_tokens/'+(this.state.permanent_login?'persistent_token':'timed_token'), {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -200,10 +205,16 @@ class Auth extends React.Component{
                 })
             }   
         });
+        this.setState({
+            apiProcess: false
+        })
     };
 
     async signUp(e){
         e.preventDefault();
+        await this.setState({
+            apiProcess: true
+        })
         await fetch(process.env.REACT_APP_AUTH_API+'accounts', {
             method: 'PUT',
             headers: {
@@ -222,10 +233,6 @@ class Auth extends React.Component{
                     throw new Error(response.status);
                 }
             })
-            .then((data) => {
-                    console.log(data)
-                }
-            )
             .catch((error) => {
                 if (error.message === '409') {
                     // Email already in use
@@ -239,6 +246,9 @@ class Auth extends React.Component{
                     })
                 }
             });
+        this.setState({
+            apiProcess: false
+        })
     }
 
     togglePermanentLogin(){
@@ -265,6 +275,7 @@ class Auth extends React.Component{
                         emailErr={this.state.emailErrID}
                         pwdErr={this.state.pwdErrID}
                         generalErr={this.state.generalErrID}
+                        apiProcess={this.state.apiProcess}
                     />
                     <LogIn 
                         email={this.state.email} 
@@ -278,6 +289,7 @@ class Auth extends React.Component{
                         password_error={this.state.password_error}
                         permanent_login={this.state.permanent_login}
                         togglePermanentLogin={this.togglePermanentLogin}
+                        apiProcess={this.state.apiProcess}
                     />
                 </div>
             </div>
@@ -305,8 +317,8 @@ function LogIn(props){
             <div className="authspacer"/>
             <HrefClass3 text={<FormattedMessage id="auth.button.forgot"/>} action={"/changepwd"}/>
             <div className="authspacer"/>
-            <button className="authInput authBtn" onClick={(e) => props.signIn(e)} disabled={props.email === "" || props.password === ""} >
-                <FormattedMessage id="auth.button.login"/>
+            <button className={"authInput authBtn"} onClick={(e) => {if(!props.apiProcess){props.signIn(e)}}} disabled={ props.email === "" || props.password === ""} >
+                {(!props.apiProcess)?<FormattedMessage id="auth.button.login"/>:<LoadingAnimation/>}
             </button>
             <ErrorMsg id={props.generalErr} />
         </div>
@@ -328,13 +340,23 @@ function SignUp(props){
             <input className={(props.password_error)?"authInput error":"authInput"} type="password" placeholder="***" value={props.password_confirmation} name={'password_confirmation'} onChange={(e) => props.changeState(e)} onBlur={() => props.checkPwd()} />
             <ErrorMsg id={props.pwdErr} />
             <div className="authspacer"/>
-            <button className="authInput authBtn" onClick={(e) => props.signUp(e)} disabled={props.email_error || props.password_error || props.password === "" || props.password_confirmation === "" || props.email === ""} >
-                <FormattedMessage id="auth.button.signUp"/>
+            <button className={"authInput authBtn"} onClick={(e) => {if(!props.apiProcess){props.signUp(e)}}} disabled={ props.email_error || props.password_error || props.password === "" || props.password_confirmation === "" || props.email === ""} >
+                {(!props.apiProcess)?<FormattedMessage id="auth.button.signUp"/>:<LoadingAnimation/>}
             </button>
             <ErrorMsg id={props.generalErr} />
         </div>
     )
 }
+
+
+function LoadingAnimation(){
+    return(
+        <div className="relPos">
+            <div className="loader"/>
+        </div>
+    )
+}
+
 
 function Overlay(props){
     return(

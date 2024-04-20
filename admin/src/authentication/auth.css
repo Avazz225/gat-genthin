@@ -25,17 +25,6 @@
     height: 100vh;
 }
 
-.authBtn{
-    background-color: rgb(var(--secondary-color));
-    border-color: rgb(var(--secondary-color));
-}
-
-.authBtn:disabled{
-    background-color: rgba(var(--secondary-color), 0.2);
-    border-color: rgba(var(--secondary-color), 0.2);
-    color: rgba(var(--text-color), 0.6);
-}
-
 .error{
     color: rgb(var(--error-color));
     border-color: rgb(var(--error-color));
@@ -67,6 +56,17 @@ h0{
     border: solid 1px rgb(var(--text-color));
     padding: 1em 2em;
     border-radius: 2em;
+}
+
+.authBtn{
+    background-color: rgb(var(--secondary-color));
+    border-color: rgb(var(--secondary-color));
+}
+
+.authBtn:disabled{
+    background-color: rgba(var(--secondary-color), 0.2);
+    border-color: rgba(var(--secondary-color), 0.2);
+    color: rgba(var(--text-color), 0.6);
 }
 
 .authspacer{
@@ -344,4 +344,23 @@ text-decoration: none;
 
 .zeroTB{
 padding: 0 1em;
+}
+
+
+.loader {
+    width: 60px;
+    aspect-ratio: 4;
+    --_g: no-repeat radial-gradient(circle closest-side,rgba(var(--text-color), 0.9) 90%,#0000);
+    background: 
+        var(--_g) 0%   50%,
+        var(--_g) 50%  50%,
+        var(--_g) 100% 50%;
+    background-size: calc(100%/3) 100%;
+    animation: l7 1.5s infinite linear;
+}
+
+@keyframes l7 {
+    33%{background-size:calc(100%/3) 50%  ,calc(100%/3) 100%,calc(100%/3) 100%}
+    50%{background-size:calc(100%/3) 100%,calc(100%/3) 50%  ,calc(100%/3) 100%}
+    66%{background-size:calc(100%/3) 100%,calc(100%/3) 100%,calc(100%/3) 50%  }
 }
