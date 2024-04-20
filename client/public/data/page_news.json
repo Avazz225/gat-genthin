@@ -1,0 +1,29 @@
+[{"type":"newsContainer", "content":[
+    {"type":"heading", "text":"Aktuelles"},
+    {"type": "heading", "text":"Termine", "level":3},
+    {"type": "timedContainer", "startDisplay":[1,1,1], "endDisplay":[24,2,2024], "content":[
+        {"type":"textContainer", "content":[
+            {"type": "heading", "text": "Männer! Und Frauen. ... Eine Lachshow - mit Wiedererkennungswert", "level":3},
+            {"type": "unorderedList", "content":[
+                {"type": "listElement", "content":[
+                    {"type": "text", "text": "Mittwoch, 14.02.2024, 19 Uhr", "bold":true},
+                    {"type": "newLine"},
+                    {"type": "text", "text": "Genthin, Lindenhof"}
+                ]},
+                {"type": "listElement", "content":[
+                    {"type": "text", "text": "Sonntag, 18.02.2024, 15 Uhr", "bold":true},
+                    {"type": "newLine"},
+                    {"type": "text", "text": "Genthin, Lindenhof"}
+                ]},
+                {"type": "listElement", "content":[
+                    {"type": "text", "text": "Samstag, 24.02.2024, 19 Uhr", "bold":true},
+                    {"type": "newLine"},
+                    {"type": "text", "text": "Kade, Gasthof Pflaumbaum"}
+                ]}
+            ]},
+            {"type": "text", "text":"Einlass jeweils eine Stunde vor Beginn."}
+        ]}
+    ]},
+    {"type": "horizontalRow", "blue": true},
+    {"type": "newLine"}
+]}]

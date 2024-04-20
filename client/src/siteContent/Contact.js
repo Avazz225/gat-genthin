@@ -1,44 +1,28 @@
-import './css/Contact.css';
+import PageMapper from '../helpers/pageMapper';
+import { jsonReader } from '../helpers/tools';
+import React from 'react';
 
-function Contact(){
-    return(
-        <div className="content">
-            <h1>Kontakt</h1>
-            <div className='content-pane texttype'>
-            <p>Wenn wir Ihr Interesse geweckt haben oder Sie einfach weitere Informationen benötigen, wenden Sie sich vertrauensvoll an die untenstehenden Kontaktpersonen.</p>
-            </div>
+class Contact extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            data: []
+        }
+    }
 
-            <hr className="blue"></hr>
-            <div className='nextto'>
-                <div className='element-wrapper'> 
-                    <h3>Künstlerischer Leiter</h3>
-                    <div className='content-pane texttype'>
-                        <p>
-                        Eckhard Neumann<br></br>
-                        Baumschulenweg 12<br></br>
-                        39307 Genthin<br></br><br></br>
+    async componentDidMount(){
+        jsonReader("page_contact.json")
+        .then(result => this.setState({
+            data: result
+        })
+        )
+    }
 
-                        Tel. 03933/2065<br></br>
-                        </p>
-                    </div>
-                </div>
-                <div className='element-wrapper'>
-                    <h3>Organisation</h3>
-                    <div className='content-pane texttype'>
-                        <p>
-                        Jürgen Wagner<br></br>
-                        Schillerstr. 7a<br></br>
-                        39307 Genthin<br></br><br></br>
-
-                        Tel. 03933/806922<br></br>
-                        E-Mail: <a href="mailto:info@gat-genthin.de">info@gat-genthin.de</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    );
+    render(){
+        return(
+            <PageMapper data={this.state.data}/>
+        );
+    }
 }
 
 export default Contact;

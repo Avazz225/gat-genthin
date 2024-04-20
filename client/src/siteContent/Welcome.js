@@ -1,80 +1,29 @@
 import React from 'react';
-import { getTimespan } from '../helpers/tools';
-import './css/Welcome.css';
-import './css/gatvent.css'
-import GatCalendar from './CalenderDoors';
+import PageMapper from '../helpers/pageMapper';
+import { jsonReader } from '../helpers/tools';
 
-function Welcome(){
-    let startDisplay = [28,11,2023]
-    let endDisplay = [6,1,2024]
+class Welcome extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            data: []
+        }
+    }
 
-    return(
-        <div className="content">
-            <h1>Herzlich Willkommen</h1>
-            <div className='content-pane texttype'>
-                <p>Herzlich Willkommen auf der Seite des gat - genthiner amateurtheater e.V.! 
-                    Wir laden Sie ein, sich bei uns etwas umzuschauen: Erfahren Sie etwas über uns und unsere Geschichte oder werfen Sie einen Blick in unsere Galerie.</p> 
-            </div>
+    async componentDidMount(){
+        jsonReader("page_welcome.json")
+        .then(result => this.setState({
+            data: result
+        })
+        )
+    }
 
-            {(getTimespan(startDisplay, endDisplay))?<>
-                <h1>gatventskalender 2023</h1>
-            <div className='content-pane texttype'>
-                <p>
-                    Herzlich willkommen zum digitalen Adventskalender vom genthiner amateurtheater! 
-                    Dieses Jahr nehmen wir Sie mit auf eine zauberhafte Reise durch die Märchen der Vergangenheit, 
-                    die unser Theaterverein im Laufe der Jahre zum Leben erweckt hat. 
-                    Öffnen Sie jeden Tag ein Türchen und lassen Sie sich von den Bildern vergangener Aufführungen verzaubern.
-                </p>
-                <h2>Jeden Sonntag: Märchenstunde</h2>
-                <p>
-                    Gönnen Sie sich an jedem Sonntag eine Auszeit mit unseren Märchenstunden. gat liest ein herzerwärmendes Märchen vor, 
-                    um Ihnen eine gemütliche und märchenhafte Adventszeit zu bescheren.<br/>
-                    Wir hoffen, dass Sie diese Reise durch die vergangenen Märchen ebenso genießen werden wie wir. <br/><br/>
-                    gat wünscht eine märchenhafte Adventszeit!
-                </p>
-            </div>
-            <GatCalendar/>
-            </>:<></>}
-
-            <h1>Weihnachtsmärchen 2023</h1>
-            <div className='content-pane texttype'>
-                
-                <p>
-                <h2>Die drei Federn</h2>
-                Walburga Raeder, nach einem Märchen der Brüder Grimm<br/><br/>
-
-                <img src={process.env.REACT_APP_CDN_URL+"PlakatFedern.jpg"} className='imageInText right' align='right'/>
-
-                Wer kennt sie nicht die Vorlauten, die Vorwitzigen, die immer denken, dass sie mit Schummeln und ohne großes 
-                Zutun ganz vorn sein werden. Immer gab und immer gibt es sie. So auch in unserem Märchen "Die drei Federn". 
-                Der Dummling aber wird siegen und seine beiden großmäuligen Brüder werden ihrer gerechten Strafe zugeführt, 
-                die allerdings in dieser Fassung etwas glimpflicher ausfällt, den beiden Vorwitzigen nach der Läuterung sogar 
-                noch eine Chance verspricht. Wir jagen sie also nicht davon, sondern erkennen die Grauzonen, die es im 
-                zwischenmenschlichen Bereich öfter gibt als schwarz-weiß.<br/><br/>
-                
-                <div className="centered">
-                    <div>
-                    Termine Märchen:
-                    <ul>
-                        <li>26.11.2023	14:30 Uhr<br/>Premiere Gasthof „Pflaumbaum“, Kade</li>
-                        <li>03.12.2023	15:00 Uhr<br/>Tucheim, Gaststätte „Zum Fiener“</li>
-                        <li>10.12.2023	14:30 Uhr<br/>Lindenhof Genthin</li>
-                        <li>16.12.2023	16:00 Uhr<br/>Stadthalle Möckern</li>
-                        <li>17.12.2023	15:00 Uhr<br/>MGH „Die Stube“ Kirchmöser</li> 
-                        <li>24.12.2023	14:30 Uhr<br/>Grundschule L. Uhland, Genthin</li>
-                        <li>06.01.2024	14:30 Uhr<br/>Grundschule L. Uhland, Genthin</li>
-                    </ul>
-                    </div>
-                </div>
-                Für die Vorstellungen in Kade und Genthin (26.11.; 10.12.; 24.12. und 06.01.24)
-                beginnt der Kartenvorverkauf am <b>15.11.2023</b> bei der <b><a href="http://www.touristinfo-genthin.de/" target="_blank">Touristinformation Genthin</a></b>.
-                </p>
-            </div>
-
-        </div>
-    );
+    render(){
+        return(
+            <PageMapper data={this.state.data}/>
+        );
+    }
 }
-
 
 
 /*

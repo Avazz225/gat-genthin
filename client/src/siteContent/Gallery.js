@@ -1,5 +1,7 @@
 import React from "react";
-import './css/Gallery.css';
+import { BaseContainer, TextContainer } from "../atoms/ContentContainers";
+import { Heading, NewLine, Text } from "../atoms/TextContainers";
+import { HorizontalRow } from "../atoms/Arrangement";
 
 var hanssachs;
 var hinter;
@@ -10,7 +12,7 @@ var veranstaltungen;
 
 function Gallery(){
 
-    const [data, setData] = React.useState(null);
+    const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
         fetch(process.env.REACT_APP_API_URL+"/overview")
@@ -20,48 +22,59 @@ function Gallery(){
 
     assignVariables(data);
     return(
-        <div className="content">
-            <h1>Galerie</h1>
-            <div className='content-pane texttype'>
-                <p>Unsere Galerie ist in die folgenden Kategorien eingeteilt.<br></br> 
-                Sehen Sie sich gern um.</p>
-            </div>
-            <hr className="blue"></hr>
-            <h2>Märchenauftritte</h2>
-            <div className='content-pane texttype'>
-                <p>Hier finden Sie Bilder zu den Märchen der letzten Jahre</p>
+        <BaseContainer>
+            <Heading text="Galerie"/>
+            <TextContainer>
+                <Text text="Unsere Galerie ist in die folgenden Kategorien eingeteilt."/>
+                <NewLine/>
+                <Text text="Sehen Sie sich gern um."/>
+            </TextContainer>
+            <HorizontalRow blue={true}/>
+
+            <Heading type={2} text="Märchenauftritte"/>
+            <TextContainer>
+                <Text text="Hier finden Sie Bilder zu den Märchen der letzten Jahre"/>
+                <NewLine/>
+                <NewLine/>
                 {readySnippets(maerchen)}
-            </div>
-            <hr className="blue"></hr>
-            <h2>Straßentheater</h2>
-            <div className='content-pane texttype'>
-                <p>Hier finden Sie Bilder zu unseren Straßentheaterauftritten</p>
+            </TextContainer>
+
+            <HorizontalRow blue={true}/>
+            <Heading type={2} text="Straßentheater"/>
+            <TextContainer>
+                <Text text="Hier finden Sie Bilder zu unseren Straßentheaterauftritten"/>
+                <NewLine/>
+                <NewLine/>
                 {readySnippets(hanssachs)}
-            </div>
-
+            </TextContainer>
             
-            <hr className="blue"></hr>
-            <h2>Andere Veranstaltungen - Lesungen und Abendprogramm</h2>
-            <div className='content-pane texttype'>
-                <p>Hier finden Sie Bilder zu weiteren Auftritten und Vorführungen des gat</p>
+            <HorizontalRow blue={true}/>
+            <Heading type={2} text="Andere Veranstaltungen - Lesungen und Abendprogramm"/>
+            <TextContainer>
+                <Text text="Hier finden Sie Bilder zu weiteren Auftritten und Vorführungen des gat"/>
+                <NewLine/>
+                <NewLine/>
                 {readySnippets(veranstaltungen)}
-            </div>
-
+            </TextContainer>
             
-            <hr className="blue"></hr>
-            <h2>Kindertheater</h2>
-            <div className='content-pane texttype'>
-                <p>Hier finden Sie Bilder zu den Auftritten der gat-Kinder in den letzten Jahren</p>
+            <HorizontalRow blue={true}/>
+            <Heading type={2} text="Kindertheater"/>
+            <TextContainer>
+                <Text text="Hier finden Sie Bilder zu den Auftritten der gat-Kinder in den letzten Jahren"/>
+                <NewLine/>
+                <NewLine/>
                 {readySnippets(kinder)}
-            </div>
+            </TextContainer>
 
-            <hr className="blue"></hr>
-            <h2>Hinter den Kulissen - Schminken, Technik und Aufbau Bühnenbild</h2>
-            <div className='content-pane texttype'>
-                <p>Hier finden Sie Bilder zu einigem, was hinter der Bühne los ist.</p>
+            <HorizontalRow blue={true}/>
+            <Heading type={2} text="Hinter den Kulissen - Schminken, Technik und Aufbau Bühnenbild"/>
+            <TextContainer>
+                <Text text="Hier finden Sie Bilder zu einigem, was hinter der Bühne los ist."/>
+                <NewLine/>
+                <NewLine/>
                 {readySnippets(hinter)}
-            </div>
-        </div>
+            </TextContainer>
+        </BaseContainer>
     );
 }
 

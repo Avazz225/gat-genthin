@@ -1,0 +1,56 @@
+.textEditable:hover{
+    background-color: rgba(var(--primary-color), 0.25);
+    
+}
+
+.saveButton{
+    position: absolute;
+    height: 2.5em;
+    width: 2.5em;
+    border: solid 2px rgba(var(--green-color));
+    border-radius: 0.5em;
+    background-color: transparent;
+    backdrop-filter: grayscale(1) blur(5px);
+    transition: all .3s;
+}
+
+.saveIcon{
+    height: 2.5em;
+    width: 2.5em;
+    color: rgba(var(--green-color));
+    background-color: transparent;
+    position: absolute;
+    top: -.15em;
+    right: -.15em;
+    opacity: 1;
+    transition: all .3s;
+}
+
+.saveText{
+    opacity: 0;
+    color: rgba(var(--green-color));
+    font-weight: bold;
+    min-width: max-content;
+    transition: all .3s;
+    margin-left: 0.5em;
+}
+
+
+.saveButton:hover{
+    width: 13em;
+}
+
+.saveButton:hover .saveIcon{
+    opacity: 0;
+}
+
+.saveButton:hover .saveText{
+    opacity: 1;
+}
+
+.saveButtonWrapper{
+    height: 0;
+    width: 0;
+    position: sticky;
+    top: 45vh;
+}

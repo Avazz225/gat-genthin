@@ -1,0 +1,33 @@
+{
+    "auth.notRegisteredYet":"Noch keinen Account?",
+    "auth.switchToRegister":"Jetzt registrieren!",
+    "auth.logIn":"Einloggen",
+    "auth.welcomeBack": "Willkommen zurück bei gat!",
+    "auth.welcomeTo": "Willkommen bei gat!",
+    "auth.skalarLightInfo":"Logge dich ein, um die Website zu verwalten.",
+    "auth.skalarLightInfo2":"Registriere dich und lasse dich freischalten, um mit der Websiteadministration zu beginnen.",
+    "auth.alreadyRegistered":"Du hast schon einen Account?",
+    "auth.LogIn":"Logge dich ein!",
+    "auth.button.forgot":"Passwort vergessen?",
+    "auth.button.login":"Einloggen",
+    "auth.button.stayLoggedIn":"Eingeloggt bleiben",
+    "auth.input.email": "E-Mail",
+    "auth.input.password": "Passwort",
+    "auth.input.passwordConfirm": "Passwort bestätigen",
+    "auth.button.signUp":"Account erstellen",
+    "auth.signUp": "Registrieren",
+
+    "err.emailNotFound":"Die E-Mail wurde nicht gefunden.",
+    "err.pwdIncorrect": "Das Passwort ist inkorrekt.",
+    "err.authserviceunavailable":"Die Anmeldeserver sind zur Zeit nicht erreichbar. Bitte versuche es später erneut.",
+    "err.malformedrequest":"Der Anmeldeversuch ist fehlerhaft. Bitte versuche es später erneut.",
+    "err.emailInUse":"Die E-Mail ist schon registriert. Bitte nutze eine Andere.",
+    "err.regserviceunavailable":"Die Registrierungsserver sind zur Zeit nicht erreichbar. Bitte versuche es später erneut.",
+    "err.passwordmismatch":"Die Passwörter stimmen nicht überein.",
+    "err.passwordtooweak":"Das Passwort entspricht nicht den Mindestanforderungen.",
+    "err.nomail":"Die angegebene E-Mail scheint keine richtige E-Mail zu sein.",
+    "err.noAccessRights":"Für dieses Konto liegen keine Zugriffsberechtigungen auf das System vor.",
+
+
+    "upload.drag":"Ziehe eine .csv Datei in das Feld oder klicke zum Öffnen der Dateiauswahl."
+}

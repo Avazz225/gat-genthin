@@ -1,10 +1,10 @@
-import './Navigation.css';
 import {HashRouter, Link} from "react-router-dom";
+import { NavLink } from "../atoms/TextContainers";
 
 function Navigation(){
     return(
         <div className="ham-container">
-                <input type="checkbox" className="checkbox"></input>
+                <a href='' className="checkbox" onClick={(e) => e.preventDefault()}></a>
                 <div className="hamburger-lines">
                     <span className="line line1"></span>
                     <span className="line line2"></span>
@@ -16,31 +16,15 @@ function Navigation(){
                 <div className="spacer"></div>
                 <div className="navContainer">
                     <HashRouter>
-                    <Link to={"/"} className="ref">
-                        <div className="navItem inactive" onClick="window.location.reload();" id="home">
-                            Willkommen
-                        </div>
-                    </Link>
-                    <Link to="about" onClick="window.location.reload();" className="ref">
-                        <div className="navItem inactive">
-                            Über uns
-                        </div>
-                    </Link>
-                    <Link to="repertoire" onClick="window.location.reload();" className="ref">
-                        <div className="navItem inactive">
-                            Repertoire
-                        </div>
-                    </Link>
-                    <Link to="gallery" onClick="window.location.reload();" className="ref">
-                        <div className="navItem inactive">
-                            Galerie
-                        </div>
-                    </Link>
-                    <Link to="contact" onClick="window.location.reload();" className="ref">
-                        <div className="navItem inactive">
-                            Kontakt
-                        </div>
-                    </Link>
+                        <NavLink id="home" text="Willkommen" destination={"/"}/>
+                        <br/>
+                        <NavLink id="about" text="Über uns" destination={"#/about"}/>
+                        <br/>
+                        <NavLink id="repertoire" text="Repertoire" destination={"#/repertoire"}/>
+                        <br/>
+                        <NavLink id="gallery" text="Galerie" destination={"#/gallery"}/>
+                        <br/>
+                        <NavLink id="contact" text="Kontakt" destination={"#/contact"}/>
                     </HashRouter>
                 </div>
             </div>

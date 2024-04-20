@@ -1,0 +1,86 @@
+.deleteComponentWrapper{
+    position: relative;
+    display: inline-block;
+}
+
+.bin{
+    height: 1.5em;
+    width: 1.5em;
+    margin-top: -0.5em;
+    border-radius: 0.25em;
+    margin-top: -0.8em;
+    user-select: none;
+    transition: all .3s;
+    background: url('https://api.iconify.design/mdi/bin-outline.svg?color=%23d10000') no-repeat center center / contain;
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    background-color: rgb(var(--background-color));
+    z-index: 999;
+}
+
+.binBox{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.bin:has(.binBox:checked){
+    z-index: 1001;
+    background: url('https://api.iconify.design/mdi/cancel-bold.svg?color=%23d10000') no-repeat center center / contain;
+    background-color: rgb(var(--background-color));
+}
+
+.bin:has(.binBox:checked) ~ .deleteOverlay {
+    background-color: rgba(var(--error-color), 0.25);
+    backdrop-filter: blur(3px);
+    opacity: 1;
+    z-index: 1000;
+}
+
+.bin:has(.binBox:checked) ~ .deleteOverlay .deleteBtn {
+    display: block;
+}
+
+.deleteComponentWrapper:hover > .bin{
+    opacity: 1;
+}
+
+.bin:hover ~ :not(.deleteOverlay) {
+    background-color: rgba(var(--error-color), 0.25);
+}
+
+.deleteOverlay{
+    position: absolute;
+    min-height: calc(100%);
+    min-width: calc(100%);
+    padding: .25em;
+    border-radius: .5em;
+    top: -.25em;
+    left: -.25em;
+    z-index: 997;
+    transition: all .3s;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteBtn{
+    max-height: 2em;
+    color: rgb(var(--text-color));
+    background-color: rgba(var(--background-color), .5);
+    border: none;
+    border-radius: .25em;
+    padding: .5em;
+    font-weight: bold;
+    display: none;
+    user-select: none;
+    width: max-content;
+}
+
+.deleteBtn:hover{
+    color: rgb(var(--primary-color));
+}
+
