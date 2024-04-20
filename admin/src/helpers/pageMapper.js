@@ -303,6 +303,9 @@ function AtomRenderer(props){
                         width={props.data.width || 90} 
                         maxWidth={props.data.maxWidth || 50} 
                         alt={props.data.alt || ""} 
+                        modifyState = {props.modifyState}
+                        handleFileUpload = {props.handleFileUpload}
+                        uploadInProgress={props.uploadInProgress}
                     />
         case "imageInText":
             return <ImageInText 
@@ -312,6 +315,9 @@ function AtomRenderer(props){
                         src={process.env.REACT_APP_CDN_URL+props.data.src} 
                         align={props.data.align} 
                         alt={props.data.alt || ""} 
+                        modifyState = {props.modifyState}
+                        handleFileUpload = {props.handleFileUpload}
+                        uploadInProgress={props.uploadInProgress}
                     />
         case "calendar":
             return <GatCalendar/>

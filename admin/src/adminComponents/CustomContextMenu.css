@@ -6,6 +6,7 @@
     border: 1px solid rgba(var(--secondary-color), 1);
     display: none;
     backdrop-filter: blur(5px);
+    transition: all .1s;
 }
 
 .customContextItem{
@@ -69,3 +70,68 @@ a:not([href]):not(.pseudoLink):hover::after {
     margin-bottom: 0em;
 }
 
+.customContextInput input[type="range"]{
+    padding: 0;
+    margin: .5em .5em 0em;
+}
+
+.customContextInput div{
+    min-width: 10em;
+    display: inline-block;
+}
+
+
+.customContextInput input[type="range"]+div{
+    min-width: 7em;
+}
+
+.customContextInput .customContextInputBtn{
+    border: 1px solid rgba(var(--secondary-color), 1);
+    border-radius: .5em;
+    margin: 0 .25em;
+    transition: all .4s;
+}
+
+.customContextInput .customContextInputBtn:hover{
+    background-color: rgba(var(--primary-color), 0.75);
+}
+
+.customContextMenu:has(.imageSelectorContainer){
+    padding: 0;
+}
+
+.ccmGallery{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1em;
+}
+
+.ccmGalleryItem{
+    width: 10em;
+    height: 10em;
+    display: flex;
+
+}
+
+.ccmGalleryItem:nth-child(2n){
+    justify-content: flex-end;
+}
+
+.ccmGalleryImage{
+    max-width: 10em;
+    height: auto;
+    object-fit: contain;
+    transition: all .2s;
+    z-index: 9;
+}
+
+.ccmGalleryImage:hover{
+    max-width: 20em;
+    max-height: auto;
+    z-index: 10;
+}
+
+.cmmGalleryInfo{
+    grid-column: 1 / 3;
+    text-align: center;
+}

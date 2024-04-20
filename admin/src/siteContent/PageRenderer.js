@@ -4,6 +4,7 @@ import { deleteElementAt, increaseLastByOne, insertElementAt, jsonReader, modify
 import { Icon } from '@iconify/react';
 import { getToken } from '../adminComponents/token';
 import CustomContextMenu from '../adminComponents/CCM';
+import axios from "axios"
 
 class PageRenderer extends React.Component{
     constructor(props){
@@ -17,6 +18,7 @@ class PageRenderer extends React.Component{
             contextMenuVisibility: "none",
             contextMenuType: "",
             linkBold: true,
+            uploadInProgress: false
         }
         this.addData = this.addData.bind(this)
         this.deleteData = this.deleteData.bind(this)
@@ -26,6 +28,9 @@ class PageRenderer extends React.Component{
         this.modifySelectedText = this.modifySelectedText.bind(this)
         this.handleEnter = this.handleEnter.bind(this)
         this.modifyState = this.modifyState.bind(this)
+        this.upload_image = this.upload_image.bind(this)
+        this.generate_url = this.generate_url.bind(this)
+        this.handleFileUpload = this.handleFileUpload.bind(this)
     }
 
     modifyState(key, value){
@@ -63,6 +68,60 @@ class PageRenderer extends React.Component{
         })
     }
 
+    handleFileUpload(index, file, auto_map = "false", map_target = "none"){
+        this.generate_url(index, file, auto_map, map_target)
+    }
+
+    async generate_url(index, file, auto_map, map_target){
+        this.setState({'uploadInProgress': true})
+        await fetch(process.env.REACT_APP_CM_API+'generate_url', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': getToken(),
+                'source': process.env.REACT_APP_SYSTEM_ID,
+                'automap': auto_map,
+                'maptarget': map_target,
+            },
+            body: JSON.stringify({
+                'automap': auto_map,
+                'maptarget': map_target,
+                'filename': file.name,
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+        return response.json();
+        })
+        .then((data) => {
+            this.upload_image(index, file, data['url'], data['fields'])
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    async upload_image(index, file, url, fields){
+        const  formData = new FormData();   
+        Object.keys(fields).forEach(key => {
+            formData.append(key, fields[key]);
+        });   
+        formData.append('file', file);  
+        axios.post(url, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }         
+        }).then(() => {
+            this.setState({'uploadInProgress': true})
+            this.changeProperty(fields.key, index, "src")
+        })
+        .catch(function (error) {
+            console.log(error);
+        });            
+    }
+
     async saveChanges(){
         await fetch(process.env.REACT_APP_CM_API+'content', {
             method: 'PUT',
@@ -76,30 +135,30 @@ class PageRenderer extends React.Component{
                 //You shall not save stupid things :)
                 'content': simplifyJsonDefinition(this.state.data)
             })
-            })
-            .then((response) => {
-                if (response.ok) {
-                    this.setState({
-                        data: simplifyJsonDefinition(this.state.data)
-                    })
-                    return;
-                } else {
-                    throw new Error(response.status);
-                }
-            })
-            .then(() => {
+        })
+        .then((response) => {
+            if (response.ok) {
                 this.setState({
-                    changesMade: false
+                    data: simplifyJsonDefinition(this.state.data)
                 })
+                return;
+            } else {
+                throw new Error(response.status);
+            }
+        })
+        .then(() => {
+            this.setState({
+                changesMade: false
             })
-            .catch((error) => {
-                // Internal server error
-                this.setState({
-                    password_error: false,
-                    email_error: false,
-                    generalErrID: "err.authserviceunavailable"
-                })
+        })
+        .catch((error) => {
+            // Internal server error
+            this.setState({
+                password_error: false,
+                email_error: false,
+                generalErrID: "err.authserviceunavailable"
             })
+        })
     }
 
     setTextSelection(index, textArray, type){
@@ -158,9 +217,11 @@ class PageRenderer extends React.Component{
                 setTextSelection={this.setTextSelection}
                 handleEnter={this.handleEnter}
                 modifyState = {this.modifyState}
+                handleFileUpload = {this.handleFileUpload}
                 previousIndexes={[]} 
                 adminComponentsVisible={this.props.adminComponentsVisible} 
                 deleteMode={this.props.deleteMode} 
+                uploadInProgress={this.state.uploadInProgress}
             />
             <CustomContextMenu
                 modifySelectedText = {this.modifySelectedText}

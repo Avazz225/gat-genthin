@@ -220,3 +220,41 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.imageInput, 
+.imageInputInText,
+.uploadNotification,
+.uploadNotificationInText{
+    border: 1px dashed rgba(var(--primary-color));
+    border-radius: 1em;
+    height: 10em;
+    position: relative;
+    display: flex;
+    padding: .5em;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageInput,
+.uploadNotification{
+    width: calc(75% - 1em);
+    margin-top: 1em;
+    margin-left: 12.5%;
+}
+
+.imageInput::after,
+.imageInputInText::after{
+    content: "Datei zum hochladen auswählen";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(var(--primary-color));
+    font-weight: bold;
+}
+
+.imageInput::file-selector-button, 
+.imageInputInText::file-selector-button {
+    display: none;
+}
+

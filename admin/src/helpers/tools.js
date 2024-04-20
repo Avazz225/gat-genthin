@@ -226,4 +226,12 @@ function simplifyJsonDefinition(jsonArray) {
     return mergedArray;
 }
 
-export {jsonReader, getValue, getTimespan, appendToArray, insertIntoArray, increaseLastByOne, insertElementAt, deleteElementAt, modifyElementAt, getSelectedText, simplifyJsonDefinition}
+function selectImage(e, x, y, type, index, modifyState, alt = "", width = 90, maxWidth = 50, align = "left"){
+    e.preventDefault()
+    modifyState('contextMenuCoords', {'x': x, 'y': y})
+    modifyState('contextMenuType', type)
+    modifyState('textSelection', {'index':index, 'alt': alt, 'width': width, 'maxWidth': maxWidth, 'align': align})
+    modifyState('contextMenuVisibility' ,'block')
+}
+
+export {jsonReader, getValue, getTimespan, appendToArray, insertIntoArray, increaseLastByOne, insertElementAt, deleteElementAt, modifyElementAt, getSelectedText, simplifyJsonDefinition, selectImage}

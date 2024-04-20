@@ -21,7 +21,7 @@ function Text({changeProperty, index, deleteData, deleteMode, text, bold=false, 
                     className={editable?"textEditable":""}  
                     onBlur={(e) => handleBlur(e)}
                     onSelect={(e) => getSelectedText(e, window.getSelection().toString(), e.target.textContent, "text", contextMenuPosition.mouseY, contextMenuPosition.mouseX, index, setTextSelection, modifyState)}
-                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.clientX, mouseY: e.clientY })}
+                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.pageX, mouseY: e.pageY })}
                     onKeyUp={(e) => {if (e.key === 'Enter') {handleEnter(index, text, window.getSelection().getRangeAt(0).startOffset); e.target.blur()}}}
                     onKeyDown={(e) => {if (e.key === 'Enter') {e.preventDefault()}}}
                 >
@@ -42,7 +42,7 @@ function Text({changeProperty, index, deleteData, deleteMode, text, bold=false, 
                         className={editable?"textEditable":""}  
                         onBlur={(e) => handleBlur(e)}
                         onSelect={(e) => getSelectedText(e, window.getSelection().toString(), e.target.textContent, "bold", contextMenuPosition.mouseY, contextMenuPosition.mouseX, index, setTextSelection, modifyState)}
-                        onMouseDown={(e) => setContextMenuPosition({ mouseX: e.clientX, mouseY: e.clientY })}
+                        onMouseDown={(e) => setContextMenuPosition({ mouseX: e.pageX, mouseY: e.pageY })}
                         onKeyUp={(e) => {if (e.key === 'Enter') {handleEnter(index, text, window.getSelection().getRangeAt(0).startOffset); e.target.blur()}}}
                         onKeyDown={(e) => {if (e.key === 'Enter') {e.preventDefault()}}}
                     >
@@ -91,7 +91,7 @@ function Link({changeProperty, index, deleteData, deleteMode, text, destination,
                     onKeyDown={(e) => {if (e.ctrlKey) {setCrtlDown(true)} if (e.key === 'Enter') {e.preventDefault()}}}
                     onKeyUp={(e) => {if (!e.ctrlKey) {setCrtlDown(false)}}}
                     onSelect={(e) => getSelectedText(e, window.getSelection().toString(), e.target.textContent, "link", contextMenuPosition.mouseY, contextMenuPosition.mouseX, index, setTextSelection, modifyState)}
-                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.clientX, mouseY: e.clientY })}
+                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.pageX, mouseY: e.pageY })}
                     onContextMenu={(e) => showContextMenu(e, true)}
                 >
                     {text}
@@ -115,7 +115,7 @@ function Link({changeProperty, index, deleteData, deleteMode, text, destination,
                 onKeyDown={(e) => {if (e.ctrlKey) {setCrtlDown(true)} if (e.key === 'Enter') {e.preventDefault()}}}
                 onKeyUp={(e) => {if (!e.ctrlKey) {setCrtlDown(false)}}}
                 onSelect={(e) => getSelectedText(e, window.getSelection().toString(), e.target.textContent, "link", contextMenuPosition.mouseY, contextMenuPosition.mouseX, index, setTextSelection, modifyState)}
-                onMouseDown={(e) => setContextMenuPosition({ mouseX: e.clientX, mouseY: e.clientY })}
+                onMouseDown={(e) => setContextMenuPosition({ mouseX: e.pageX, mouseY: e.pageY })}
                 onContextMenu={(e) => showContextMenu(e, false)}
             >
                 {text}
@@ -169,7 +169,7 @@ function Heading({changeProperty, index, deleteData, deleteMode, type=1, text, t
                     onBlur={(e) => {handleBlur(e)}}
                     onKeyDown={(e) => {if (e.key === 'Enter') {e.preventDefault()}}}
                     onSelect={(e) => showContextMenu(e)}
-                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.clientX, mouseY: e.clientY })}
+                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.pageX, mouseY: e.pageY })}
                 >
                     { text }
                 </h1>
@@ -189,7 +189,7 @@ function Heading({changeProperty, index, deleteData, deleteMode, type=1, text, t
                     onBlur={(e) => {handleBlur(e)}}
                     onKeyDown={(e) => {if (e.key === 'Enter') {e.preventDefault()}}}
                     onSelect={(e) => showContextMenu(e)}
-                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.clientX, mouseY: e.clientY })}
+                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.pageX, mouseY: e.pageY })}
                 >
                     { text }
                 </h2>
@@ -209,7 +209,7 @@ function Heading({changeProperty, index, deleteData, deleteMode, type=1, text, t
                     onBlur={(e) => {handleBlur(e)}}
                     onKeyDown={(e) => {if (e.key === 'Enter') {e.preventDefault()}}}
                     onSelect={(e) => showContextMenu(e)}
-                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.clientX, mouseY: e.clientY })}
+                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.pageX, mouseY: e.pageY })}
                 >
                     { text }
                 </h3>
@@ -229,7 +229,7 @@ function Heading({changeProperty, index, deleteData, deleteMode, type=1, text, t
                     onBlur={(e) => {handleBlur(e)}}
                     onKeyDown={(e) => {if (e.key === 'Enter') {e.preventDefault()}}}
                     onSelect={(e) => showContextMenu(e)}
-                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.clientX, mouseY: e.clientY })}
+                    onMouseDown={(e) => setContextMenuPosition({ mouseX: e.pageX, mouseY: e.pageY })}
                 >
                     { text }
                 </h4>

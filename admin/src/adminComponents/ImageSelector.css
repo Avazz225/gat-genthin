@@ -1,0 +1,30 @@
+.customContextMenu .imageSelectorContainer{
+    height: 15em;
+    width: 27em;
+    overflow-y: scroll;
+}
+
+.customContextMenu .imageSelectorContainer::-webkit-scrollbar{
+    background-color: rgba(var(--background-color), 0.75);
+    border-radius: 0 1em 1em 0;
+}
+
+.customContextMenu .imageSelectorContainer::-webkit-scrollbar-thumb{
+    background-color: rgba(var(--primary-color), 0.25);
+    border-radius: 1em;
+}
+
+.customContextMenu .imageSelectorContainer::-webkit-scrollbar-thumb:hover{
+    background-color: rgba(var(--primary-color), 0.5);
+}
+
+.imageSelectorContainer .innerSelector{
+    margin: .25em .5em;
+    text-align: center;
+}
+
+.imageSelectorInfo{
+    font-weight: bold;
+    text-wrap: balance;
+    color: rgba(var(--error-color), 1);
+}
