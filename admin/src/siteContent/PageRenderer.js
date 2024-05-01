@@ -208,7 +208,7 @@ class PageRenderer extends React.Component{
     render(){
         return(
             <>
-            {this.state.changesMade && <SaveButton saveChanges={this.saveChanges} />}
+            {(this.state.changesMade && !this.props.deleteMode) && <SaveButton saveChanges={this.saveChanges} />}
             <PageMapper 
                 data={this.state.data} 
                 addData={this.addData} 
