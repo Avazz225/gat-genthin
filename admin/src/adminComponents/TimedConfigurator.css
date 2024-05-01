@@ -1,8 +1,24 @@
 .timedConfigurator{
     border: 1px solid rgba(var(--secondary-color), .75);
-    border-radius: .5em;
+    border-radius: 0 .5em .5em;
     position: relative;
     transition: all .2s;
+}
+
+.timedConfigurator::before{
+    content: "Zeitgesteuerter Container";
+    display: inline-block;
+    position: absolute;
+    top: -1.35em;
+    left: -.5px;
+    user-select: none;
+    background-color: rgba(var(--secondary-color), .5);
+    padding: 0 .5em;
+    border-radius: .25em .25em 0 0;
+}
+
+.timedConfigurator:hover{
+    background-color: rgba(var(--secondary-color), .25);
 }
 
 .timedConfigurator:has(.wrench:hover){
