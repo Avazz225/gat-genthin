@@ -53,4 +53,5 @@
     width: 0;
     position: sticky;
     top: 45vh;
+    z-index: 1000;
 }

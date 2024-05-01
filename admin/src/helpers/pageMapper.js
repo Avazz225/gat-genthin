@@ -7,6 +7,7 @@ import GatCalendar from "../siteContent/CalenderDoors"
 import AddComponent from "../adminComponents/AddComponent"
 import { appendToArray, increaseLastByOne } from "./tools"
 import React from "react"
+import TimedConfigurator from "../adminComponents/TimedConfigurator"
 
 
 function PageMapper(props){
@@ -127,24 +128,32 @@ function AtomRenderer(props){
             )
         case "timedContainer":
             return( 
-                <TimedContainer 
+                <TimedConfigurator
+                    index={props.previousIndexes}
                     startDisplay={props.data.startDisplay} 
                     endDisplay={props.data.endDisplay} 
-                    deleteMode={props.deleteMode}
-                    deleteData={props.deleteData}
-                    index={props.previousIndexes} 
-                >
-                    <AddComponent
-                        index={Object.assign([], appendToArray(previousIndexes, 0))}
-                        addData={props.addData}
-                        adminComponentsVisible={props.adminComponentsVisible}
-                    /> 
-                    <PageMapper 
-                        {...props}
-                        data={props.data.content} 
-                        previousIndexes={previousIndexes} 
-                    />
-                </TimedContainer>
+                    changeProperty={props.changeProperty}
+                >   
+                    <TimedContainer 
+                        startDisplay={props.data.startDisplay} 
+                        endDisplay={props.data.endDisplay} 
+                        deleteMode={props.deleteMode}
+                        deleteData={props.deleteData}
+                        index={props.previousIndexes} 
+                    >
+                        
+                        <AddComponent
+                            index={Object.assign([], appendToArray(previousIndexes, 0))}
+                            addData={props.addData}
+                            adminComponentsVisible={props.adminComponentsVisible}
+                        /> 
+                        <PageMapper 
+                            {...props}
+                            data={props.data.content} 
+                            previousIndexes={previousIndexes} 
+                        />
+                    </TimedContainer>
+                </TimedConfigurator>
             )
         case "blockquote":
             return( 
