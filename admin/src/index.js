@@ -22,7 +22,7 @@ import UserMgmt from './adminComponents/UserMgmt';
 
 import getLanguageSet from './helpers/language';
 import {IntlProvider} from 'react-intl';
-import { checkTokenValidity, getToken } from './adminComponents/token';
+import { checkTokenValidity } from './adminComponents/token';
 import AdminControls from './adminComponents/AdminControls';
 import "./atoms/EditContent.css"
 
@@ -49,7 +49,7 @@ function App() {
   return (
     <React.StrictMode>
       <IntlProvider locale={locale} messages={lang}>
-        {(getToken() && validity) ?
+        {(checkTokenValidity()) ?
           <>
             <AdminControls adminComponentsVisible={adminComponentsVisible} setAdminComponentVisibility={setAdminComponentVisibility} deleteMode={deleteMode} setDeleteMode={setDeleteMode} />
             <Navigation />

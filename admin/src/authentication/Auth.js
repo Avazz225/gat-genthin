@@ -147,14 +147,7 @@ class Auth extends React.Component{
             }
 
             localStorage.setItem("internal_role", data.role)
-            localStorage.setItem("login_type", (this.state.permanent_login?'persistent':'timed'))
             localStorage.setItem("own_email", this.state.email)
-
-            if (this.state.permanent_login){
-                localStorage.setItem("token", data.token)
-            } else {
-                document.cookie = "token="+data.token+"; max-age="+(data.timed_token_valid - 3)+";"
-            }
             
             window.location.href="/"
         })

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Heading, Text} from "../atoms/TextContainers";
 import { BaseContainer, TextContainer } from "../atoms/ContentContainers";
-import { getToken } from "./token";
-
 import './UserMgmt.css'
 import { Centered } from "../atoms/Arrangement";
 import AddUser from "./AddUser";
@@ -25,7 +23,6 @@ class UserMgmt extends React.Component{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'token': getToken(),
                 'source':process.env.REACT_APP_SYSTEM_ID,
                 "GetAllCurrent": true
             }
@@ -87,7 +84,6 @@ class UserMgmt extends React.Component{
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'token': getToken(),
                 'source':process.env.REACT_APP_SYSTEM_ID,
             },
             body: JSON.stringify({
@@ -127,7 +123,6 @@ class UserMgmt extends React.Component{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'token': getToken(),
                 'source':process.env.REACT_APP_SYSTEM_ID,
             },
             body: JSON.stringify({

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PageMapper from '../helpers/pageMapper';
 import { deleteElementAt, increaseLastByOne, insertElementAt, jsonReader, modifyElementAt, simplifyJsonDefinition } from '../helpers/tools';
 import { Icon } from '@iconify/react';
-import { getToken } from '../adminComponents/token';
 import CustomContextMenu from '../adminComponents/CCM';
 import axios from "axios"
 
@@ -78,7 +77,6 @@ class PageRenderer extends React.Component{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'token': getToken(),
                 'source': process.env.REACT_APP_SYSTEM_ID,
                 'automap': auto_map,
                 'maptarget': map_target,
@@ -127,7 +125,6 @@ class PageRenderer extends React.Component{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'token': getToken(),
                 'source':process.env.REACT_APP_SYSTEM_ID,
                 'TargetFile': this.state.source
             }, 
