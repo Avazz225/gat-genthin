@@ -21,6 +21,7 @@ class UserMgmt extends React.Component{
     componentDidMount(){
         fetch(process.env.REACT_APP_AUTH_API+'accounts', {
             method: 'GET',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'source':process.env.REACT_APP_SYSTEM_ID,
@@ -82,6 +83,7 @@ class UserMgmt extends React.Component{
     changeUserRole(value, userid){
         fetch(process.env.REACT_APP_AUTH_API+'permissions', {
             method: 'PATCH',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'source':process.env.REACT_APP_SYSTEM_ID,
@@ -121,6 +123,7 @@ class UserMgmt extends React.Component{
     removeUserRigths(userid){
         fetch(process.env.REACT_APP_AUTH_API+'permissions', {
             method: 'DELETE',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'source':process.env.REACT_APP_SYSTEM_ID,

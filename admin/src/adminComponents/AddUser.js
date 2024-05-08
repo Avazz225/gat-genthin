@@ -30,6 +30,7 @@ class AddUser extends React.Component{
 
         fetch(process.env.REACT_APP_AUTH_API+'accounts', {
             method: 'GET',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'source':process.env.REACT_APP_SYSTEM_ID,
@@ -72,6 +73,7 @@ class AddUser extends React.Component{
     addUser(){
         fetch(process.env.REACT_APP_AUTH_API+'permissions', {
             method: 'PUT',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'source':process.env.REACT_APP_SYSTEM_ID
