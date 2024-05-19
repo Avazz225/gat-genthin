@@ -22,7 +22,7 @@ import UserMgmt from './adminComponents/UserMgmt';
 
 import getLanguageSet from './helpers/language';
 import {IntlProvider} from 'react-intl';
-import { checkTokenValidity, getToken } from './adminComponents/token';
+import { checkTokenValidity } from './adminComponents/token';
 import AdminControls from './adminComponents/AdminControls';
 import "./atoms/EditContent.css"
 
@@ -44,12 +44,26 @@ console.error = function filterWarnings(msg, ...args) {
 function App() {
   const [adminComponentsVisible, setAdminComponentVisibility] = React.useState(adminComponentsVisibleDefault);
   const [deleteMode, setDeleteMode] = React.useState(deleteModeDefault)
-  const validity = checkTokenValidity()
+  const [validity, setValidity] = React.useState(false);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await checkTokenValidity();
+        setValidity(result);
+      } catch (error) {
+        console.error("Fehler beim Überprüfen des Tokens:", error);
+        setValidity(false); 
+      }
+    };
+
+    fetchData();
+  }, []); 
 
   return (
     <React.StrictMode>
       <IntlProvider locale={locale} messages={lang}>
-        {(getToken() && validity) ?
+        {(validity) ?
           <>
             <AdminControls adminComponentsVisible={adminComponentsVisible} setAdminComponentVisibility={setAdminComponentVisibility} deleteMode={deleteMode} setDeleteMode={setDeleteMode} />
             <Navigation />

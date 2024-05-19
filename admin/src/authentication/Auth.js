@@ -126,13 +126,16 @@ class Auth extends React.Component{
             apiProcess: true
         })
         await fetch(process.env.REACT_APP_AUTH_API+'authentication_tokens/'+(this.state.permanent_login?'persistent_token':'timed_token'), {
-        method: 'GET',
+        method: 'POST',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
-            'Email': this.state.email,
-            'Password': this.state.password,
             'source':process.env.REACT_APP_SYSTEM_ID
-        }
+        },
+        body: JSON.stringify({
+            email: this.state.email,
+            password: this.state.password
+        })
         })
         .then((response) => {
             if (response.ok) {
@@ -147,13 +150,7 @@ class Auth extends React.Component{
             }
 
             localStorage.setItem("internal_role", data.role)
-            localStorage.setItem("login_type", (this.state.permanent_login?'persistent':'timed'))
-
-            if (this.state.permanent_login){
-                localStorage.setItem("token", data.token)
-            } else {
-                document.cookie = "token="+data.token+"; max-age="+(data.timed_token_valid - 3)+";"
-            }
+            localStorage.setItem("own_email", this.state.email)
             
             window.location.href="/"
         })
@@ -217,6 +214,7 @@ class Auth extends React.Component{
         })
         await fetch(process.env.REACT_APP_AUTH_API+'accounts', {
             method: 'PUT',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'source':process.env.REACT_APP_SYSTEM_ID

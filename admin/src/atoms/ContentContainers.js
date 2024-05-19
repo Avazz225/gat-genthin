@@ -26,18 +26,31 @@ function TextContainer({deleteData, index, deleteMode, children }){
 }
 
 function TimedContainer({deleteData, index, deleteMode, startDisplay, endDisplay, children }){
-    return(
-        <>
-        {(getTimespan(startDisplay, endDisplay))?
-        <>
-        <DeleteComponentBtn deleteMode={deleteMode} deleteData={deleteData} index={index}>
-            { children }
-        </DeleteComponentBtn>
-        </>
-        :
-        <></>}
-        </>
-    )
+    if (deleteMode){
+        return(
+            <DeleteComponentBtn deleteMode={deleteMode} deleteData={deleteData} index={index}>
+                <div className="content-pane timedtype">
+                    <p>
+                    { children } 
+                    </p>  
+                </div>
+                <NewLine/>
+            </DeleteComponentBtn>
+        )
+    } else {
+        return(
+            <>
+            {(getTimespan(startDisplay, endDisplay))?
+            <div>
+            <DeleteComponentBtn deleteMode={deleteMode} deleteData={deleteData} index={index}>
+                { children }
+            </DeleteComponentBtn>
+            </div>
+            :
+            <></>}
+            </>
+        )
+    }
 }
 
 function Blockquote({deleteData, index, deleteMode,  children }){

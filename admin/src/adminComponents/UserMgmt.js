@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Heading} from "../atoms/TextContainers";
+import { Heading, Text} from "../atoms/TextContainers";
 import { BaseContainer, TextContainer } from "../atoms/ContentContainers";
-import { getToken } from "./token";
-
 import './UserMgmt.css'
 import { Centered } from "../atoms/Arrangement";
 import AddUser from "./AddUser";
@@ -23,9 +21,9 @@ class UserMgmt extends React.Component{
     componentDidMount(){
         fetch(process.env.REACT_APP_AUTH_API+'accounts', {
             method: 'GET',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'token': getToken(),
                 'source':process.env.REACT_APP_SYSTEM_ID,
                 "GetAllCurrent": true
             }
@@ -85,9 +83,9 @@ class UserMgmt extends React.Component{
     changeUserRole(value, userid){
         fetch(process.env.REACT_APP_AUTH_API+'permissions', {
             method: 'PATCH',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'token': getToken(),
                 'source':process.env.REACT_APP_SYSTEM_ID,
             },
             body: JSON.stringify({
@@ -125,9 +123,9 @@ class UserMgmt extends React.Component{
     removeUserRigths(userid){
         fetch(process.env.REACT_APP_AUTH_API+'permissions', {
             method: 'DELETE',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'token': getToken(),
                 'source':process.env.REACT_APP_SYSTEM_ID,
             },
             body: JSON.stringify({
@@ -195,7 +193,8 @@ class UserMgmt extends React.Component{
         return(
             <BaseContainer>
                 <Heading text="Nutzerverwaltung" editable={false} />
-                <Heading type={3} text="Hier können Zugänge zum gat Admin Interface verwaltet werden." editable={false} />
+                <Heading type={3} text="Hier können Zugänge zum administrativen Interface verwaltet werden." editable={false} />
+                <Heading type={4} text="Es kann bis zu 5 Minuten dauern bis Änderungen wirksam sind." editable={false} />
                 <Centered>
                     <TextContainer>
                         <table className="userMgmtTable">
@@ -205,7 +204,7 @@ class UserMgmt extends React.Component{
                                 <th>Aktionen</th>
                             </tr>
                             <AddNewRow addUserToList={this.addUserToList} />
-                            <UserMapper data={this.state.user_data} changeUserRole={this.changeUserRole} removeUserRigths={this.removeUserRigths} />
+                            <UserMapper data={this.state.user_data} changeUserRole={this.changeUserRole} removeUserRigths={this.removeUserRigths} ownEmail={localStorage.getItem("own_email")}/>
                         </table>
                     </TextContainer>
                 </Centered>
@@ -234,31 +233,31 @@ function AddNewRow(props){
     )
 }
 
-const UserMapper = ({data, changeUserRole, removeUserRigths}) => (
+const UserMapper = ({data, changeUserRole, removeUserRigths, ownEmail}) => (
     <>
     {data.map(data => (
         <tr key={data[0]} >
-            <td className="regulartd">{data[1]}</td>
-            <td className="regulartd"><ChangeUserRole role={data[2]  } changeUserRole={changeUserRole} userid={data[0]} /></td>
+            <td className="regulartd">{data[1]} {(ownEmail==data[1]) && <span className="emphasized">(Dieser Account)</span>}</td>
+            <td className="regulartd"><ChangeUserRole role={data[2]  } changeUserRole={changeUserRole} userid={data[0]} ownEmail={ownEmail} email={data[1]} /></td>
             <td className="flexWrapper regulartd">
-                <DelUserAccess role={data[2]} userid={data[0]}  removeUserRigths={removeUserRigths} />
+                <DelUserAccess role={data[2]} userid={data[0]}  removeUserRigths={removeUserRigths} ownEmail={ownEmail} email={data[1]}/>
             </td>
         </tr>
     ))}
     </>
 )
 
-function ChangeUserRole({role, changeUserRole, userid}){
+function ChangeUserRole({role, changeUserRole, userid, ownEmail, email}){
     const availableRoles = {"mod": "Moderator/in", "admin": "Administrator/in"}
     return(
         <>
         {(role === "owner")? 
-            <>Seitenbesitzer</>
+            <>Seitenbesitzer/-in</>
             :
             <>
-            <select name="roles" id="roles" onChange={(e) => changeUserRole(e.target.value, userid)}>
+            <select name="roles" id="roles" onChange={(e) => changeUserRole(e.target.value, userid)} disabled={ownEmail === email} >
                 {Object.keys(availableRoles).map(key => (
-                    <option value={key} selected={key===role} >
+                    <option value={key} selected={key===role} disabled={ownEmail === email} >
                         {availableRoles[key]}
                     </option>
                 ))}
@@ -270,12 +269,12 @@ function ChangeUserRole({role, changeUserRole, userid}){
     )
 }
 
-function DelUserAccess({role, userid, removeUserRigths}){
+function DelUserAccess({role, userid, removeUserRigths, ownEmail, email}){
     const [delConfirm, changeDelConfirm] = useState(false)
 
     return(
         <>
-        {(role!== "owner")&& 
+        {(role!== "owner" && ownEmail !== email)&& 
             <div className="userMgmtDeleteComponentWrapper" style={{width: "100%"}}>
                 {(delConfirm)?
                 <>

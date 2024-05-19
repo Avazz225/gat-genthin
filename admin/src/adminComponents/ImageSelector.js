@@ -1,6 +1,5 @@
 import React from "react"
 import "./ImageSelector.css"
-import { getToken } from "../adminComponents/token"
 
 class ImageSelector extends React.Component{
     constructor(props){
@@ -13,9 +12,9 @@ class ImageSelector extends React.Component{
     componentDidMount(){
         fetch(process.env.REACT_APP_CM_API+'get_available_images', {
             method: 'GET',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'token': getToken(),
                 'source': process.env.REACT_APP_SYSTEM_ID,
             }
         })

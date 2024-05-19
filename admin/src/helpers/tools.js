@@ -141,7 +141,7 @@ function createTemplateDefinition(type, text=""){
         case "textContainer":
             return {"type": type, "content": []}
         case "timedContainer":
-            return {"type": type, "content": []}
+            return {"type": type, "content": [{"type": "textContainer", "content": []}], "startDisplay":[new Date().getDate(),new Date().getMonth()+1,new Date().getFullYear()], "endDisplay":[31,12,(new Date().getFullYear())]}
         case "blockquote":
             return {"type": type, "content": [{"type": "text", "text": "neues Zitat"}]}
         case "parallelContainer":
