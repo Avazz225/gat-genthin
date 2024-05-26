@@ -1,10 +1,10 @@
-import {HashRouter, Link} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import { NavLink } from "../atoms/TextContainers";
 
 function Navigation(){
     return(
         <div className="ham-container">
-                <a href='' className="checkbox" onClick={(e) => e.preventDefault()}></a>
+                <button className="checkbox" onClick={(e) => {e.preventDefault(); e.target.focus()}}></button>
                 <div className="hamburger-lines">
                     <span className="line line1"></span>
                     <span className="line line2"></span>
