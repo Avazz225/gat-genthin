@@ -75,7 +75,6 @@ class PageRenderer extends React.Component{
         this.setState({'uploadInProgress': true})
         await fetch(process.env.REACT_APP_CM_API+'generate_url', {
             method: 'PUT',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'source': process.env.REACT_APP_SYSTEM_ID,
@@ -124,7 +123,6 @@ class PageRenderer extends React.Component{
     async saveChanges(){
         await fetch(process.env.REACT_APP_CM_API+'content', {
             method: 'PUT',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'source':process.env.REACT_APP_SYSTEM_ID,
