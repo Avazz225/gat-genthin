@@ -1,24 +1,19 @@
 async function jsonReader(path){
-    if (process.env.REACT_APP_USE_CDN_FOR_CONTENT === "f"){
-        var res
-        await fetch("/data/"+path)
-        .then((r) => r.json())
-        .then((data) =>{
-            res = data
-        })
-        return res
-    } else {
-        try {
-            const response = await fetch(process.env.REACT_APP_CDN_URL + "page_content/" + path);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Error fetching JSON data:', error);
-            return null; // or handle the error in some other way
+    try {
+        const now = Math.floor(Date.now() / (1000 * 60 * 5));
+        const cacheBuster = `cb=${now}`;
+
+        const url = `${process.env.REACT_APP_CDN_URL}page_content/${path}?${cacheBuster}`;
+
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching JSON data:', error);
+        return null; // or handle the error in some other way
     }
 }
 
