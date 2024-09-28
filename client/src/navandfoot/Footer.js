@@ -40,6 +40,13 @@ function Footer(){
                                     Impressum
                                 </div>
                             </a>
+                            {(process.env.REACT_APP_TEST_MODE === "t")&&
+                                <a href="#/test" className="ref">
+                                    <div className="navItem inactive light">
+                                        Testinhalte
+                                    </div>
+                                </a>
+                            }
                         </HashRouter>
                         </div>
                         <div className="verticalrow">
