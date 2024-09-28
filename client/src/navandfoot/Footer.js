@@ -1,6 +1,6 @@
-import {HashRouter, Link} from "react-router-dom";
-import { Icon } from '@iconify/react';
-import instagramIcon from '@iconify/icons-mdi/instagram';
+import {HashRouter} from "react-router-dom"
+import { Icon } from '@iconify/react'
+import instagramIcon from '@iconify/icons-mdi/instagram'
 
 function Footer(){
     return(
@@ -10,31 +10,36 @@ function Footer(){
                     <div className='foot-parallel'>
                         <div className="footer-column">
                         <HashRouter>
-                            <Link to={"/"} className="ref">
-                                <div className="navItem inactive light" onClick="window.location.reload();" id="home">
+                            <a href={"/"} className="ref">
+                                <div className="navItem inactive light" id="home">
                                     Willkommen
                                 </div>
-                            </Link>
-                            <Link to="about" onClick="window.location.reload();" className="ref">
+                            </a>
+                            <a href="#/about" className="ref">
                                 <div className="navItem inactive light">
                                     Über uns
                                 </div>
-                            </Link>
-                            <Link to="repertoire" onClick="window.location.reload();" className="ref">
+                            </a>
+                            <a href="#/repertoire" className="ref">
                                 <div className="navItem inactive light">
                                     Repertoire
                                 </div>
-                            </Link>
-                            <Link to="gallery" onClick="window.location.reload();" className="ref">
+                            </a>
+                            <a href="#/gallery" className="ref">
                                 <div className="navItem inactive light">
                                     Galerie
                                 </div>
-                            </Link>
-                            <Link to="contact" onClick="window.location.reload();" className="ref">
+                            </a>
+                            <a href="#/contact" className="ref">
                                 <div className="navItem inactive light">
                                     Kontakt
                                 </div>
-                            </Link>
+                            </a>
+                            <a href="#/imprint" className="ref">
+                                <div className="navItem inactive light">
+                                    Impressum
+                                </div>
+                            </a>
                         </HashRouter>
                         </div>
                         <div className="verticalrow">
@@ -42,14 +47,14 @@ function Footer(){
                         </div>
                         <div className="footer-column text">
                             gat bei Social Media <br/><br/>
-                            <a href='https://www.instagram.com/genthiner.amateurtheater/' target='_blnak' className='silentLink'><Icon icon={instagramIcon} width="24" inline={true}/> @ genthiner.amateurtheater</a>
+                            <a href='https://www.instagram.com/genthiner.amateurtheater/' target='_blank' className='silentLink'><Icon icon={instagramIcon} width="24" inline={true}/> @ genthiner.amateurtheater</a>
                         </div>
                     </div>
                     Copyright @ genthiner amateurtheater e.V. 2022 | Designed by Jan Jeschinski
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Footer;
+export default Footer
