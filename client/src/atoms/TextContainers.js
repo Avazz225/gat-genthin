@@ -42,7 +42,7 @@ function NewLine(){
 function Heading({type=1, text, topSpace=0.7}){
     if (type === 1){
         return(
-            <h1 style={{marginTop: topSpace+"em"}} className="emphasized">
+            <h1 style={{marginTop: topSpace+"em"}}>
                 { text }
             </h1>
         )

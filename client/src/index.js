@@ -17,8 +17,6 @@ import Veranstaltungen from './siteContent/gallery/veranstaltungen';
 import Kindergat from './siteContent/gallery/kinder-gat';
 import Hinterkulissen from './siteContent/gallery/hinter-den-kulissen';
 import Calendar from './siteContent/Calendar';
-import Imprint from './important/Imprint';
-import TestContent from './siteContent/TestContent';
 
 const root = ReactDOM.createRoot(document.getElementById('content'));
 
@@ -40,8 +38,6 @@ root.render(
           <Route path="/kinder-gat" element={<Kindergat />}exact  />
           <Route path="/hinter-den-kulissen" element={<Hinterkulissen />}exact  />
           <Route path="/calendar" element={<Calendar />}exact  />
-          <Route path="/imprint" element={<Imprint />}exact  />
-          <Route path="/test" element={<TestContent />}exact  />
         </Routes>
       </HashRouter>
     </div>
