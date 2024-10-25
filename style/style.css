@@ -1,21 +1,21 @@
 /*All styles*/
 :root{
-    --bgcol: #ededed;
-    --white: #FFFFFF;
-    --shadowcol: rgba(51,51,51,0.1);
-    --contrastCol: #0000db;
+    --bgcol: #FCFCFC;
+    --white: linear-gradient(180deg, rgba(240,242,255,1) 70%, rgba(230,233,255,1) 100%);
+    --shadowcol: rgba(0,0,0, 0.25);
+    --contrastCol: #3939DB;
     --moreviewoverlaycol:#edededb3;
     --blockquote: #3D6BCC;
     --blockquotehg: #444;
-    --textcol: #262626;
+    --textcol: #121212;
 }
 
 @media (prefers-color-scheme: dark){
     :root{
-    --bgcol: #262626;
-    --white: #202020;
+    --bgcol: #121212;
+    --white: #242424;
     --shadowcol: rgba(51, 51, 51, 0);
-    --contrastCol: #3939db;
+    --contrastCol: #5B4DE0;
     --moreviewoverlaycol:rgba(39, 39, 39, 0.702);
     --blockquote: #3D6BCC;
     --blockquotehg: #444;
@@ -54,10 +54,10 @@ code {
 }
 
 .content-pane{
-    background-color: var(--white);
-    border-radius: 20px 20px 20px 20px;
+    background: var(--white);
+    border-radius: 8px 8px 8px 8px;
     align-items: center;
-    box-shadow: var(--shadowcol) 0px 4px 32px;
+    box-shadow: 0px 4px 4px 0px var(--shadowcol);
     min-height: min-content;
 }
 
@@ -154,6 +154,10 @@ audio{
     margin-left: 0px;
     margin-right: 0px;
     }
+}
+
+.emphasized{
+    color: var(--contrastCol);
 }
 
 blockquote {
@@ -552,18 +556,8 @@ summary{
 .footer{
     display: block;
     width: 100%;
-    background-color: var(--white);
+    background: var(--white);
     color: var(--textcol);
-}
-
-.navItem.light{
-    font-weight: normal;
-    padding: 0.25em;
-}
-
-.navItem.light:hover{
-    font-weight: normal;
-    text-decoration: underline;
 }
 
 .footer-column{
@@ -625,6 +619,25 @@ summary{
 	padding-left: 20px;
 	padding-right: 20px;
 	font-weight: bold;
+    font-size: x-large;
+}
+
+@media (max-width: 42em){
+    .navItem{
+        font-size:medium;
+    }
+}
+
+.navItem.light{
+    font-weight: normal;
+    font-size:medium;
+    padding: 0.25em;
+}
+
+.navItem.light:hover{
+    font-weight: normal;
+    font-size:medium;
+    text-decoration: underline;
 }
 
 .inactive {
