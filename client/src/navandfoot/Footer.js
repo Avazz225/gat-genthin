@@ -47,6 +47,7 @@ function Footer(){
                                     </div>
                                 </a>
                             }
+                            
                         </HashRouter>
                         </div>
                         <div className="verticalrow">
