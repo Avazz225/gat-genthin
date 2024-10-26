@@ -92,7 +92,6 @@ const Form = () => {
             }
         })
         .then(data => { 
-            console.log('Erfolgreich gesendet:', data)
             alert("Deine Daten wurden erfolgreich übermittelt!\nBitte bestätige deine Teilnahme über den Link in der Email, die du gleich erhalten wirst.");
         })
         .catch(error => {
@@ -103,12 +102,10 @@ const Form = () => {
             } else if (error.message === "406") {
                 alert("Du hast nicht den AGBs oder den Teilnahmebedingungen zugestimmt.");
             } else {
+                console.log(error)
                 alert("Es ist ein Fehler bei der Kommunikation mit dem Server aufgetreten. Bitte versuche es erneut.");
             }
-            
         });
-
-        
     };
 
     const canSubmit = isCheckbox1Checked && isCheckbox2Checked && firstName && lastName && email && solution;
