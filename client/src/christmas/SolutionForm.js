@@ -3,6 +3,14 @@ import "./chistmas.css"
 import { Heading, NewLine, Text } from "../atoms/TextContainers";
 import { TextContainer } from "../atoms/ContentContainers";
 
+function setLocalStorage(){
+    localStorage.setItem("participated", "true")
+}
+
+function getLocalStorage(){
+    return localStorage.getItem("participated")
+}
+
 const Form = () => {
 
     const [firstName, setFirstName] = useState("");
@@ -11,6 +19,8 @@ const Form = () => {
     const [solution, setSolution] = useState("");
     const [isCheckbox1Checked, setIsCheckbox1Checked] = useState(false);
     const [isCheckbox2Checked, setIsCheckbox2Checked] = useState(false);
+    const [solutionFalse, setSolutionFalse] = useState(false);
+    const [isLocalStorageStateSet, setLocalStorageState] = useState(getLocalStorage());
 
     const wordLengths = [5, 3, 3, 4]; 
     const totalLength = wordLengths.reduce((acc, curr) => acc + curr, 0);
@@ -37,6 +47,7 @@ const Form = () => {
     const handleSolutionChange = (e) => {
         const userInput = e.target.value.replace(/\s+/g, "").slice(0,totalLength);
         setSolution(userInput);
+        setSolutionFalse(false);
     };
 
     const handleKeyDown = (e) => {
@@ -93,12 +104,17 @@ const Form = () => {
         })
         .then(data => { 
             alert("Deine Daten wurden erfolgreich übermittelt!\nBitte bestätige deine Teilnahme über den Link in der Email, die du gleich erhalten wirst.");
+            setLocalStorage();
+            setLocalStorageState("true");
         })
         .catch(error => {
             if (error.message === "403"){
-                alert("Du hast schon mit dieser Email am Gewinnspiel teilgenommen. Bitte bedenke, dass du nur ein Mal teilnehmen darfst!");
+                //alert("Du hast schon mit dieser Email am Gewinnspiel teilgenommen. Bitte bedenke, dass du nur ein Mal teilnehmen darfst!");
+                setLocalStorage();
+                setLocalStorageState("true");
             } else if (error.message === "409") {
                 alert("Der Lösungssatz ist falsch! Überlege noch einmal und versuche es erneut.");
+                setSolutionFalse(true);
             } else if (error.message === "406") {
                 alert("Du hast nicht den AGBs oder den Teilnahmebedingungen zugestimmt.");
             } else {
@@ -112,79 +128,89 @@ const Form = () => {
 
     return (
         <div className="content chBasePane">
-            <Heading text={"Gewinnspiel"}/>
-            <TextContainer>
-                <Text text={"Hier kannst du den Lösungssatz* für das Adventskalender-Gewinnspiel des gat eintragen!"}/>
-                <NewLine/>
-                <Text text={"Wir wünschen allen Teilnehmenden viel Glück."}/>
-                <NewLine/>
-                <NewLine/>
-                <div className="chSmol">
-                    <Text text={"Bitte denke daran nachdem du das Formular abgeschickt hast, auch deine Teilnahme über den Link in der Email, die du erhältst, zu bestätigen."}/>
+            {(isLocalStorageStateSet !== "true")?
+                <>
+                <Heading text={"Gewinnspiel"}/>
+                <TextContainer>
+                    <Text text={"Hier kannst du den Lösungssatz* für das Adventskalender-Gewinnspiel des gat eintragen!"}/>
+                    <NewLine/>
+                    <Text text={"Wir wünschen allen Teilnehmenden viel Glück."}/>
                     <NewLine/>
                     <NewLine/>
-                    <Text text={"* Groß- und Kleinschreibung sind nicht relevant, Leerzeichen werden automatisch gesetzt"}/>
-                </div>
-            </TextContainer>
-            <form onSubmit={handleSubmit} className="chForm">
-                <div>
-                    <label className="chLabel">Vorname:</label>
-                    <input
-                    type="text"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    className="chInputText"
-                    />
-                </div>
-                <div>
-                    <label className="chLabel"> Nachname:</label>
-                    <input
-                    type="text"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    className="chInputText"
-                    />
-                </div>
-                <div>
-                    <label className="chLabel">Email:</label>
-                    <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="chInputText"
-                    />
-                </div>
-                <div>
-                    <label className="chLabel">Lösungssatz:</label>
-                    <input
-                    type="text"
-                    value={formatSolutionInput(solution)}
-                    onChange={handleSolutionChange}
-                    onKeyDown={handleKeyDown}
-                    className="chInputText"
-                    />
-                </div>
-                <div>
-                <div class="checkbox-wrapper-13">
-                        <input
-                        type="checkbox"
-                        checked={isCheckbox1Checked}
-                        onChange={(e) => setIsCheckbox1Checked(e.target.checked)}
-                        />
-                        <label>Ich stimme den Allgemeinen Geschäftsbedingungen zu.</label>
+                    <div className="chSmol">
+                        <Text text={"Bitte denke daran nachdem du das Formular abgeschickt hast, auch deine Teilnahme über den Link in der Email, die du erhältst, zu bestätigen."}/>
+                        <NewLine/>
+                        <NewLine/>
+                        <Text text={"* Groß- und Kleinschreibung sind nicht relevant, Leerzeichen werden automatisch gesetzt"}/>
                     </div>
+                </TextContainer>
+            
+                <form onSubmit={handleSubmit} className="chForm">
+                    <div>
+                        <label className="chLabel">Vorname:</label>
+                        <input
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        className="chInputText"
+                        />
+                    </div>
+                    <div>
+                        <label className="chLabel"> Nachname:</label>
+                        <input
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        className="chInputText"
+                        />
+                    </div>
+                    <div>
+                        <label className="chLabel">Email:</label>
+                        <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="chInputText"
+                        />
+                    </div>
+                    <div>
+                        <label className={(solutionFalse)?"chLabel error":"chLabel"}>Lösungssatz:</label>
+                        <input
+                        type="text"
+                        value={formatSolutionInput(solution)}
+                        onChange={handleSolutionChange}
+                        onKeyDown={handleKeyDown}
+                        className={(solutionFalse)?"chInputText error":"chInputText"}
+                        />
+                    </div>
+                    <div>
                     <div class="checkbox-wrapper-13">
-                        <input
-                        type="checkbox"
-                        checked={isCheckbox2Checked}
-                        onChange={(e) => setIsCheckbox2Checked(e.target.checked)}
-                        />
-                        <label>Ich stimme den untenstehenden Teilnahmebedingungen zu.</label>
+                            <input
+                            type="checkbox"
+                            checked={isCheckbox1Checked}
+                            onChange={(e) => setIsCheckbox1Checked(e.target.checked)}
+                            />
+                            <label>Ich stimme den Allgemeinen Geschäftsbedingungen zu.</label>
+                        </div>
+                        <div class="checkbox-wrapper-13">
+                            <input
+                            type="checkbox"
+                            checked={isCheckbox2Checked}
+                            onChange={(e) => setIsCheckbox2Checked(e.target.checked)}
+                            />
+                            <label>Ich stimme den untenstehenden Teilnahmebedingungen zu.</label>
+                        </div>
                     </div>
-                </div>
 
-                <button type="submit" disabled={!canSubmit} className="chSubmitBtn">Absenden</button>
-            </form>
+                    <button type="submit" disabled={!canSubmit} className="chSubmitBtn">Absenden</button>
+                </form>
+                </>
+                :
+                <>
+                <Heading type={1} text={"Du hast schon am Gewinnspiel teilgenommen."} />
+                <Heading type={1} text={"Wir wünschen dir viel Glück."} topSpace={-0.5}/>
+                </>
+            }
             <Heading text={"Teilnahmebedingungen"} type={2} />
             <TextContainer>
                 <Heading text={"Teilnahmezeitraum"} type={3} />

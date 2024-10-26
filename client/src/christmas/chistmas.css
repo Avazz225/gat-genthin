@@ -8,6 +8,7 @@
 .chLabel{
     display: inline-block;
     width: 6em;
+    transition: all .25s;
 }
 
 .chInputText{
@@ -18,6 +19,15 @@
     padding: .25em .5em;
     margin: 0.25em 0;
     font-size: large;
+    transition: all .25s;
+}
+
+.chInputText.error{
+    border-color: red;
+}
+
+.chLabel.error{
+    color: red;
 }
 
 .chForm{
