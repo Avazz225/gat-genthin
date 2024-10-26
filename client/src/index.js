@@ -19,6 +19,7 @@ import Hinterkulissen from './siteContent/gallery/hinter-den-kulissen';
 import Calendar from './siteContent/Calendar';
 import Imprint from './important/Imprint';
 import TestContent from './siteContent/TestContent';
+import RaffleConfirmation from './christmas/RaffleConfirmation';
 
 const root = ReactDOM.createRoot(document.getElementById('content'));
 
@@ -42,6 +43,7 @@ root.render(
           <Route path="/calendar" element={<Calendar />}exact  />
           <Route path="/imprint" element={<Imprint />}exact  />
           <Route path="/test" element={<TestContent />}exact  />
+          <Route path="/confirmraffle" element={<RaffleConfirmation />}exact  />
         </Routes>
       </HashRouter>
     </div>

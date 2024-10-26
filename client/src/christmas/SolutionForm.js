@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import "./chistmas.css"
+import { Heading, NewLine, Text } from "../atoms/TextContainers";
+import { TextContainer } from "../atoms/ContentContainers";
 
 const Form = () => {
 
@@ -68,82 +71,141 @@ const Form = () => {
             "solution": solution.toLowerCase(),
             "solutionLength": solution.length,
             "agreedToTermsOfService": isCheckbox1Checked,
-            "agreedToDataTerms": isCheckbox2Checked
+            "agreedToParticipationConditions": isCheckbox2Checked
         }
 
         console.log(formArray)
 
-        // Beispielhafte Weiterverarbeitung der Daten, z.B. Senden an einen Server
-        // fetch('/submit', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(formArray)
-        // })
-        //   .then(response => response.json())
-        //   .then(data => console.log('Erfolgreich gesendet:', data))
-        //   .catch(error => console.error('Fehler:', error));
+        //Beispielhafte Weiterverarbeitung der Daten, z.B. Senden an einen Server
+        fetch(process.env.REACT_APP_RAFFLE_API+'/participate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formArray)
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(response.status);
+            }
+        })
+        .then(data => { 
+            console.log('Erfolgreich gesendet:', data)
+            alert("Deine Daten wurden erfolgreich übermittelt!\nBitte bestätige deine Teilnahme über den Link in der Email, die du gleich erhalten wirst.");
+        })
+        .catch(error => {
+            if (error.message === "403"){
+                alert("Du hast schon mit dieser Email am Gewinnspiel teilgenommen. Bitte bedenke, dass du nur ein Mal teilnehmen darfst!");
+            } else if (error.message === "409") {
+                alert("Der Lösungssatz ist falsch! Überlege noch einmal und versuche es erneut.");
+            } else if (error.message === "406") {
+                alert("Du hast nicht den AGBs oder den Teilnahmebedingungen zugestimmt.");
+            } else {
+                alert("Es ist ein Fehler bei der Kommunikation mit dem Server aufgetreten. Bitte versuche es erneut.");
+            }
+            
+        });
 
-        alert("Deine Daten wurden erfolgreich übermitelt!\nBitte bestätige deine Teilnahme über den Link in der Email, die du gleich erhalten wirst.");
+        
     };
 
     const canSubmit = isCheckbox1Checked && isCheckbox2Checked && firstName && lastName && email && solution;
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Vorname:</label>
-                <input
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                />
-            </div>
-            <div>
-                <label>Nachname:</label>
-                <input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                />
-            </div>
-            <div>
-                <label>Email:</label>
-                <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                />
-            </div>
-            <div>
-                <label>Lösungssatz:</label>
-                <input
-                type="text"
-                value={formatSolutionInput(solution)}
-                onChange={handleSolutionChange}
-                onKeyDown={handleKeyDown}
-                />
-            </div>
-            <div>
-                <input
-                type="checkbox"
-                checked={isCheckbox1Checked}
-                onChange={(e) => setIsCheckbox1Checked(e.target.checked)}
-                />
-                <label>Ich stimme den Allgemeinen Geschäftsbedingungen zu.</label>
-            </div>
-            <div>
-                <input
-                type="checkbox"
-                checked={isCheckbox2Checked}
-                onChange={(e) => setIsCheckbox2Checked(e.target.checked)}
-                />
-                <label>Ich stimme der Datenschutzerklärung zu.</label>
-            </div>
+        <div className="content chBasePane">
+            <Heading text={"Gewinnspiel"}/>
+            <TextContainer>
+                <Text text={"Hier kannst du den Lösungssatz* für das Adventskalender-Gewinnspiel des gat eintragen!"}/>
+                <NewLine/>
+                <Text text={"Wir wünschen allen Teilnehmenden viel Glück."}/>
+                <NewLine/>
+                <NewLine/>
+                <div className="chSmol">
+                    <Text text={"Bitte denke daran nachdem du das Formular abgeschickt hast, auch deine Teilnahme über den Link in der Email, die du erhältst, zu bestätigen."}/>
+                    <NewLine/>
+                    <NewLine/>
+                    <Text text={"* Groß- und Kleinschreibung sind nicht relevant, Leerzeichen werden automatisch gesetzt"}/>
+                </div>
+            </TextContainer>
+            <form onSubmit={handleSubmit} className="chForm">
+                <div>
+                    <label className="chLabel">Vorname:</label>
+                    <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="chInputText"
+                    />
+                </div>
+                <div>
+                    <label className="chLabel"> Nachname:</label>
+                    <input
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="chInputText"
+                    />
+                </div>
+                <div>
+                    <label className="chLabel">Email:</label>
+                    <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="chInputText"
+                    />
+                </div>
+                <div>
+                    <label className="chLabel">Lösungssatz:</label>
+                    <input
+                    type="text"
+                    value={formatSolutionInput(solution)}
+                    onChange={handleSolutionChange}
+                    onKeyDown={handleKeyDown}
+                    className="chInputText"
+                    />
+                </div>
+                <div>
+                <div class="checkbox-wrapper-13">
+                        <input
+                        type="checkbox"
+                        checked={isCheckbox1Checked}
+                        onChange={(e) => setIsCheckbox1Checked(e.target.checked)}
+                        />
+                        <label>Ich stimme den Allgemeinen Geschäftsbedingungen zu.</label>
+                    </div>
+                    <div class="checkbox-wrapper-13">
+                        <input
+                        type="checkbox"
+                        checked={isCheckbox2Checked}
+                        onChange={(e) => setIsCheckbox2Checked(e.target.checked)}
+                        />
+                        <label>Ich stimme den untenstehenden Teilnahmebedingungen zu.</label>
+                    </div>
+                </div>
 
-            <button type="submit" disabled={!canSubmit}>Absenden</button>
-        </form>
+                <button type="submit" disabled={!canSubmit} className="chSubmitBtn">Absenden</button>
+            </form>
+            <Heading text={"Teilnahmebedingungen"} type={2} />
+            <TextContainer>
+                <Heading text={"Teilnahmezeitraum"} type={3} />
+                <Text text={"Die Teilnahme ist bis zum 27.12.2024 23:59:59 Uhr geöffnet."}/>
+                <Heading text={"Veranstalter"} type={3} />
+                <Text text={"Das Gewinnspiel wird vom Genthiner Amateurtheater e.V. ausgerichtet."}/>
+                <Heading text={"Teilnahmeberechtigung"} type={3} />
+                <Text text={"An der Teilnahme berechtigt ist jede Peson, die zum Zeitpunkt des Endes des Teilnahmezeitraums das 18. Lebensjahr vollendet hat. Ausgeschlossen von der Teilnahme sind Minderjährige sowie Mitwirkende des Programms."}/>
+                <Heading text={"Teilnahme"} type={3} />
+                <Text text={"Die Teilnahme erfolgt ausschließlich über das hier zur Verfügung gestellte Formular. Eine Teilnahme über Telefon oder separater Email ist ausgeschlossen."}/>
+                <Heading text={"Ermittlung"} type={3} />
+                <Text text={"Nach Ende des Gewinnspiels werden die Gewinner über einen Zufallsgenerator ausgelost."}/>
+                <Heading text={"Benachrichtigung"} type={3} />
+                <Text text={"Die Gewinner werden am 28.12.2024 per Mail über Ihren Gewinn benachrichtigt. Zusätzlich werden sie in einer Meldung auf unserer Website in anonymisierter Form bekannt gegeben (Vorname und erster Buchstabe des Nachnamens)."}/>
+                <Heading text={"Datenschutz"} type={3} />
+                <Text text={"Für die Durchführung des Gewinnspiels speichern wir bis zum 06.01.2025 die angegebene Email, Vornamen und Nachnamen aller Teilnehmenden. Zusätzlich wird der Zeitpunkt der Teilnahme gespeichert. Die Speicherung erfolgt auf den Servern von AWS."}/>
+            </TextContainer>
+        </div>
     );
 };
 

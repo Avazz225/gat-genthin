@@ -1,0 +1,22 @@
+{"html":[
+    "<!DOCTYPE html><body style='background-color: rgb(243, 243, 243); color: rgb(38, 38, 38); font-family: Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, sans-serif;'><center><h1>Hallo ", 
+    "first_name", 
+    "!</h1><h2>Vielen Dank f&uuml;r deine Teilnahme am gat-Adventskalender Gewinnspiel!</h2><b>Bitte best&auml;tige deine Teilnahme &uuml;ber folgenden Button:</b><br><br><a style='text-decoration: none; font-size: large; font-weight: bold; color: rgb(243, 243, 243); padding: .5em 1em; border-radius: .5em;background: linear-gradient(135deg,  rgb(131, 131, 190), rgb(54, 141, 191));' href='",
+    "activation_link",
+    "'>Teilnahme best&auml;tigen</a><br><br><span>Sollte der Button nicht funktionieren, klicke bitte auf folgenden Link:</span><br><a href='",
+    "activation_link",
+    "'>",
+    "activation_link",
+    "</a><br><br><span style='font-size: smaller;'>Wir versenden keine gesonderte Best&auml;tigung mehr.</span><br><br>",
+    "Wir dr&uuml;cken dir die Daumen!<br><br><br><span>Mit freundlichen Gr&uuml;&szlig;en<br>Das Genthiner Amateurtheater</span></center></body>"
+],
+"text": [
+    "Hallo ",
+    "first_name",
+    "\r\n\r\nVielen Dank fuer deine Teilnahme am gat-Adventskalender Gewinnspiel!\r\n\r\nBitte bestaetige deine Teilnahme ueber folgenden Link:\r\n",
+    "activation_link",
+    "\r\n\r\nWir versenden keine gesonderte Bestaetigung mehr.\r\n\r\n",
+    "Wir druecken dir die Daumen!\r\n\r\n\r\n",
+    "Mit freundlichen Gruessen\r\nDas Genthiner Amateurtheater"
+]
+}
