@@ -226,7 +226,7 @@ const Form = () => {
                 <Heading text={"Veranstalter"} type={3} />
                 <Text text={"Das Gewinnspiel wird vom Genthiner Amateurtheater e.V. ausgerichtet."}/>
                 <Heading text={"Teilnahmeberechtigung"} type={3} />
-                <Text text={"An der Teilnahme berechtigt ist jede Peson, die zum Zeitpunkt des Endes des Teilnahmezeitraums das 18. Lebensjahr vollendet hat. Ausgeschlossen von der Teilnahme sind Minderjährige sowie Mitwirkende des Programms."}/>
+                <Text text={"An der Teilnahme berechtigt ist jede Person, die zum Zeitpunkt des Endes des Teilnahmezeitraums das 18. Lebensjahr vollendet hat. Ausgeschlossen von der Teilnahme sind Minderjährige sowie Mitwirkende des Programms."}/>
                 <Heading text={"Teilnahme"} type={3} />
                 <Text text={"Die Teilnahme erfolgt ausschließlich über das hier zur Verfügung gestellte Formular. Eine Teilnahme über Telefon oder separater Email ist ausgeschlossen."}/>
                 <Heading text={"Ermittlung"} type={3} />

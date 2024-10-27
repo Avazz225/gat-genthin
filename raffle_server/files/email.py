@@ -47,6 +47,7 @@ def send_email(recipient:str, confirmation_url:str, first_name:str):
         )
     # Display an error if something goes wrong.	
     except ClientError as e:
+        print(f"Could not send email to {RECIPIENT}")
         print(e.response['Error']['Message'])
 
     return
