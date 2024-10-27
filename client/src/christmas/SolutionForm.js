@@ -20,6 +20,7 @@ const Form = () => {
     const [isCheckbox1Checked, setIsCheckbox1Checked] = useState(false);
     const [isCheckbox2Checked, setIsCheckbox2Checked] = useState(false);
     const [solutionFalse, setSolutionFalse] = useState(false);
+    const [processing, setProcessing] = useState(false);
     const [isLocalStorageStateSet, setLocalStorageState] = useState(getLocalStorage());
 
     const wordLengths = [5, 3, 3, 4]; 
@@ -62,6 +63,7 @@ const Form = () => {
     // Submit-Handler
     const handleSubmit = (e) => {
         e.preventDefault(); 
+        setProcessing(true);
 
         
         if (!firstName || !lastName || !email || !solution) {
@@ -115,11 +117,14 @@ const Form = () => {
             } else if (error.message === "409") {
                 alert("Der Lösungssatz ist falsch! Überlege noch einmal und versuche es erneut.");
                 setSolutionFalse(true);
+                setProcessing(false);
             } else if (error.message === "406") {
                 alert("Du hast nicht den AGBs oder den Teilnahmebedingungen zugestimmt.");
+                setProcessing(false);
             } else {
                 console.log(error)
                 alert("Es ist ein Fehler bei der Kommunikation mit dem Server aufgetreten. Bitte versuche es erneut.");
+                setProcessing(false);
             }
         });
     };
@@ -201,8 +206,11 @@ const Form = () => {
                             <label>Ich stimme den untenstehenden Teilnahmebedingungen zu.</label>
                         </div>
                     </div>
-
-                    <button type="submit" disabled={!canSubmit} className="chSubmitBtn">Absenden</button>
+                    {(processing)?<div className="chSubmitBtn pseudo">
+                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+                    :
+                    <button type="submit" disabled={!canSubmit} className="chSubmitBtn">Absenden</button>}
+                    
                 </form>
                 </>
                 :
