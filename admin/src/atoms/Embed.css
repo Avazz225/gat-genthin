@@ -1,0 +1,19 @@
+.wrench{
+    height: 2.5em;
+    width: 2.5em;
+    color: rgba(var(--primary-color));
+    position: absolute;
+    top: -.15em;
+    right: -.15em;
+    opacity: 1;
+    transition: all .3s;
+    background-color: rgba(var(--background-color), .75);
+    border-radius: 0 .5em;
+    border: 1px solid rgba(var(--primary-color));
+    padding: .25em;
+}
+
+.wrenchBtn{
+    position: absolute;
+    right: 0;
+}

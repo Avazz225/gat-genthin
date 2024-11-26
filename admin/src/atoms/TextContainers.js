@@ -2,7 +2,7 @@ import DeleteComponentBtn from "./DeleteComponent"
 import { getSelectedText } from "../helpers/tools"
 import React, { useState } from 'react';
 
-function Text({changeProperty, index, deleteData, deleteMode, text, bold=false, editable=true, setTextSelection, handleEnter, modifyState}){
+function Text({changeProperty, index, deleteData, deleteMode, text, bold=false, editable=true, setTextSelection, handleEnter, modifyState, opacity=1}){
     const [contextMenuPosition, setContextMenuPosition] = useState({ mouseX: null, mouseY: null })
 
     function handleBlur(e){
@@ -17,6 +17,7 @@ function Text({changeProperty, index, deleteData, deleteMode, text, bold=false, 
                 index={index}
             >
                 <span 
+                    style={{opacity:opacity}}
                     contentEditable={editable} 
                     className={editable?"textEditable":""}  
                     onBlur={(e) => handleBlur(e)}
@@ -38,6 +39,7 @@ function Text({changeProperty, index, deleteData, deleteMode, text, bold=false, 
             >
                 <b>
                     <span 
+                        style={{opacity:opacity}}
                         contentEditable={editable} 
                         className={editable?"textEditable":""}  
                         onBlur={(e) => handleBlur(e)}

@@ -11,7 +11,7 @@ function getLocalStorage(){
     return localStorage.getItem("participated")
 }
 
-const Form = () => {
+const ChristmasForm = () => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -23,12 +23,13 @@ const Form = () => {
     const [processing, setProcessing] = useState(false);
     const [isLocalStorageStateSet, setLocalStorageState] = useState(getLocalStorage());
 
-    const wordLengths = [5, 3, 3, 4]; 
+    const wordLengths = [4, 5, 3, 12]; 
     const totalLength = wordLengths.reduce((acc, curr) => acc + curr, 0);
 
     const formatSolutionInput = (input) => {
         let formattedSolution = "";
         let index = 0;
+        input = input.replace("ä",'ae').replace("Ä",'Ae').replace("ö",'oe').replace("Ö",'Oe').replace("ü",'ue').replace("ü",'Ue').replace("ß",'ss')
 
         wordLengths.forEach((length, i) => {
         if (index + length > input.length) {
@@ -181,11 +182,11 @@ const Form = () => {
                     <div>
                         <label className={(solutionFalse)?"chLabel error":"chLabel"}>Lösungssatz:</label>
                         <input
-                        type="text"
-                        value={formatSolutionInput(solution)}
-                        onChange={handleSolutionChange}
-                        onKeyDown={handleKeyDown}
-                        className={(solutionFalse)?"chInputText error":"chInputText"}
+                            type="text"
+                            value={formatSolutionInput(solution)}
+                            onChange={handleSolutionChange}
+                            onKeyDown={handleKeyDown}
+                            className={(solutionFalse)?"chInputText error":"chInputText"}
                         />
                     </div>
                     <div>
@@ -226,7 +227,7 @@ const Form = () => {
                 <Heading text={"Veranstalter"} type={3} />
                 <Text text={"Das Gewinnspiel wird vom Genthiner Amateurtheater e.V. ausgerichtet."}/>
                 <Heading text={"Teilnahmeberechtigung"} type={3} />
-                <Text text={"An der Teilnahme berechtigt ist jede Peson, die zum Zeitpunkt des Endes des Teilnahmezeitraums das 18. Lebensjahr vollendet hat. Ausgeschlossen von der Teilnahme sind Minderjährige sowie Mitwirkende des Programms."}/>
+                <Text text={"An der Teilnahme berechtigt ist jede Person, die zum Zeitpunkt des Endes des Teilnahmezeitraums das 18. Lebensjahr vollendet hat. Ausgeschlossen von der Teilnahme sind Minderjährige sowie Mitwirkende des Programms."}/>
                 <Heading text={"Teilnahme"} type={3} />
                 <Text text={"Die Teilnahme erfolgt ausschließlich über das hier zur Verfügung gestellte Formular. Eine Teilnahme über Telefon oder separater Email ist ausgeschlossen."}/>
                 <Heading text={"Ermittlung"} type={3} />
@@ -234,10 +235,10 @@ const Form = () => {
                 <Heading text={"Benachrichtigung"} type={3} />
                 <Text text={"Die Gewinner werden am 28.12.2024 per Mail über Ihren Gewinn benachrichtigt. Zusätzlich werden sie in einer Meldung auf unserer Website in anonymisierter Form bekannt gegeben (Vorname und erster Buchstabe des Nachnamens)."}/>
                 <Heading text={"Datenschutz"} type={3} />
-                <Text text={"Für die Durchführung des Gewinnspiels speichern wir bis zum 06.01.2025 die angegebene Email, Vornamen und Nachnamen aller Teilnehmenden. Zusätzlich wird der Zeitpunkt der Teilnahme gespeichert. Die Speicherung erfolgt auf den Servern von AWS."}/>
+                <Text text={"Für die Durchführung des Gewinnspiels speichern wir bis zum 06.01.2025 die angegebene Email, Vornamen und Nachnamen aller Teilnehmenden. Zusätzlich wird der Zeitpunkt der Teilnahme gespeichert. Die Speicherung der Daten erfolgt auf Servern von AWS."}/>
             </TextContainer>
         </div>
     );
 };
 
-export default Form;
+export default ChristmasForm;

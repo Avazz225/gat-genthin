@@ -9,6 +9,7 @@ class Contact extends React.Component{
                 adminComponentsVisible={this.props.adminComponentsVisible} 
                 deleteMode={this.props.deleteMode} 
                 mainType={"contact"}
+                textEditor={this.props.textEditor}
             />
         );
     }

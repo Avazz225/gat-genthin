@@ -31,6 +31,7 @@ const locale = navigator.language;
 let lang = getLanguageSet(locale);
 const adminComponentsVisibleDefault = false;
 const deleteModeDefault = false;
+const textEditorDefault = false;
 
 const consoleWarn = console.error;
 const SUPPRESSED_WARNINGS = ['A component is ', 'cannot appear', 'You provided a `checked` prop to a form field without an `onChange` handler.'];
@@ -44,6 +45,7 @@ console.error = function filterWarnings(msg, ...args) {
 function App() {
   const [adminComponentsVisible, setAdminComponentVisibility] = React.useState(adminComponentsVisibleDefault);
   const [deleteMode, setDeleteMode] = React.useState(deleteModeDefault)
+  const [textEditor, setTextEditor] = React.useState(textEditorDefault)
   const [validity, setValidity] = React.useState(false);
 
   React.useEffect(() => {
@@ -65,17 +67,17 @@ function App() {
       <IntlProvider locale={locale} messages={lang}>
         {(validity) ?
           <>
-            <AdminControls adminComponentsVisible={adminComponentsVisible} setAdminComponentVisibility={setAdminComponentVisibility} deleteMode={deleteMode} setDeleteMode={setDeleteMode} />
+            <AdminControls adminComponentsVisible={adminComponentsVisible} setAdminComponentVisibility={setAdminComponentVisibility} deleteMode={deleteMode} setDeleteMode={setDeleteMode} textEditor={textEditor} setTextEditor={setTextEditor} />
             <Navigation />
             <div className="ContentArea">
-              <News page={"page_news"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />
+              <News page={"page_news"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} textEditor={textEditor}/>
               <HashRouter>
                 <Routes>
-                  <Route path="/" element={<Welcome page={"page_welcome"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />} exact />
-                  <Route path="/about" element={<About page={"page_about"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />} exact />
-                  <Route path="/repertoire" element={<Repertoire page={"page_repertoire"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />} exact />
-                  <Route path="/gallery" element={<Gallery adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />} exact />
-                  <Route path="/contact" element={<Contact page={"page_contact"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} />} exact />
+                  <Route path="/" element={<Welcome page={"page_welcome"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} textEditor={textEditor} />} exact />
+                  <Route path="/about" element={<About page={"page_about"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} textEditor={textEditor} />} exact />
+                  <Route path="/repertoire" element={<Repertoire page={"page_repertoire"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} textEditor={textEditor} />} exact />
+                  <Route path="/gallery" element={<Gallery adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} textEditor={textEditor} />} exact />
+                  <Route path="/contact" element={<Contact page={"page_contact"} adminComponentsVisible={adminComponentsVisible} deleteMode={deleteMode} textEditor={textEditor} />} exact />
                   <Route path="/maerchen" element={<Maerchen />} exact />
                   <Route path="/hanssachs" element={<Hanssachs />} exact />
                   <Route path="/veranstaltungen" element={<Veranstaltungen />} exact />

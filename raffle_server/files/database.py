@@ -1,6 +1,7 @@
 import mysql.connector
 import os
 
+
 class DatabaseManager:
     def __init__(self):
         self.connection = None
@@ -8,15 +9,17 @@ class DatabaseManager:
 
     def create_connection(self):
         try:
-            self.connection = mysql.connector.connect(host=os.environ['DB_HOST'],
-                                                        database=os.environ['DB_NAME'],
-                                                        user=os.environ['DB_LOGIN_USER'],
-                                                        password=os.environ['DB_LOGIN_PW'])
+            self.connection = mysql.connector.connect(
+                host=os.environ['DB_HOST'],
+                database=os.environ['DB_NAME'],
+                user=os.environ['DB_LOGIN_USER'],
+                password=os.environ['DB_LOGIN_PW']
+            )
         except Exception as error:
             print("Error while connecting to MYSQL: ", error)
 
-    def execute_write(self, query:str, data:tuple) -> int:
-        if self.connection == None:
+    def execute_write(self, query: str, data: tuple) -> int:
+        if self.connection is None:
             self.create_connection()
         try:
             cursor = self.connection.cursor(buffered=True)
@@ -28,15 +31,15 @@ class DatabaseManager:
             print("Error during write operation:", e)
             return -1
 
-    def execute_select(self, query:str, data:tuple, single_row:bool = False):  
-        if self.connection == None:
-            self.create_connection() 
+    def execute_select(self, query: str, data: tuple, single_row: bool = False):
+        if self.connection is None:
+            self.create_connection()
         try:
             cursor = self.connection.cursor(buffered=True)
             cursor.execute(query % data)
-            if single_row: 
+            if single_row:
                 res = cursor.fetchone()
-            else: 
+            else:
                 res = cursor.fetchall()
             cursor.close()
 
@@ -45,5 +48,5 @@ class DatabaseManager:
             print("Error during select operation:", e)
 
     def __del__(self):
-        if self.connection: 
+        if self.connection:
             self.connection.close()

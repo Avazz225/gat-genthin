@@ -16,10 +16,11 @@ import Hanssachs from './siteContent/gallery/hanssachs';
 import Veranstaltungen from './siteContent/gallery/veranstaltungen';
 import Kindergat from './siteContent/gallery/kinder-gat';
 import Hinterkulissen from './siteContent/gallery/hinter-den-kulissen';
-import Calendar from './siteContent/Calendar';
+import Calendar from './christmas/Calendar';
 import Imprint from './important/Imprint';
 import TestContent from './siteContent/TestContent';
 import RaffleConfirmation from './christmas/RaffleConfirmation';
+import ChristmasForm from './christmas/SolutionForm';
 
 const root = ReactDOM.createRoot(document.getElementById('content'));
 
@@ -42,8 +43,9 @@ root.render(
           <Route path="/hinter-den-kulissen" element={<Hinterkulissen />}exact  />
           <Route path="/calendar" element={<Calendar />}exact  />
           <Route path="/imprint" element={<Imprint />}exact  />
-          <Route path="/test" element={<TestContent />}exact  />
+          <Route path="/enter" element={<ChristmasForm />}exact  />
           <Route path="/confirmraffle" element={<RaffleConfirmation />}exact  />
+          <Route path="/test" element={<TestContent />}exact  />
         </Routes>
       </HashRouter>
     </div>
