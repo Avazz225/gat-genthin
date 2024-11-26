@@ -1,7 +1,7 @@
-import Form from "../christmas/SolutionForm";
+import GatCalendar from "../christmas/CalenderDoors";
 
 export default function TestContent(){
     return(
-        <Form/>
+        <GatCalendar/>
     )
 }

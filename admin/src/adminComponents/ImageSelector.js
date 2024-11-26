@@ -12,6 +12,7 @@ class ImageSelector extends React.Component{
     componentDidMount(){
         fetch(process.env.REACT_APP_CM_API+'get_available_images', {
             method: 'GET',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'source': process.env.REACT_APP_SYSTEM_ID,

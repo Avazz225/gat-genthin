@@ -3,11 +3,12 @@ import { BaseContainer, TextContainer, TimedContainer, Blockquote, ParallelConta
 import { Centered, Normal, HorizontalRow } from "../atoms/Arrangement"
 import { UnorderedList, OrderedList, ListElement } from "../atoms/List"
 import { Image, ImageInText } from "../atoms/Image"
-import GatCalendar from "../siteContent/CalenderDoors"
 import AddComponent from "../adminComponents/AddComponent"
 import { appendToArray, increaseLastByOne } from "./tools"
 import React from "react"
 import TimedConfigurator from "../adminComponents/TimedConfigurator"
+import { Embed } from "../atoms/Embed"
+import AutoGallery from "../atoms/AutoGallery"
 
 
 function PageMapper(props){
@@ -58,6 +59,7 @@ function AtomRenderer(props){
                         setTextSelection={props.setTextSelection}
                         handleEnter={props.handleEnter}
                         modifyState = {props.modifyState}
+                        opacity={props.data.opacity}
                     />
         case "link":
             return <Link 
@@ -304,7 +306,7 @@ function AtomRenderer(props){
                 </ListElement>
             )
         case "image":
-            return <Image 
+            return <Image
                         deleteMode={props.deleteMode} 
                         deleteData={props.deleteData}
                         index={props.previousIndexes} 
@@ -328,8 +330,28 @@ function AtomRenderer(props){
                         handleFileUpload = {props.handleFileUpload}
                         uploadInProgress={props.uploadInProgress}
                     />
-        case "calendar":
-            return <GatCalendar/>
+        case "embed":
+            return <Embed 
+                        src={props.data.src} 
+                        width={props.data.width} 
+                        height={props.data.height} 
+                        center= {props.data.center || false}
+                        deleteMode={props.deleteMode} 
+                        deleteData={props.deleteData}
+                        index={props.previousIndexes}
+                        modifyState = {props.modifyState}
+                    />
+        case "autoGallery":
+            return <AutoGallery
+                        src={props.data.src}
+                        inverted={props.data.inverted || false}
+                        deleteMode={props.deleteMode} 
+                        deleteData={props.deleteData}
+                        index={props.previousIndexes}
+                        modifyState = {props.modifyState}
+                        handleFileUpload = {props.handleFileUpload}
+                        uploadInProgress={props.uploadInProgress}
+                    />
         case "newsContainer":
             return(
             <>

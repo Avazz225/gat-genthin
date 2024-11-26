@@ -3,7 +3,7 @@ import { BaseContainer, TextContainer, TimedContainer, Blockquote, ParallelConta
 import { Centered, Normal, HorizontalRow } from "../atoms/Arrangement"
 import { UnorderedList, OrderedList, ListElement } from "../atoms/List"
 import { Image, ImageInText } from "../atoms/Image"
-import GatCalendar from "../siteContent/CalenderDoors"
+import GatCalendar from "../christmas/CalenderDoors"
 
 const PageMapper = ({data}) => (
     <>

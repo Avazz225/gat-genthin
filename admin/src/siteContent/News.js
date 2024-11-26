@@ -45,6 +45,7 @@ class News extends React.Component{
                             adminComponentsVisible={this.props.adminComponentsVisible} 
                             deleteMode={this.props.deleteMode} 
                             mainType={"news"}
+                            textEditor={this.props.textEditor}
                         />
                         <TextContainer>
                             <Heading type={3} text="Gefördert durch:" editable={false} />

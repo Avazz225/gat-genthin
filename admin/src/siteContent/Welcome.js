@@ -8,6 +8,7 @@ function Welcome(props){
             adminComponentsVisible={props.adminComponentsVisible} 
             deleteMode={props.deleteMode} 
             mainType={"welcome"}
+            textEditor={props.textEditor}
         />
     );
 }

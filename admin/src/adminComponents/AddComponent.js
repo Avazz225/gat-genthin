@@ -2,7 +2,7 @@ import "./AddComponent.css"
 
 const avail_containers={'Standardcontainer':'textContainer', 'Zeitlich gesteuerter Container':'timedContainer', 'Parallele Elemente':'parallelContainer'}
 const avail_text_elems={'Überschrift':'heading', 'Text':'text', 'Link':'link', 'Zitat':'blockquote'}
-const avail_image_elems={'Bild':'image', 'Bild im Text':'imageInText'}
+const avail_image_elems={'Bild':'image', 'Bild im Text':'imageInText', 'Einbettung': 'embed', 'Galerie':'autoGallery'}
 const avail_list_elems={'Geordnete Liste':'orderedList', 'Ungeordnete Liste':'unorderedList'}
 const avail_style_elems={'Zeilenumbruch':'newLine', 'Horizontale Linie':'horizontalRow', 'Zentrierte Ausrichtung':'centered', 'Normale Ausrichtung':'normal'}
 const available_elements={

@@ -164,10 +164,13 @@ function createTemplateDefinition(type, text=""){
             return {"type": type}
         case "calendar":
             return {"type": type}
+        case "embed":
+            return {"type": type, src: "", width: 100, height: 50, center: false}
+        case "autoGallery":
+            return {"type": type, src: ""}
         default:
             return
     }
-
 }
 
 function increaseLastByOne(array){
@@ -226,7 +229,7 @@ function simplifyJsonDefinition(jsonArray) {
     return mergedArray;
 }
 
-function selectImage(e, x, y, type, index, modifyState, alt = "", width = 90, maxWidth = 50, align = "left"){
+function selectImage(e, x, y, type, index, modifyState, alt = "", width = 90, maxWidth = 50, align = "left",){
     e.preventDefault()
     modifyState('contextMenuCoords', {'x': x, 'y': y})
     modifyState('contextMenuType', type)
@@ -234,4 +237,20 @@ function selectImage(e, x, y, type, index, modifyState, alt = "", width = 90, ma
     modifyState('contextMenuVisibility' ,'block')
 }
 
-export {jsonReader, getValue, getTimespan, appendToArray, insertIntoArray, increaseLastByOne, insertElementAt, deleteElementAt, modifyElementAt, getSelectedText, simplifyJsonDefinition, selectImage}
+function selectEmbed(e, x, y, type, index, modifyState, width = 90, height = 50, center = false, src){
+    e.preventDefault()
+    modifyState('contextMenuCoords', {'x': x, 'y': y})
+    modifyState('contextMenuType', type)
+    modifyState('textSelection', {'index':index, 'height': height, 'width': width, 'center': center, "src": src})
+    modifyState('contextMenuVisibility' ,'block')
+}
+
+function selectAGal(e, x, y, type, index, modifyState, inverted = false, src, reverse){
+    e.preventDefault()
+    modifyState('contextMenuCoords', {'x': x, 'y': y})
+    modifyState('contextMenuType', type)
+    modifyState('textSelection', {'index':index, "inverted":inverted, "src": src, "reverseDat": reverse})
+    modifyState('contextMenuVisibility' ,'block')
+}
+
+export {jsonReader, getValue, getTimespan, appendToArray, insertIntoArray, increaseLastByOne, insertElementAt, deleteElementAt, modifyElementAt, getSelectedText, simplifyJsonDefinition, selectImage, selectEmbed, selectAGal}

@@ -1,0 +1,11 @@
+.jsonEditor{
+    width: 100%;
+    padding: 10px;
+    background-color: var(--white);
+    color: var(--textCol);
+    border: '1px solid #ccc';
+    border-radius: '4px';
+    white-space: 'pre';
+    padding: .5em;
+    height: auto;
+}

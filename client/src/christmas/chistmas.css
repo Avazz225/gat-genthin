@@ -20,6 +20,8 @@
     margin: 0.25em 0;
     font-size: large;
     transition: all .25s;
+    width: 14em;
+    position: relative;
 }
 
 .chInputText.error{

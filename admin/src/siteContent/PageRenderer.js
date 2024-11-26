@@ -4,6 +4,7 @@ import { deleteElementAt, increaseLastByOne, insertElementAt, jsonReader, modify
 import { Icon } from '@iconify/react';
 import CustomContextMenu from '../adminComponents/CCM';
 import axios from "axios"
+import JsonTextArea from '../adminComponents/TextEditor';
 
 class PageRenderer extends React.Component{
     constructor(props){
@@ -30,6 +31,7 @@ class PageRenderer extends React.Component{
         this.upload_image = this.upload_image.bind(this)
         this.generate_url = this.generate_url.bind(this)
         this.handleFileUpload = this.handleFileUpload.bind(this)
+        this.updateData = this.updateData.bind(this)
     }
 
     modifyState(key, value){
@@ -44,6 +46,12 @@ class PageRenderer extends React.Component{
             data: result
         })
         )
+    }
+
+    updateData(data){
+        this.setState({
+            data: data
+        })
     }
 
     addData(newElement, index){
@@ -206,30 +214,42 @@ class PageRenderer extends React.Component{
         return(
             <>
             {(this.state.changesMade && !this.props.deleteMode) && <SaveButton saveChanges={this.saveChanges} />}
-            <PageMapper 
-                data={this.state.data} 
-                addData={this.addData} 
-                deleteData={this.deleteData}
-                changeProperty={this.changeProperty}
-                setTextSelection={this.setTextSelection}
-                handleEnter={this.handleEnter}
-                modifyState = {this.modifyState}
-                handleFileUpload = {this.handleFileUpload}
-                previousIndexes={[]} 
-                adminComponentsVisible={this.props.adminComponentsVisible} 
-                deleteMode={this.props.deleteMode} 
-                uploadInProgress={this.state.uploadInProgress}
-            />
-            <CustomContextMenu
-                modifySelectedText = {this.modifySelectedText}
-                contextMenuCoords = {this.state.contextMenuCoords}
-                contextMenuVisibility = {this.state.contextMenuVisibility}
-                contextMenuType = {this.state.contextMenuType}
-                changeProperty = {this.changeProperty}
-                modifyState = {this.modifyState}
-                textSelection = {this.state.textSelection}
-                linkBold = {this.state.linkBold}
-            />
+            {(this.props.textEditor)?
+                <>
+                    <JsonTextArea 
+                        data={this.state.data}
+                        modifyData={this.updateData}
+                    />
+                </>
+                :
+                <>
+                    <PageMapper 
+                        data={this.state.data} 
+                        addData={this.addData} 
+                        deleteData={this.deleteData}
+                        changeProperty={this.changeProperty}
+                        setTextSelection={this.setTextSelection}
+                        handleEnter={this.handleEnter}
+                        modifyState = {this.modifyState}
+                        handleFileUpload = {this.handleFileUpload}
+                        previousIndexes={[]} 
+                        adminComponentsVisible={this.props.adminComponentsVisible} 
+                        deleteMode={this.props.deleteMode} 
+                        uploadInProgress={this.state.uploadInProgress}
+                    />
+                
+                    <CustomContextMenu
+                        modifySelectedText = {this.modifySelectedText}
+                        contextMenuCoords = {this.state.contextMenuCoords}
+                        contextMenuVisibility = {this.state.contextMenuVisibility}
+                        contextMenuType = {this.state.contextMenuType}
+                        changeProperty = {this.changeProperty}
+                        modifyState = {this.modifyState}
+                        textSelection = {this.state.textSelection}
+                        linkBold = {this.state.linkBold}
+                    />
+                </>
+            }
             </>
         );
     }

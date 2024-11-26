@@ -22,6 +22,14 @@ function AdminControls(props){
                     </label>
                     Elemente löschen
                 </div>
+                <div className="adminSpacer"/>
+                <div className="centerHeight">
+                    <label className="switch">
+                        <input type="checkbox" checked={props.textEditor} className="authCheckbox"/>
+                        <span className="slider round" onClick={() => props.setTextEditor(!props.textEditor)}/>
+                    </label>
+                    Texteditor
+                </div>  
                 {(role==="admin"||role==="owner")&& <ToUserMgmt/>}
             </ParallelContainer>
         </div>
@@ -31,7 +39,7 @@ function AdminControls(props){
 function ToUserMgmt(){
     return(
         <div>
-            <NavLink id="users" text="Nutzerverwaltung" destination="#/users"/>
+            <NavLink id="users" text="Nutzerverwaltung" destination="users"/>
         </div>
     )
 }
