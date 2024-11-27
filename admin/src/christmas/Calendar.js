@@ -22,7 +22,7 @@ class Cal extends React.Component{
     }
 
     async componentDidMount(){
-        await jsonReader("dates.json")
+        await jsonReader("calendar_2024/dates.json")
         .then(result => this.setState({
             dateData: result[this.props.param]
         })
@@ -31,9 +31,11 @@ class Cal extends React.Component{
 
     render(){
         if (this.state.dateData.timespan){
-            if (getTimespan(this.state.dateData.timespan.from,this.state.dateData.timespan.to)){
+            if (getTimespan(this.state.dateData.timespan.from,this.state.dateData.timespan.to) || process.env.REACT_APP_TEST_MODE === "t"){
                 return(
+                    <>
                     <CalendarItem content={this.state.dateData.content} id={this.props.param} />
+                    </>
                 )
             } else {
                 return(
@@ -41,7 +43,6 @@ class Cal extends React.Component{
                 )
             }
         }
-        
     }
 }
 

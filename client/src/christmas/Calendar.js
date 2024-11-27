@@ -33,7 +33,9 @@ class Cal extends React.Component{
         if (this.state.dateData.timespan){
             if (getTimespan(this.state.dateData.timespan.from,this.state.dateData.timespan.to) || process.env.REACT_APP_TEST_MODE === "t"){
                 return(
+                    <>
                     <CalendarItem content={this.state.dateData.content} id={this.props.param} />
+                    </>
                 )
             } else {
                 return(

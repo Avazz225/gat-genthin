@@ -1,5 +1,6 @@
 import React from "react";
 import { jsonReader } from "../helpers/tools";
+import { ToRaffleButton } from "./EnterRaffleBtn";
 
 class CalendarItem extends React.Component{
     constructor(){
@@ -23,6 +24,7 @@ class CalendarItem extends React.Component{
             <h1>{this.props.id}. Türchen</h1>
             <div className="content-pane texttype">
                 <Item content={this.state.content} />
+                <ToRaffleButton/>
             </div>
             </>
         )
