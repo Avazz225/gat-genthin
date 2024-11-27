@@ -9,6 +9,7 @@ import React from "react"
 import TimedConfigurator from "../adminComponents/TimedConfigurator"
 import { Embed } from "../atoms/Embed"
 import AutoGallery from "../atoms/AutoGallery"
+import GatCalendar from "../christmas/CalenderDoors"
 
 
 function PageMapper(props){
@@ -366,6 +367,10 @@ function AtomRenderer(props){
                     previousIndexes={previousIndexes} 
                 />
             </>)
+        case "calendar":
+            return(
+                <GatCalendar/>
+            )
         default:
             return <Text text={'Der Typ "'+props.data.type+'" existiert nicht.'}/>
     }

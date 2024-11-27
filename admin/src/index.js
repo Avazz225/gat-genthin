@@ -16,7 +16,6 @@ import Hanssachs from './siteContent/gallery/hanssachs';
 import Veranstaltungen from './siteContent/gallery/veranstaltungen';
 import Kindergat from './siteContent/gallery/kinder-gat';
 import Hinterkulissen from './siteContent/gallery/hinter-den-kulissen';
-import Calendar from './siteContent/Calendar';
 import Auth from './authentication/Auth';
 import UserMgmt from './adminComponents/UserMgmt';
 
@@ -25,6 +24,9 @@ import {IntlProvider} from 'react-intl';
 import { checkTokenValidity } from './adminComponents/token';
 import AdminControls from './adminComponents/AdminControls';
 import "./atoms/EditContent.css"
+import Calendar from './christmas/Calendar';
+import RaffleConfirmation from './christmas/RaffleConfirmation';
+import ChristmasForm from './christmas/SolutionForm';
 
 const root = ReactDOM.createRoot(document.getElementById('content'));
 const locale = navigator.language;
@@ -85,6 +87,8 @@ function App() {
                   <Route path="/hinter-den-kulissen" element={<Hinterkulissen />} exact />
                   <Route path="/calendar" element={<Calendar />} exact />
                   <Route path="/users" element={<UserMgmt />} exact />
+                  <Route path="/enter" element={<ChristmasForm />}exact  />
+                  <Route path="/confirmraffle" element={<RaffleConfirmation />}exact  />
                 </Routes>
               </HashRouter>
             </div>
