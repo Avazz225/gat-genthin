@@ -15,7 +15,7 @@ function Extra(){
 
 function ToRaffleButton(){
     return(
-        <TimedContainer startDisplay={[24, 11, 2024]} endDisplay={[28, 12, 2024]}>
+        <TimedContainer startDisplay={[24, 12, 2024]} endDisplay={[27, 12, 2024]}>
             <NewLine/>
             <NewLine/>
             <GoToParticipation/>
