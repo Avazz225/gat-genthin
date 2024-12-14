@@ -27,6 +27,7 @@ import "./atoms/EditContent.css"
 import Calendar from './christmas/Calendar';
 import RaffleConfirmation from './christmas/RaffleConfirmation';
 import ChristmasForm from './christmas/SolutionForm';
+import Imprint from './important/Imprint';
 
 const root = ReactDOM.createRoot(document.getElementById('content'));
 const locale = navigator.language;
@@ -85,6 +86,7 @@ function App() {
                   <Route path="/veranstaltungen" element={<Veranstaltungen />} exact />
                   <Route path="/kinder-gat" element={<Kindergat />} exact />
                   <Route path="/hinter-den-kulissen" element={<Hinterkulissen />} exact />
+                  <Route path="/imprint" element={<Imprint />}exact  />
                   <Route path="/calendar" element={<Calendar />} exact />
                   <Route path="/users" element={<UserMgmt />} exact />
                   <Route path="/enter" element={<ChristmasForm />}exact  />

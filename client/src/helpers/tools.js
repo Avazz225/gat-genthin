@@ -1,9 +1,6 @@
 async function jsonReader(path){
     try {
-        const now = Math.floor(Date.now() / (1000 * 60 * 5));
-        const cacheBuster = `cb=${now}`;
-
-        const url = `${process.env.REACT_APP_CDN_URL}page_content/${path}?${cacheBuster}`;
+        const url = `${process.env.REACT_APP_CDN_URL}page_content/${path}`;
 
         const response = await fetch(url);
         if (!response.ok) {

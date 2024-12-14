@@ -4,6 +4,7 @@ import { Centered, Normal, HorizontalRow } from "../atoms/Arrangement"
 import { UnorderedList, OrderedList, ListElement } from "../atoms/List"
 import { Image, ImageInText } from "../atoms/Image"
 import GatCalendar from "../christmas/CalenderDoors"
+import { Embed } from "../atoms/Embed"
 
 const PageMapper = ({data}) => (
     <>
@@ -49,6 +50,8 @@ function AtomRenderer({data}){
             return <Image src={process.env.REACT_APP_CDN_URL+data.src} width={data.width || 90} maxWidth={data.maxWidth || 50} alt={data.alt || ""} />
         case "imageInText":
             return <ImageInText src={process.env.REACT_APP_CDN_URL+data.src} align={data.align} alt={data.alt || ""} />
+        case "embed":
+            return <Embed src={data.src} width={data.width} height={data.height} center= {data.center || false} />
         case "calendar":
             return <GatCalendar/>
         case "newsContainer":

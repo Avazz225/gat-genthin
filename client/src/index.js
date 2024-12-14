@@ -21,6 +21,7 @@ import Imprint from './important/Imprint';
 import TestContent from './siteContent/TestContent';
 import RaffleConfirmation from './christmas/RaffleConfirmation';
 import ChristmasForm from './christmas/SolutionForm';
+import RaffleConditions from './christmas/RaffleConditions';
 
 const root = ReactDOM.createRoot(document.getElementById('content'));
 
@@ -45,7 +46,8 @@ root.render(
           <Route path="/imprint" element={<Imprint />}exact  />
           <Route path="/enter" element={<ChristmasForm />}exact  />
           <Route path="/confirmraffle" element={<RaffleConfirmation />}exact  />
-          <Route path="/test" element={<TestContent />}exact  />
+          <Route path="/raffleconditions" element={<RaffleConditions />}exact  />
+          {(process.env.REACT_APP_TEST_MODE === "t")&&<Route path="/test" element={<TestContent />}exact  />}
         </Routes>
       </HashRouter>
     </div>

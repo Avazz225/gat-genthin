@@ -42,7 +42,8 @@ const Imprint = () => {
                 Telefon: <Link text={imprintData.contact.tel} destination={"tel:"+imprintData.contact.tel}/><br/><br/>
                 Vereinsregister: {imprintData.register.court}<br/>
                 Vereinsregisternummer: {imprintData.register.number}<br/>
-                {(imprintData.identification.economicId)&&<>Steueridentifikationsnummer: {imprintData.identification.economicId}<br/></>}
+                {(imprintData.identification.salesTax)&&<>Umsatzsteueridentifikationsnummer: {imprintData.identification.salesTax}<br/></>}
+                {(imprintData.identification.economicId)&&<>Wirtschaftsidentifikationsnummer: {imprintData.identification.economicId}<br/></>}
                 {(imprintData.otherSocialMedia)&&<><br/>Dieses Impressum ist auch für {(Object.keys(imprintData.otherSocialMedia).length !== 1)?"die offiziellen Social Media Kanäle":"den offiziellen Social Media Kanal"} des Genthiner Amateurtheater e.V. auf <MapSocialMedia data={imprintData.otherSocialMedia}/> gültig.</>}
             </TextContainer>
         </BaseContainer>
