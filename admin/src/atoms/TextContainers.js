@@ -60,13 +60,14 @@ function Link({changeProperty, index, deleteData, deleteMode, text, destination,
     const [crtlDown, setCrtlDown] = useState(false)
     const [contextMenuPosition, setContextMenuPosition] = useState({ mouseX: null, mouseY: null })
 
-    function showContextMenu(e, bold){
+    function showContextMenu(e, bold, href=""){
         e.preventDefault(); 
         modifyState('textSelection', {'index': index})
         modifyState('contextMenuVisibility' ,'block')
         modifyState('contextMenuType', "linkRight")
         modifyState('contextMenuCoords', {'x': contextMenuPosition.mouseX, 'y': contextMenuPosition.mouseY})
         modifyState('linkBold', bold)
+        modifyState('linkHref', href)
     }
 
     function handleBlur(e){
@@ -89,12 +90,12 @@ function Link({changeProperty, index, deleteData, deleteMode, text, destination,
                     contentEditable={!crtlDown} 
                     className={editable?"textEditable":""}  
                     onBlur={(e) => handleBlur(e)}
-                    onClick={(e) => {if (!e.ctrlKey) {e.preventDefault()}}}
+                    onClick={(e) => {if (!e.ctrlKey) {showContextMenu(e, true, destination)}}}
                     onKeyDown={(e) => {if (e.ctrlKey) {setCrtlDown(true)} if (e.key === 'Enter') {e.preventDefault()}}}
                     onKeyUp={(e) => {if (!e.ctrlKey) {setCrtlDown(false)}}}
                     onSelect={(e) => getSelectedText(e, window.getSelection().toString(), e.target.textContent, "link", contextMenuPosition.mouseY, contextMenuPosition.mouseX, index, setTextSelection, modifyState)}
                     onMouseDown={(e) => setContextMenuPosition({ mouseX: e.pageX, mouseY: e.pageY })}
-                    onContextMenu={(e) => showContextMenu(e, true)}
+                    onContextMenu={(e) => showContextMenu(e, true, destination)}
                 >
                     {text}
                 </a>
@@ -113,12 +114,12 @@ function Link({changeProperty, index, deleteData, deleteMode, text, destination,
                 contentEditable={!crtlDown} 
                 className={editable?"textEditable":""}  
                 onBlur={(e) => handleBlur(e)}
-                onClick={(e) => {if (!e.ctrlKey) {e.preventDefault()}}}
+                onClick={(e) => {if (!e.ctrlKey) {showContextMenu(e, true, destination)}}}
                 onKeyDown={(e) => {if (e.ctrlKey) {setCrtlDown(true)} if (e.key === 'Enter') {e.preventDefault()}}}
                 onKeyUp={(e) => {if (!e.ctrlKey) {setCrtlDown(false)}}}
                 onSelect={(e) => getSelectedText(e, window.getSelection().toString(), e.target.textContent, "link", contextMenuPosition.mouseY, contextMenuPosition.mouseX, index, setTextSelection, modifyState)}
                 onMouseDown={(e) => setContextMenuPosition({ mouseX: e.pageX, mouseY: e.pageY })}
-                onContextMenu={(e) => showContextMenu(e, false)}
+                onContextMenu={(e) => showContextMenu(e, false, destination)}
             >
                 {text}
             </a>

@@ -18,7 +18,8 @@ class PageRenderer extends React.Component{
             contextMenuVisibility: "none",
             contextMenuType: "",
             linkBold: true,
-            uploadInProgress: false
+            uploadInProgress: false,
+            linkHref: ""
         }
         this.addData = this.addData.bind(this)
         this.deleteData = this.deleteData.bind(this)
@@ -247,6 +248,7 @@ class PageRenderer extends React.Component{
                         modifyState = {this.modifyState}
                         textSelection = {this.state.textSelection}
                         linkBold = {this.state.linkBold}
+                        linkHref = {this.state.linkHref}
                     />
                 </>
             }

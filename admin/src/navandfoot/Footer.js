@@ -35,6 +35,11 @@ function Footer(){
                                     Kontakt
                                 </div>
                             </Link>
+                            <Link to="imprint" onClick="window.location.reload();" className="ref">
+                                <div className="navItem inactive light">
+                                    Impressum
+                                </div>
+                            </Link>
                         </HashRouter>
                         </div>
                         <div className="verticalrow">

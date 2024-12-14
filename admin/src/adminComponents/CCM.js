@@ -13,7 +13,7 @@ function CustomContextMenu(props){
         return(
             <div id={"customContextMenuText"} className="customContextMenu" style={{'display': props.contextMenuVisibility, 'top': 'calc(1em + '+props.contextMenuCoords.y+'px', 'left':props.contextMenuCoords.x+'px'}}>
                 <div className='customContextItem' onClick={() => {props.changeProperty(!props.linkBold, props.textSelection.index,"bold"); props.modifyState("contextMenuVisibility", "none")}}><a className='pseudoLink'>{(!props.linkBold)?<b>Fetter Link</b>:<>Normaler Link</>}</a></div>
-                <div className='customContextInput'>Ziel: <input placeholder='https://...' onBlur={(e) => props.changeProperty(e.target.value, props.textSelection.index, "destination")}/></div>
+                <div className='customContextInput'>Ziel: <input placeholder='https://...' onBlur={(e) => props.changeProperty(e.target.value, props.textSelection.index, "destination")} value={props.linkHref}/></div>
             </div>
         )
     } else if (props.contextMenuType === "heading") {

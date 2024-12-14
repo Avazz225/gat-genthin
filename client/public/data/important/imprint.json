@@ -3,27 +3,26 @@
     "address": {
         "city":"Genthin", 
         "postal": "39307",
-        "street": "___",
-        "number": "___"
+        "street": "Schillerstraße",
+        "number": "7A"
     },
     "representative": {
-        "name": "___",
+        "name": "Jürgen Wagner",
         "city":"Genthin", 
         "postal": "39307",
-        "street": "___",
-        "number": "___"
+        "street": "Schillerstraße",
+        "number": "7A"
     },
     "contact": {
-        "email":"___",
-        "tel":"___"
+        "email":"info@gat-genthin.de",
+        "tel":"03933/806922"
     },
     "register":{
-        "court":"___",
-        "number":"___"
+        "court":"39576 Hansestadt Stendal",
+        "number":"VerR 60236"
     },
     "identification":{
-        "salesTax":"___",
-        "economicId":"___"
+        "economicId":"103/143/06657"
     },
     "otherSocialMedia":{
         "Instagram": "https://www.instagram.com/genthiner.amateurtheater/"
