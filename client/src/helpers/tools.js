@@ -1,17 +1,41 @@
 async function jsonReader(path){
     try {
         const url = `${process.env.REACT_APP_CDN_URL}page_content/${path}`;
+        const now = Date.now();
+        const tenMinutes = 10 * 60 * 1000;
+        const lastFetch = getLastFetchTimestamp(path);
+
+        if (!lastFetch || now - lastFetch >= tenMinutes) {
+            const noCacheUrl = `${url}?t=${now}`;
+            const response = await fetch(noCacheUrl);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            updateLastFetchTimestamp(path);
+            return data;
+        }
 
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        return data;
+        return await response.json();
     } catch (error) {
         console.error('Error fetching JSON data:', error);
         return null; // or handle the error in some other way
     }
+}
+
+function getLastFetchTimestamp(path) {
+    const timestamps = JSON.parse(localStorage.getItem('gat_lastFetchTimestamps')) || {};
+    return timestamps[path] || null;
+}
+
+function updateLastFetchTimestamp(path) {
+    const timestamps = JSON.parse(localStorage.getItem('gat_lastFetchTimestamps')) || {};
+    timestamps[path] = Date.now();
+    localStorage.setItem('gat_lastFetchTimestamps', JSON.stringify(timestamps));
 }
 
 function getValue(key, data){

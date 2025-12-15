@@ -39,7 +39,7 @@ function AdminControls(props){
 function ToUserMgmt(){
     return(
         <div>
-            <NavLink id="users" text="Nutzerverwaltung" destination="users"/>
+            <NavLink id="users" text="Nutzerverwaltung" destination="#/users"/>
         </div>
     )
 }

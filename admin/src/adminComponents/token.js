@@ -4,7 +4,6 @@ async function checkTokenValidity(){
         method: 'GET',
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/json',
             'source':process.env.REACT_APP_SYSTEM_ID
         }
         })
