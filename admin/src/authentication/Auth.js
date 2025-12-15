@@ -126,16 +126,14 @@ class Auth extends React.Component{
             apiProcess: true
         })
         await fetch(process.env.REACT_APP_AUTH_API+'authentication_tokens/'+(this.state.permanent_login?'persistent_token':'timed_token'), {
-        method: 'POST',
+        method: 'GET',
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
-            'source':process.env.REACT_APP_SYSTEM_ID
-        },
-        body: JSON.stringify({
+            'source':process.env.REACT_APP_SYSTEM_ID,
             email: this.state.email,
             password: this.state.password
-        })
+        }
         })
         .then((response) => {
             if (response.ok) {
