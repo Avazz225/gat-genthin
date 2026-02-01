@@ -45,9 +45,9 @@ class Maerchen extends React.Component {
 
 const FillGallery = ({data, replacementValues}) => ( 
     <>
-    {data.map(data => (
+    {data.map((data, index) => (
         <><div className='content-pane texttype'>
-            <details>
+            <details open={index === 0}>
                 <summary>{getValue(data[0], replacementValues)}</summary>
                 <div className='galleryContainer'>
                     <FillImages data={data.slice(1)}/>
