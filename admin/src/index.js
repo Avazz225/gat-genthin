@@ -21,13 +21,14 @@ import UserMgmt from './adminComponents/UserMgmt';
 
 import getLanguageSet from './helpers/language';
 import {IntlProvider} from 'react-intl';
-import { checkTokenValidity } from './adminComponents/token';
+import { checkTokenValidity, setupTokenRefresh } from './helpers/token';
 import AdminControls from './adminComponents/AdminControls';
 import "./atoms/EditContent.css"
 import Calendar from './christmas/Calendar';
 import RaffleConfirmation from './christmas/RaffleConfirmation';
 import ChristmasForm from './christmas/SolutionForm';
 import Imprint from './important/Imprint';
+import { getStorage } from './helpers/localStorage';
 
 const root = ReactDOM.createRoot(document.getElementById('content'));
 const locale = navigator.language;
@@ -54,8 +55,15 @@ function App() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await checkTokenValidity();
-        setValidity(result);
+        console.log(getStorage("autoRefreshAccessToken"))
+        if (getStorage("autoRefreshAccessToken") === "true") {
+          const result = await checkTokenValidity();
+          setValidity(result);
+          setupTokenRefresh()
+          return
+        }
+
+        setValidity(false)
       } catch (error) {
         console.error("Fehler beim Überprüfen des Tokens:", error);
         setValidity(false); 

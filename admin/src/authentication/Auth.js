@@ -1,6 +1,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import './auth.css'
+import { setLocalStorage, setSessionStorage } from "../helpers/localStorage";
+import { setupTokenRefresh } from "../helpers/token";
 
 function ErrorMsg(props){
     return(
@@ -125,15 +127,17 @@ class Auth extends React.Component{
         await this.setState({
             apiProcess: true
         })
-        await fetch(process.env.REACT_APP_AUTH_API+'authentication_tokens/'+(this.state.permanent_login?'persistent_token':'timed_token'), {
-        method: 'GET',
+        await fetch(process.env.REACT_APP_AUTH_API+'login', {
+        method: 'POST',
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
-            'source':process.env.REACT_APP_SYSTEM_ID,
-            email: this.state.email,
-            password: this.state.password
-        }
+        },
+        body: JSON.stringify({
+            'source': process.env.REACT_APP_SYSTEM_ID,
+            'email': this.state.email,
+            'password': this.state.password
+        })
         })
         .then((response) => {
             if (response.ok) {
@@ -149,6 +153,15 @@ class Auth extends React.Component{
 
             localStorage.setItem("internal_role", data.role)
             localStorage.setItem("own_email", this.state.email)
+            if (this.state.permanent_login) {
+                console.log("permanent_login")
+                setLocalStorage("autoRefreshAccessToken", true)
+            } else {
+                setLocalStorage("autoRefreshAccessToken", false)
+                setSessionStorage("autoRefreshAccessToken", true)
+            }
+
+            setupTokenRefresh()
             
             window.location.href="/"
         })
